@@ -1,0 +1,2183 @@
+{
+    "user_full_cache_6": {
+        "value": {
+            "metadata": {
+                "timestamp": "2026-01-16T04:37:37.146Z",
+                "version": 1,
+                "totalKeys": 12,
+                "dataSize": 16330
+            },
+            "data": {
+                "advertisData": {
+                    "advertiseAll": 0,
+                    "rewards": [
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        },
+                        {
+                            "received": false
+                        }
+                    ]
+                },
+                "roleJson": [
+                    {
+                        "id": 0,
+                        "name": "见习勇士",
+                        "desc": "名为勇者，实为土匪，翻箱倒柜无所不为",
+                        "url": "\/picture\/big\/bg\/bg_131_0",
+                        "icon": "\/picture\/small\/icon\/icon_37_0",
+                        "pz": 0,
+                        "isSelect": 1,
+                        "level": 0,
+                        "proficiency": 0,
+                        "levelData": [
+                            {
+                                "id": 1,
+                                "jsId": 0,
+                                "num": 2,
+                                "killNum": 6000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_0",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 2,
+                                "jsId": 0,
+                                "num": 5,
+                                "killNum": 10000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_1",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 3,
+                                "jsId": 0,
+                                "num": 8,
+                                "killNum": 15000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_2",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 4,
+                                "jsId": 0,
+                                "num": 10,
+                                "killNum": 24000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_3",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 5,
+                                "jsId": 0,
+                                "num": 15,
+                                "killNum": 36000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_4",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 6,
+                                "jsId": 0,
+                                "num": 20,
+                                "killNum": 50000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_5",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 3
+                            }
+                        ]
+                    },
+                    {
+                        "id": 1,
+                        "name": "星落",
+                        "desc": "年轻的占卜术天才少女，不喜欢穿鞋子，所以走路全靠飘",
+                        "url": "\/picture\/big\/bg\/bg_131_1",
+                        "icon": "\/picture\/small\/icon\/icon_37_1",
+                        "pz": 1,
+                        "isSelect": 2,
+                        "level": 0,
+                        "proficiency": 0,
+                        "levelData": [
+                            {
+                                "id": 1,
+                                "jsId": 0,
+                                "num": 2,
+                                "killNum": 6000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_0",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 2,
+                                "jsId": 0,
+                                "num": 5,
+                                "killNum": 10000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_1",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 3,
+                                "jsId": 0,
+                                "num": 8,
+                                "killNum": 15000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_2",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 4,
+                                "jsId": 0,
+                                "num": 10,
+                                "killNum": 24000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_3",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 5,
+                                "jsId": 0,
+                                "num": 15,
+                                "killNum": 36000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_4",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 6,
+                                "jsId": 0,
+                                "num": 20,
+                                "killNum": 50000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_5",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 3
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "name": "守护天使",
+                        "desc": "只要我还活着，就不会有人遭受苦难，如果有，那就当我死了——年轻的圣职者",
+                        "url": "\/picture\/big\/bg\/bg_131_2",
+                        "icon": "\/picture\/small\/icon\/icon_37_2",
+                        "pz": 1,
+                        "isSelect": 2,
+                        "level": 0,
+                        "proficiency": 0,
+                        "levelData": [
+                            {
+                                "id": 1,
+                                "jsId": 0,
+                                "num": 2,
+                                "killNum": 6000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_0",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 2,
+                                "jsId": 0,
+                                "num": 5,
+                                "killNum": 10000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_1",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 3,
+                                "jsId": 0,
+                                "num": 8,
+                                "killNum": 15000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_2",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 4,
+                                "jsId": 0,
+                                "num": 10,
+                                "killNum": 24000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_3",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 5,
+                                "jsId": 0,
+                                "num": 15,
+                                "killNum": 36000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_4",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 6,
+                                "jsId": 0,
+                                "num": 20,
+                                "killNum": 50000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_5",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 3
+                            }
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "name": "冰之女皇",
+                        "desc": "冰雕艺术家，偶尔也兼职冰淇淋厂厂长",
+                        "url": "\/picture\/big\/bg\/bg_163",
+                        "icon": "\/picture\/small\/icon\/icon_37_3",
+                        "pz": 2,
+                        "isSelect": 2,
+                        "level": 0,
+                        "proficiency": 0,
+                        "levelData": [
+                            {
+                                "id": 1,
+                                "jsId": 0,
+                                "num": 2,
+                                "killNum": 6000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_0",
+                                "icon": "\/picture\/small\/icon\/icon_26_3",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 2,
+                                "jsId": 0,
+                                "num": 5,
+                                "killNum": 10000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_1",
+                                "icon": "\/picture\/small\/icon\/icon_26_3",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 3,
+                                "jsId": 0,
+                                "num": 8,
+                                "killNum": 15000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_2",
+                                "icon": "\/picture\/small\/icon\/icon_26_3",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 4,
+                                "jsId": 0,
+                                "num": 10,
+                                "killNum": 24000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_3",
+                                "icon": "\/picture\/small\/icon\/icon_26_3",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 5,
+                                "jsId": 0,
+                                "num": 15,
+                                "killNum": 36000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_4",
+                                "icon": "\/picture\/small\/icon\/icon_26_3",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 6,
+                                "jsId": 0,
+                                "num": 20,
+                                "killNum": 50000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_5",
+                                "icon": "\/picture\/small\/icon\/icon_26_3",
+                                "adNum": 0,
+                                "adAllNum": 3
+                            }
+                        ]
+                    },
+                    {
+                        "id": 4,
+                        "name": "忍者",
+                        "desc": "古老忍者村流传下的忍者，每日目标逃离忍者村",
+                        "url": "\/picture\/big\/bg\/bg_131_4",
+                        "icon": "\/picture\/small\/icon\/icon_37_4",
+                        "isSelect": 2,
+                        "level": 0,
+                        "pz": 0,
+                        "proficiency": 0,
+                        "levelData": [
+                            {
+                                "id": 1,
+                                "jsId": 0,
+                                "num": 2,
+                                "killNum": 6000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_0",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 2,
+                                "jsId": 0,
+                                "num": 5,
+                                "killNum": 10000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_1",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 3,
+                                "jsId": 0,
+                                "num": 8,
+                                "killNum": 15000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_2",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 4,
+                                "jsId": 0,
+                                "num": 10,
+                                "killNum": 24000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_3",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 5,
+                                "jsId": 0,
+                                "num": 15,
+                                "killNum": 36000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_4",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 6,
+                                "jsId": 0,
+                                "num": 20,
+                                "killNum": 50000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_5",
+                                "icon": "\/picture\/small\/icon\/icon_26_0",
+                                "adNum": 0,
+                                "adAllNum": 3
+                            }
+                        ]
+                    },
+                    {
+                        "id": 5,
+                        "name": "青玄",
+                        "desc": "青丘妖狐，有几条尾巴就有几个心眼子",
+                        "url": "\/picture\/big\/bg\/bg_131_5",
+                        "icon": "\/picture\/small\/icon\/icon_37_5",
+                        "isSelect": 2,
+                        "level": 0,
+                        "pz": 2,
+                        "proficiency": 0,
+                        "levelData": [
+                            {
+                                "id": 1,
+                                "jsId": 0,
+                                "num": 2,
+                                "killNum": 6000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_0",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 2,
+                                "jsId": 0,
+                                "num": 5,
+                                "killNum": 10000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_1",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 3,
+                                "jsId": 0,
+                                "num": 8,
+                                "killNum": 15000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_2",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 4,
+                                "jsId": 0,
+                                "num": 10,
+                                "killNum": 24000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_3",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 5,
+                                "jsId": 0,
+                                "num": 15,
+                                "killNum": 36000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_4",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 6,
+                                "jsId": 0,
+                                "num": 20,
+                                "killNum": 50000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_5",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 3
+                            }
+                        ]
+                    },
+                    {
+                        "id": 6,
+                        "name": "偃师",
+                        "desc": "继承祖传手艺的傀儡师，年级轻轻鬼斧神工",
+                        "url": "\/picture\/big\/bg\/bg_131_6",
+                        "icon": "\/picture\/small\/icon\/icon_37_6",
+                        "isSelect": 2,
+                        "pz": 1,
+                        "level": 0,
+                        "proficiency": 0,
+                        "levelData": [
+                            {
+                                "id": 1,
+                                "jsId": 0,
+                                "num": 2,
+                                "killNum": 6000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_0",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 2,
+                                "jsId": 0,
+                                "num": 5,
+                                "killNum": 10000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_1",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 3,
+                                "jsId": 0,
+                                "num": 8,
+                                "killNum": 15000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_2",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 1
+                            },
+                            {
+                                "id": 4,
+                                "jsId": 0,
+                                "num": 10,
+                                "killNum": 24000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_3",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 5,
+                                "jsId": 0,
+                                "num": 15,
+                                "killNum": 36000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_4",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 2
+                            },
+                            {
+                                "id": 6,
+                                "jsId": 0,
+                                "num": 20,
+                                "killNum": 50000,
+                                "levelIcon": "\/picture\/small\/icon\/icon_25_5",
+                                "icon": "\/picture\/small\/icon\/icon_26_5",
+                                "adNum": 0,
+                                "adAllNum": 3
+                            }
+                        ]
+                    }
+                ],
+                "gqData": {
+                    "gq": 0,
+                    "selectMap": 0,
+                    "selectLevel": 0,
+                    "map": [
+                        {
+                            "id": 0,
+                            "unlock": 1,
+                            "progress": 0
+                        },
+                        {
+                            "id": 1,
+                            "unlock": 0,
+                            "progress": 0
+                        },
+                        {
+                            "id": 2,
+                            "unlock": 0,
+                            "progress": 0
+                        },
+                        {
+                            "id": 3,
+                            "unlock": 0,
+                            "progress": 0
+                        }
+                    ]
+                },
+                "redPointTips": {
+                    "advertis": 0,
+                    "dayDialog": 0,
+                    "sign": 0,
+                    "task": 1,
+                    "role": 0,
+                    "hs": 0
+                },
+                "hqJson": [
+                    {
+                        "array": 17,
+                        "name": "圣杯",
+                        "describe": "阵亡复活",
+                        "Unlock": 1,
+                        "level": 0,
+                        "isPercent": false,
+                        "leve": [
+                            [
+                                0,
+                                0
+                            ],
+                            [
+                                1,
+                                1
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                1,
+                                10000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 18,
+                        "name": "捕梦网",
+                        "describe": "敌方减速",
+                        "Unlock": 2,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                1,
+                                4
+                            ],
+                            [
+                                2,
+                                6
+                            ],
+                            [
+                                3,
+                                8
+                            ],
+                            [
+                                4,
+                                10
+                            ],
+                            [
+                                5,
+                                12
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 19,
+                        "name": "时空秒表",
+                        "describe": "移动速度",
+                        "Unlock": 2,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                1,
+                                6
+                            ],
+                            [
+                                2,
+                                9
+                            ],
+                            [
+                                3,
+                                12
+                            ],
+                            [
+                                4,
+                                15
+                            ],
+                            [
+                                5,
+                                18
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 20,
+                        "name": "再来一杯",
+                        "describe": "魂术冷却",
+                        "Unlock": 0,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                1,
+                                4
+                            ],
+                            [
+                                2,
+                                6
+                            ],
+                            [
+                                3,
+                                8
+                            ],
+                            [
+                                4,
+                                10
+                            ],
+                            [
+                                5,
+                                12
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 21,
+                        "name": "暗黑魔导书",
+                        "describe": "战技数量",
+                        "Unlock": 0,
+                        "level": 0,
+                        "isPercent": false,
+                        "leve": [
+                            [
+                                0,
+                                0
+                            ],
+                            [
+                                1,
+                                1
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                10000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 22,
+                        "name": "古怪神水",
+                        "describe": "魂术持续时间",
+                        "Unlock": 0,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                1,
+                                6
+                            ],
+                            [
+                                2,
+                                9
+                            ],
+                            [
+                                3,
+                                12
+                            ],
+                            [
+                                4,
+                                15
+                            ],
+                            [
+                                5,
+                                18
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 23,
+                        "name": "午后甜点",
+                        "describe": "回复血量",
+                        "Unlock": 0,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                0.5
+                            ],
+                            [
+                                1,
+                                1
+                            ],
+                            [
+                                2,
+                                1.5
+                            ],
+                            [
+                                3,
+                                2
+                            ],
+                            [
+                                4,
+                                2.5
+                            ],
+                            [
+                                5,
+                                3
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 24,
+                        "name": "戏虐之火",
+                        "describe": "暴击率",
+                        "Unlock": 2,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                2
+                            ],
+                            [
+                                1,
+                                4
+                            ],
+                            [
+                                2,
+                                6
+                            ],
+                            [
+                                3,
+                                8
+                            ],
+                            [
+                                4,
+                                10
+                            ],
+                            [
+                                5,
+                                12
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 25,
+                        "name": "契约之文",
+                        "describe": "受击减伤",
+                        "Unlock": 0,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                1,
+                                6
+                            ],
+                            [
+                                2,
+                                9
+                            ],
+                            [
+                                3,
+                                12
+                            ],
+                            [
+                                4,
+                                15
+                            ],
+                            [
+                                5,
+                                18
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 26,
+                        "name": "赌徒玩具",
+                        "describe": "幸运值",
+                        "Unlock": 1,
+                        "level": 0,
+                        "isPercent": false,
+                        "leve": [
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                1,
+                                6
+                            ],
+                            [
+                                2,
+                                9
+                            ],
+                            [
+                                3,
+                                12
+                            ],
+                            [
+                                4,
+                                15
+                            ],
+                            [
+                                5,
+                                18
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 27,
+                        "name": "发明家之帽",
+                        "describe": "魂术范围",
+                        "Unlock": 2,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                1,
+                                6
+                            ],
+                            [
+                                2,
+                                9
+                            ],
+                            [
+                                3,
+                                12
+                            ],
+                            [
+                                4,
+                                15
+                            ],
+                            [
+                                5,
+                                18
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 28,
+                        "name": "金苹果",
+                        "describe": "生命值",
+                        "Unlock": 0,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                5
+                            ],
+                            [
+                                1,
+                                10
+                            ],
+                            [
+                                2,
+                                15
+                            ],
+                            [
+                                3,
+                                20
+                            ],
+                            [
+                                4,
+                                25
+                            ],
+                            [
+                                5,
+                                30
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 29,
+                        "name": "盗宝之爪",
+                        "describe": "经验获取",
+                        "Unlock": 2,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                1,
+                                6
+                            ],
+                            [
+                                2,
+                                9
+                            ],
+                            [
+                                3,
+                                12
+                            ],
+                            [
+                                4,
+                                15
+                            ],
+                            [
+                                5,
+                                18
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 30,
+                        "name": "衔尾戒",
+                        "describe": "攻击速度",
+                        "Unlock": 1,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                10
+                            ],
+                            [
+                                1,
+                                20
+                            ],
+                            [
+                                2,
+                                30
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                4000
+                            ],
+                            [
+                                1,
+                                8000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 31,
+                        "name": "藏宝图",
+                        "describe": "拾取范围",
+                        "Unlock": 1,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                3
+                            ],
+                            [
+                                1,
+                                6
+                            ],
+                            [
+                                2,
+                                9
+                            ],
+                            [
+                                3,
+                                12
+                            ],
+                            [
+                                4,
+                                15
+                            ],
+                            [
+                                5,
+                                18
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 32,
+                        "name": "恶魔法帽",
+                        "describe": "攻击力",
+                        "Unlock": 1,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                5
+                            ],
+                            [
+                                1,
+                                10
+                            ],
+                            [
+                                2,
+                                15
+                            ],
+                            [
+                                3,
+                                20
+                            ],
+                            [
+                                4,
+                                25
+                            ],
+                            [
+                                5,
+                                30
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    },
+                    {
+                        "array": 33,
+                        "name": "金沙漏",
+                        "describe": "金币获取",
+                        "Unlock": 1,
+                        "level": 0,
+                        "isPercent": true,
+                        "leve": [
+                            [
+                                0,
+                                10
+                            ],
+                            [
+                                1,
+                                20
+                            ],
+                            [
+                                2,
+                                30
+                            ],
+                            [
+                                3,
+                                40
+                            ],
+                            [
+                                4,
+                                50
+                            ],
+                            [
+                                5,
+                                60
+                            ]
+                        ],
+                        "consume": [
+                            [
+                                0,
+                                1000
+                            ],
+                            [
+                                1,
+                                2000
+                            ],
+                            [
+                                2,
+                                3000
+                            ],
+                            [
+                                3,
+                                4000
+                            ],
+                            [
+                                4,
+                                5000
+                            ]
+                        ]
+                    }
+                ],
+                "roleUpgradeData": [
+                    {
+                        "id": 0,
+                        "level": -1
+                    },
+                    {
+                        "id": 0,
+                        "level": -1
+                    },
+                    {
+                        "id": 0,
+                        "level": -1
+                    },
+                    {
+                        "id": 0,
+                        "level": -1
+                    },
+                    {
+                        "id": 0,
+                        "level": -1
+                    },
+                    {
+                        "id": 0,
+                        "level": -1
+                    },
+                    {
+                        "id": 0,
+                        "level": -1
+                    },
+                    {
+                        "id": 0,
+                        "level": -1
+                    }
+                ],
+                "cache_device_id": "x0ignp",
+                "rclbJson": [
+                    {
+                        "id": 0,
+                        "time": 1768492800000,
+                        "type": 0,
+                        "list": [
+                            [
+                                {
+                                    "id": 15,
+                                    "desc": "金币",
+                                    "num": 300,
+                                    "adNum": 0,
+                                    "adAllNum": 0,
+                                    "get": 0
+                                }
+                            ],
+                            [
+                                {
+                                    "id": 15,
+                                    "desc": "金币",
+                                    "num": 800,
+                                    "adNum": 0,
+                                    "adAllNum": 1,
+                                    "get": 0
+                                },
+                                {
+                                    "id": 16,
+                                    "desc": "钻石",
+                                    "num": 100,
+                                    "adNum": 0,
+                                    "adAllNum": 1,
+                                    "get": 0
+                                }
+                            ],
+                            [
+                                {
+                                    "id": 15,
+                                    "desc": "金币",
+                                    "num": 1000,
+                                    "adNum": 0,
+                                    "adAllNum": 1,
+                                    "get": 0
+                                },
+                                {
+                                    "id": 1,
+                                    "desc": "通用角色碎片",
+                                    "num": 30,
+                                    "adNum": 0,
+                                    "adAllNum": 1,
+                                    "get": 0
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": 0,
+                        "time": 1768060800000,
+                        "type": 1,
+                        "list": [
+                            [
+                                {
+                                    "id": 16,
+                                    "desc": "钻石",
+                                    "num": 100,
+                                    "adNum": 0,
+                                    "adAllNum": 0,
+                                    "get": 0
+                                }
+                            ],
+                            [
+                                {
+                                    "id": 16,
+                                    "desc": "钻石",
+                                    "num": 300,
+                                    "adNum": 0,
+                                    "adAllNum": 1,
+                                    "get": 0
+                                },
+                                {
+                                    "id": 5,
+                                    "desc": "咒岩",
+                                    "num": 2,
+                                    "adNum": 0,
+                                    "adAllNum": 1,
+                                    "get": 0
+                                }
+                            ],
+                            [
+                                {
+                                    "id": 16,
+                                    "desc": "钻石",
+                                    "num": 500,
+                                    "adNum": 0,
+                                    "adAllNum": 2,
+                                    "get": 0
+                                },
+                                {
+                                    "id": 7,
+                                    "desc": "抽奖卷",
+                                    "num": 3,
+                                    "adNum": 0,
+                                    "adAllNum": 2,
+                                    "get": 0
+                                }
+                            ]
+                        ]
+                    },
+                    {
+                        "id": 0,
+                        "time": 1769788800000,
+                        "type": 2,
+                        "list": [
+                            [
+                                {
+                                    "id": 7,
+                                    "desc": "抽奖卷",
+                                    "num": 1,
+                                    "adNum": 0,
+                                    "adAllNum": 0,
+                                    "get": 0
+                                }
+                            ],
+                            [
+                                {
+                                    "id": 16,
+                                    "desc": "钻石",
+                                    "num": 500,
+                                    "adNum": 0,
+                                    "adAllNum": 2,
+                                    "get": 0
+                                },
+                                {
+                                    "id": 7,
+                                    "desc": "抽奖卷",
+                                    "num": 2,
+                                    "adNum": 0,
+                                    "adAllNum": 2,
+                                    "get": 0
+                                }
+                            ],
+                            [
+                                {
+                                    "id": 6,
+                                    "desc": "咒晶",
+                                    "num": 2,
+                                    "adNum": 0,
+                                    "adAllNum": 3,
+                                    "get": 0
+                                },
+                                {
+                                    "id": 7,
+                                    "desc": "抽奖卷",
+                                    "num": 3,
+                                    "adNum": 0,
+                                    "adAllNum": 3,
+                                    "get": 0
+                                }
+                            ]
+                        ]
+                    }
+                ],
+                "taskData": {
+                    "refreshTime": [
+                        1768492800000,
+                        1768060800000
+                    ],
+                    "activityTotal": [],
+                    "rewards": [
+                        [
+                            {
+                                "received": false
+                            },
+                            {
+                                "received": false
+                            },
+                            {
+                                "received": false
+                            }
+                        ],
+                        [
+                            {
+                                "received": false
+                            },
+                            {
+                                "received": false
+                            },
+                            {
+                                "received": false
+                            }
+                        ]
+                    ],
+                    "task": [
+                        [
+                            {
+                                "progress": 1,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            }
+                        ],
+                        [
+                            {
+                                "progress": 1,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            },
+                            {
+                                "progress": 0,
+                                "received": false
+                            }
+                        ]
+                    ]
+                },
+                "hsData": {
+                    "dan": 0,
+                    "level": -1,
+                    "roleAttribute": {
+                        "hp": 1000,
+                        "rc": 5,
+                        "df": 30,
+                        "at": 17,
+                        "bj": 0,
+                        "bs": 0
+                    }
+                },
+                "atlasData": [
+                    [
+                        {
+                            "id": 1,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 2,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 3,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 4,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 5,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 6,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 7,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 8,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 9,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 10,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 11,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 12,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 13,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 14,
+                            "lock": true,
+                            "received": false
+                        }
+                    ],
+                    [
+                        {
+                            "id": 1,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 2,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 3,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 4,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 5,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 6,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 7,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 8,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 9,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 10,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 11,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 12,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 13,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 14,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 15,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 16,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 41,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 42,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 43,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 44,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 45,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 46,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 47,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 48,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 49,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 50,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 51,
+                            "lock": true,
+                            "received": false
+                        }
+                    ],
+                    [
+                        {
+                            "id": 1,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 2,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 3,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 4,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 5,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 6,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 7,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 8,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 9,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 10,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 11,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 12,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 13,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 14,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 15,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 16,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 17,
+                            "lock": true,
+                            "received": false
+                        }
+                    ],
+                    [
+                        {
+                            "id": 1,
+                            "lock": false,
+                            "received": false
+                        },
+                        {
+                            "id": 2,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 3,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 4,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 5,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 6,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 7,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 8,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 9,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 10,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 11,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 12,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 13,
+                            "lock": true,
+                            "received": false
+                        },
+                        {
+                            "id": 14,
+                            "lock": true,
+                            "received": false
+                        }
+                    ]
+                ],
+                "diamondBuy": {
+                    "refreshTimeD": 1768492800000,
+                    "refreshTimeM": 0,
+                    "refreshCount": 5
+                }
+            }
+        },
+        "updated_at": "2026-01-16T12:37:39+08:00",
+        "bound_device": "595d1977fbd2adf55193eb37ed37d369dadc25357b9fb4451b28d2501d5cf14e",
+        "binding_hash": "8b1318a1da3c98f67a845f330d69d923e11fb28e4c839b62b97d4711e7ce46fd"
+    }
+}

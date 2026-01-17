@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>梦翎公益游戏丨在线免广告H5小游戏合集</title>
+    <!-- 预加载关键CSS -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- DNS预解析和预连接 -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+</head>
+<body>
+    <!-- 第一层：收藏保存和登录注册 -->
+    <header class="header-top">
+        <div class="header-c">
+            <div class="header-top-l">
+                <a href="#" class="header-link" id="fav-link">收藏本站</a>
+                <i class="icon-fengexian">|</i>
+                <a href="#" class="header-link" id="desktop-link">保存到桌面</a>
+            </div>
+            <div class="header-top-r">
+                <div class="login-no" id="login-no">
+                    <a href="#" class="header-link login-btn" id="login-link">登录</a>
+                    <i class="icon-fengexian">|</i>
+                    <a href="#" class="header-link login-btn" id="register-link">注册</a>
+                </div>
+                <div class="login-already" id="login-already" style="display:none;">
+                    <div class="user-menu-wrapper" id="user-menu-wrapper">
+                        <a href="#" class="header-link user-name-link" id="user-name-link">
+                            <img id="user-avatar" src="" alt="头像" class="user-avatar-small" style="display:none;">
+                            <span id="user-display-name">用户</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </a>
+                        <div class="user-dropdown-menu" id="user-dropdown-menu">
+                            <a href="#" class="dropdown-item" id="menu-profile">
+                                <span class="menu-icon">👤</span>
+                                <span>个人资料</span>
+                            </a>
+                            <a href="#" class="dropdown-item" id="menu-games">
+                                <span class="menu-icon">🎮</span>
+                                <span>我的游戏</span>
+                            </a>
+                            <a href="#" class="dropdown-item" id="menu-password">
+                                <span class="menu-icon">🔒</span>
+                                <span>修改密码</span>
+                            </a>
+                            <a href="#" class="dropdown-item" id="menu-avatar">
+                                <span class="menu-icon">🖼️</span>
+                                <span>头像设置</span>
+                            </a>
+                            <a href="#" class="dropdown-item" id="menu-cache">
+                                <span class="menu-icon">🗑️</span>
+                                <span>清理缓存</span>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" id="menu-logout">
+                                <span class="menu-icon">🚪</span>
+                                <span>退出登录</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <i class="icon-fengexian">|</i>
+                <div class="header-menu-item" id="my-games-menu">
+                    <a href="#" class="header-link menu-link">
+                        <span class="menu-icon-small">🕐</span>
+                        <span>我玩过的</span>
+                        <span class="dropdown-arrow-small">▼</span>
+                    </a>
+                    <div class="header-dropdown-menu" id="my-games-dropdown">
+                        <!-- 动态生成游戏列表 -->
+                    </div>
+                </div>
+                <i class="icon-fengexian">|</i>
+                <div class="header-menu-item" id="recommended-menu">
+                    <a href="#" class="header-link menu-link">
+                        <span class="menu-icon-small">❤️</span>
+                        <span>猜你喜欢</span>
+                        <span class="dropdown-arrow-small">▼</span>
+                    </a>
+                    <div class="header-dropdown-menu" id="recommended-dropdown">
+                        <!-- 动态生成推荐游戏列表 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 第二层：网站logo和搜索 -->
+    <header class="header-center">
+        <div class="header-c">
+            <h1 class="logo">
+                <a href="/" class="logo-link">
+                <img src="img/logo.png" alt="梦翎公益游戏" class="logo-img" 
+                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiNmZjZiNmIiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjM1ZW0iPk1MMDIxODwvdGV4dD48L3N2Zz4='">
+            </a>
+            </h1>
+            <div class="header-center-right">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索游戏..." class="search-input">
+                    <button id="search-btn" class="search-btn">搜索</button>
+                </div>
+                <div id="header-games" class="header-games">
+                    <!-- 动态生成游戏logo -->
+                </div>
+    </div>
+        </div>
+    </header>
+
+    <!-- 移动端页面容器 -->
+    <div class="mobile-pages">
+        <!-- 首页页面 -->
+        <div class="mobile-page active" id="mobile-page-home">
+            <!-- 移动端分类导航 -->
+            <nav class="mobile-category-nav" id="mobile-category-nav">
+                <!-- 动态生成分类按钮 -->
+            </nav>
+
+            <!-- 主内容区 -->
+            <main class="main-content">
+        <div class="content-layout">
+            <!-- 游戏网格区域 -->
+            <div class="center-content">
+                <div class="games-main-container">
+                    <!-- 左侧：热门推荐 -->
+                    <div class="games-main-content">
+                        <div class="games-tabs">
+                            <button class="games-tab-btn active" data-tab="hot">热门推荐</button>
+                            <button class="games-tab-btn" data-tab="new">最新更新</button>
+                            <span id="games-count" class="games-count">本站已更新 <span id="games-total">0</span> 个游戏</span>
+                        </div>
+                        <div id="all-games" class="game-grid"></div>
+                        <div id="pagination" class="pagination"></div>
+                    </div>
+
+                    <!-- 右侧：我玩过的和分类 -->
+                    <div class="my-games-sidebar">
+                        <div class="sidebar-header">
+                            <h3>我玩过的</h3>
+                            <div class="sidebar-pagination">
+                                <button class="sidebar-prev-btn" id="my-games-sidebar-prev">‹</button>
+                                <div class="sidebar-page-dots" id="my-games-sidebar-dots">
+                                    <!-- 动态生成圆点 -->
+                                </div>
+                                <button class="sidebar-next-btn" id="my-games-sidebar-next">›</button>
+                            </div>
+                        </div>
+                        <div id="my-games-sidebar-list" class="my-games-sidebar-list">
+                            <!-- 动态生成游戏 -->
+                        </div>
+                        
+                        <!-- 分类导航区域 -->
+                        <div id="category-sidebar-list" class="category-sidebar-list">
+                            <!-- 动态生成分类 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+        </div>
+        
+        <!-- 聊天页面 -->
+        <div class="mobile-page" id="mobile-page-chat">
+            <div class="mobile-chat-page">
+                <div class="mobile-chat-header">
+                    <h3>游戏聊天</h3>
+                </div>
+                <div class="mobile-chat-content">
+                    <div id="mobile-chat-messages" class="mobile-chat-messages">
+                        <!-- 聊天消息将在这里显示 -->
+                    </div>
+                    <div class="mobile-chat-input-wrapper">
+                        <div id="mobile-chat-emoji-picker" class="mobile-chat-emoji-picker">
+                            <!-- 表情选择器将动态生成 -->
+                        </div>
+                        <button id="mobile-chat-emoji-btn" class="mobile-chat-emoji-btn" title="表情">😊</button>
+                        <input type="text" id="mobile-chat-input" class="mobile-chat-input" placeholder="输入消息..." maxlength="500">
+                        <button id="mobile-chat-send" class="mobile-chat-send-btn">发送</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 我的页面 -->
+        <div class="mobile-page" id="mobile-page-user">
+            <div class="mobile-user-page">
+                <!-- 用户中心内容将在这里显示 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 第三层：分类导航和广告位（PC端） -->
+    <nav class="header-bottom">
+        <div class="header-bottom-wrapper">
+            <!-- 左侧广告位 -->
+            <div id="ad-nav-left" class="ad-container ad-nav-side">
+                <a id="ad-link-nav-left" href="#" target="_blank" class="ad-link">
+                    <img id="ad-image-nav-left" src="" alt="广告" class="ad-image">
+                </a>
+  </div>
+
+            <!-- 中间：分类导航 -->
+            <div class="header-c">
+                <div id="category-nav" class="category-nav"></div>
+            </div>
+            
+            <!-- 右侧广告位 -->
+            <div id="ad-nav-right" class="ad-container ad-nav-side">
+                <a id="ad-link-nav-right" href="#" target="_blank" class="ad-link">
+                    <img id="ad-image-nav-right" src="" alt="广告" class="ad-image">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区（PC端） -->
+    <main class="main-content">
+        <div class="content-layout">
+            <!-- 分类标签区域 -->
+            <div id="category-tags-section" class="category-tags-section">
+                <!-- 动态生成分类标签行 -->
+            </div>
+
+            <!-- 游戏随机展示区域 -->
+            <div class="random-games-section">
+                <button class="random-games-nav-btn random-games-nav-left" id="random-games-prev">‹</button>
+                <div class="random-games-container" id="random-games-container">
+                    <!-- 动态生成游戏 -->
+                </div>
+                <button class="random-games-nav-btn random-games-nav-right" id="random-games-next">›</button>
+            </div>
+
+            <!-- 游戏网格区域 -->
+            <div class="center-content">
+                <div class="games-main-container">
+                    <!-- 左侧：热门推荐 -->
+                    <div class="games-main-content">
+                        <div class="games-tabs">
+                            <button class="games-tab-btn active" data-tab="hot">热门推荐</button>
+                            <button class="games-tab-btn" data-tab="new">最新更新</button>
+                            <span id="games-count" class="games-count">本站已更新 <span id="games-total">0</span> 个游戏</span>
+                        </div>
+                        <div id="all-games" class="game-grid"></div>
+                        <div id="pagination" class="pagination"></div>
+                    </div>
+
+                    <!-- 右侧：我玩过的和分类 -->
+                    <div class="my-games-sidebar">
+                        <div class="sidebar-header">
+                            <h3>我玩过的</h3>
+                            <div class="sidebar-pagination">
+                                <button class="sidebar-prev-btn" id="my-games-sidebar-prev">‹</button>
+                                <div class="sidebar-page-dots" id="my-games-sidebar-dots">
+                                    <!-- 动态生成圆点 -->
+                                </div>
+                                <button class="sidebar-next-btn" id="my-games-sidebar-next">›</button>
+                            </div>
+                        </div>
+                        <div id="my-games-sidebar-list" class="my-games-sidebar-list">
+                            <!-- 动态生成游戏 -->
+                        </div>
+                        
+                        <!-- 分类导航区域 -->
+                        <div id="category-sidebar-list" class="category-sidebar-list">
+                            <!-- 动态生成分类 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部导航（移动端） -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" data-view="home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">首页</span>
+        </div>
+        <div class="nav-item" data-view="chat">
+            <span class="nav-icon">💬</span>
+            <span class="nav-text">聊天</span>
+        </div>
+        <div class="nav-item" data-view="user">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">我的</span>
+        </div>
+    </nav>
+
+    <!-- 登录弹窗 -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>登录</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="login-form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" name="username" id="login-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="password" id="login-password" required>
+                    </div>
+                    <div class="error-message" id="login-error"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="login-submit-btn" class="btn-primary">登录</button>
+                <button type="button" class="btn-cancel modal-close">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册弹窗 -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>注册</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="register-form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" name="username" id="register-username" required minlength="3" maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="password" id="register-password" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label>昵称</label>
+                        <input type="text" name="nickname" id="register-nickname">
+                    </div>
+                    <div class="form-group">
+                        <label>邮箱（可选）</label>
+                        <input type="email" name="email" id="register-email">
+                    </div>
+                    <div class="error-message" id="register-error"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="register-submit-btn" class="btn-primary">注册</button>
+                <button type="button" class="btn-cancel modal-close">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏iframe容器 -->
+    <div id="game-container" class="game-container" style="display:none;">
+        <div class="game-header">
+            <button id="close-game" class="close-btn">&times;</button>
+            <h3 id="game-title"></h3>
+        </div>
+        <div class="game-content-wrapper">
+            <iframe id="game-frame" src="" frameborder="0"></iframe>
+            <button id="chat-toggle-btn" class="chat-toggle-btn" title="收起/展开聊天"></button>
+            <div id="chat-panel" class="chat-panel">
+                <div class="chat-header">
+                    <h4>游戏聊天</h4>
+                </div>
+                <div id="chat-messages" class="chat-messages">
+                    <!-- 聊天消息将动态加载 -->
+                </div>
+                <div class="chat-input-wrapper">
+                    <div id="chat-emoji-picker" class="chat-emoji-picker">
+                        <!-- 表情选择器将动态生成 -->
+                    </div>
+                    <button id="chat-emoji-btn" class="chat-emoji-btn" title="表情">😊</button>
+                    <input type="text" id="chat-input" class="chat-input" placeholder="输入消息..." maxlength="500">
+                    <button id="chat-send-btn" class="chat-send-btn">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户中心弹窗 -->
+    <div id="user-center-modal" class="modal">
+        <div class="modal-content user-center-content">
+            <div class="modal-header">
+                <h3>用户中心</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="user-center-tabs">
+                    <button class="tab-btn active" data-tab="profile">个人资料</button>
+                    <button class="tab-btn" data-tab="games">我的游戏</button>
+                    <button class="tab-btn" data-tab="password">修改密码</button>
+                    <button class="tab-btn" data-tab="avatar">头像设置</button>
+                    <button class="tab-btn" data-tab="cache">清理缓存</button>
+                </div>
+                
+                <!-- 个人资料标签页 -->
+                <div class="tab-content active" id="tab-profile">
+                    <form id="profile-form" class="user-form" method="post" action="javascript:void(0);">
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type="text" id="profile-username" readonly>
+                            <small class="form-hint">用户名不可修改</small>
+                        </div>
+                        <div class="form-group">
+                            <label>昵称</label>
+                            <input type="text" id="profile-nickname" name="nickname">
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱</label>
+                            <input type="email" id="profile-email" name="email">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">保存修改</button>
+                        </div>
+                        <div class="form-message" id="profile-message"></div>
+                    </form>
+                </div>
+
+                <!-- 我的游戏标签页 -->
+                <div class="tab-content" id="tab-games">
+                    <div id="my-games-list" class="my-games-list">
+                        <div class="loading-text">加载中...</div>
+                    </div>
+                </div>
+
+                <!-- 修改密码标签页 -->
+                <div class="tab-content" id="tab-password">
+                    <form id="password-form" class="user-form" method="post" action="javascript:void(0);">
+                        <div class="form-group">
+                            <label>当前密码</label>
+                            <input type="password" name="old_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>新密码</label>
+                            <input type="password" name="new_password" required minlength="6">
+                            <small class="form-hint">至少6个字符</small>
+                        </div>
+                        <div class="form-group">
+                            <label>确认新密码</label>
+                            <input type="password" name="confirm_password" required minlength="6">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">修改密码</button>
+                        </div>
+                        <div class="form-message" id="password-message"></div>
+                    </form>
+                </div>
+
+                <!-- 清理缓存标签页 -->
+                <div class="tab-content" id="tab-cache">
+                    <div class="cache-management">
+                        <h4>缓存管理</h4>
+                        <p class="cache-description">清理缓存可以帮助释放存储空间，但可能会清除您的游戏进度数据，请谨慎操作。</p>
+                        
+                        <div class="cache-actions">
+                            <div class="cache-action-item">
+                                <div class="cache-action-info">
+                                    <h5>本地浏览器缓存</h5>
+                                    <p>清理浏览器本地存储的游戏进度和缓存数据</p>
+                                </div>
+                                <button type="button" class="btn-secondary" id="clear-local-cache-btn">清理本地缓存</button>
+                            </div>
+                            
+                            <div class="cache-action-item">
+                                <div class="cache-action-info">
+                                    <h5>服务器游戏数据缓存</h5>
+                                    <p>清理服务器上保存的您账号的游戏进度和缓存数据（仅清理当前登录账号的缓存）</p>
+                                </div>
+                                <button type="button" class="btn-secondary" id="clear-server-cache-btn">清理服务器缓存</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-message" id="cache-message"></div>
+                    </div>
+                </div>
+
+                <!-- 头像设置标签页 -->
+                <div class="tab-content" id="tab-avatar">
+                    <form id="avatar-form" class="user-form" method="post" action="javascript:void(0);">
+                        <div class="avatar-preview">
+                            <img id="avatar-preview-img" src="" alt="头像预览" style="display:none;">
+                            <div id="avatar-placeholder" class="avatar-placeholder">
+                                <span>暂无头像</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>选择头像</label>
+                            <input type="file" id="avatar-input" name="avatar" accept="image/*">
+                            <small class="form-hint">支持 JPG、PNG、GIF 格式，建议尺寸 200x200</small>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">上传头像</button>
+                        </div>
+                        <div class="form-message" id="avatar-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    
+    <!-- 网站底部 -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://www.ml0218.com/">关于我们</a>
+                <span class="footer-separator">|</span>
+                <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=MLrw9a2KUAk9Qt2eYll553BWeqLkSkAg&authKey=aCkQVupN8eiNlRIpDmHt019rDQ7cgbBp%2B5XoWs%2FoCz%2B65W2BAx8TvYdcnU%2BKeNMc&noverify=0&group_code=935672538">加入交流群</a>
+                <span class="footer-separator">|</span>
+                <a href="https://www.ml0218.com/">友情链接</a>
+                <span class="footer-separator">|</span>
+            </div>
+            <div class="footer-info">
+                <p>© 2021-2026 梦翎公益游戏丨www.ml0218.com</p>
+                <p>游戏作品版权归原作者享有,如无意之中侵犯了您的版权,请联系我们,本网站将在2个工作日内下架。</p>
+                <p class="footer-tip">梦翎公益游戏提醒您:适度游戏娱乐,沉迷游戏伤身,合理安排时间,享受快乐生活</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

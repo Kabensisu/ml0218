@@ -1,0 +1,2562 @@
+{
+    "user_full_cache_3": {
+        "value": {
+            "metadata": {
+                "timestamp": "2025-12-28T03:38:08.212Z",
+                "version": 1,
+                "totalKeys": 62,
+                "dataSize": 23815
+            },
+            "data": {
+                "ARTIFACTSLIST": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "DAYTASKDATA": {
+                    "isRewardReceived": false,
+                    "taskRefreshTime": 1766888932190,
+                    "tableTaskIndex": 0,
+                    "taskList": [
+                        {
+                            "id": 2,
+                            "count": 0,
+                            "received": false
+                        },
+                        {
+                            "id": 6,
+                            "count": 0,
+                            "received": false
+                        },
+                        {
+                            "id": 11,
+                            "count": 5000,
+                            "received": false
+                        },
+                        {
+                            "id": 21,
+                            "count": 0,
+                            "received": false
+                        },
+                        {
+                            "id": 18,
+                            "count": 0,
+                            "received": false
+                        }
+                    ]
+                },
+                "DRUGBOXNUM": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "MAXARTIFACTS": 0,
+                "MAXCUSTOMS": 14,
+                "DINO_LAND_isFirsetUseMount": 1,
+                "EVERYDAY": [
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    }
+                ],
+                "ISFRISTLOAD": false,
+                "game_progress_253": {
+                    "game_id": 253,
+                    "progress_data": "[0,0,0,0,0,0,0,0,0,0,0,0]",
+                    "timestamp": "2025-12-28T02:46:12.417Z"
+                },
+                "GUIDE": [
+                    3,
+                    0
+                ],
+                "mySaveNum": 1,
+                "padmx_gameData": {
+                    "audio": {
+                        "musicVolume": 1,
+                        "effectVolume": 1
+                    },
+                    "player": {
+                        "saveTime": "2025-12-28T02:51:56.880Z",
+                        "backLifeCount": 0,
+                        "coinAddInfo": {
+                            "adCoin": 6710,
+                            "diamondCoin": 25669
+                        },
+                        "diamondAdTime": "2025-12-28T02:51:07.574Z",
+                        "energyAddCount": 0,
+                        "energyRecoveryTime": "2025-12-28T02:50:42.894Z",
+                        "playerLv": 1,
+                        "playerExp": 4,
+                        "headId": 1,
+                        "giftObj": {
+                            "1": {
+                                "num": 0,
+                                "time": "1970-01-01T00:00:00.000Z"
+                            }
+                        },
+                        "isNewPlayer": 0,
+                        "handObj": {
+                            "8": 1,
+                            "9": 1,
+                            "10": 1,
+                            "11": 1,
+                            "12": 1,
+                            "13": 1,
+                            "101": 1
+                        },
+                        "luckDrawCount": 0
+                    },
+                    "map": {
+                        "mapId": 0,
+                        "floor": 0,
+                        "round": 0,
+                        "cardArr": [],
+                        "dropArr": [],
+                        "cardDoor": null,
+                        "cardBoss": null,
+                        "bagObj": [],
+                        "backLifeCount": 0,
+                        "settlementObj": [],
+                        "mapIdPassObj": []
+                    },
+                    "fight": {
+                        "role": []
+                    },
+                    "role": {
+                        "fightRoleId": 1,
+                        "roleArr": [
+                            {
+                                "id": 1,
+                                "star": 1,
+                                "equips": {
+                                    "1": 111,
+                                    "2": 121,
+                                    "3": 131,
+                                    "4": 141,
+                                    "5": 151,
+                                    "6": 161
+                                }
+                            }
+                        ]
+                    },
+                    "item": {
+                        "itemArr": [
+                            {
+                                "id": 1,
+                                "num": 1363
+                            },
+                            {
+                                "id": 3,
+                                "num": 3
+                            },
+                            {
+                                "id": 101,
+                                "num": 10
+                            }
+                        ]
+                    }
+                },
+                "JEWEL": 500,
+                "GOODSITEM": [
+                    {
+                        "id": 1,
+                        "type": 1,
+                        "goodsid": 1,
+                        "num": 10,
+                        "currency": 0,
+                        "price": 75
+                    },
+                    {
+                        "id": 3,
+                        "type": 2,
+                        "goodsid": 1,
+                        "num": 10,
+                        "currency": 1,
+                        "price": 25
+                    },
+                    {
+                        "id": 6,
+                        "type": 3,
+                        "goodsid": 14,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 10,
+                        "type": 4,
+                        "goodsid": 42,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 16,
+                        "type": 5,
+                        "goodsid": 112,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 50
+                    },
+                    {
+                        "id": 18,
+                        "type": 6,
+                        "goodsid": 15,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 600
+                    },
+                    {
+                        "id": 26,
+                        "type": 7,
+                        "goodsid": 121,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 600
+                    },
+                    {
+                        "id": 29,
+                        "type": 8,
+                        "goodsid": 8,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 100
+                    },
+                    {
+                        "id": 35,
+                        "type": 9,
+                        "goodsid": 28,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 36,
+                        "type": 10,
+                        "goodsid": 35,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 43,
+                        "type": 11,
+                        "goodsid": 112,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 100
+                    },
+                    {
+                        "id": 50,
+                        "type": 12,
+                        "goodsid": 50,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 1000
+                    }
+                ],
+                "MAXLEVEL": 44,
+                "tyq_item_openid": "5cf4b1b4-7c0c-4656-8751-f8df-74abee603f2",
+                "lastLoginDate1": "2025-12-28",
+                "UNLOCKARTIFACTS": [],
+                "REFTIME": [
+                    0,
+                    1,
+                    0,
+                    0
+                ],
+                "DRUGOVER": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "NOWARTIFACTS": 0,
+                "REALM": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "PLAYERDATA": {
+                    "level": 12,
+                    "bagLevel": 8,
+                    "moveSpeedLevel": 1,
+                    "captureTimeLevel": 1,
+                    "money": 9400,
+                    "bagMaxNum": 11,
+                    "guideStep": 13
+                },
+                "cache_device_id": "74j43e",
+                "LEVEL": 44,
+                "WXCDK": [
+                    {
+                        "CDK": "vip666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "vip888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "vip999",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli688",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli998",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao668",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao899",
+                        "state": false
+                    },
+                    {
+                        "CDK": "buchang420",
+                        "state": false
+                    },
+                    {
+                        "CDK": "buchang466",
+                        "state": false
+                    },
+                    {
+                        "CDK": "rongjing889",
+                        "state": false
+                    },
+                    {
+                        "CDK": "rongjing789",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri501",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri447",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri599",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri128",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri677",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao363",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao555",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu618",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu333",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu789",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia701",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia618",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia745",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli703",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli777",
+                        "state": false
+                    }
+                ],
+                "ENC": 1,
+                "cqzl_tap_key_test28": {
+                    "storageKey": "cqzl_tap_key_test28",
+                    "music": 1,
+                    "sound": 1,
+                    "vibrate": 1,
+                    "first": 0,
+                    "loginday": 0,
+                    "lastLogin": 1766890790785,
+                    "trolevos": [],
+                    "rolevos": [
+                        {
+                            "id": "xtlyz553667",
+                            "my_skill_all": 0,
+                            "myZbStone": [],
+                            "my_des": {
+                                "gold": -109,
+                                "yuanbao": 0
+                            },
+                            "myTowerFile": [],
+                            "name": "南宫盼旋",
+                            "index": 5,
+                            "profession": 1,
+                            "mId": 1002,
+                            "level": 2,
+                            "bagCnt": 50,
+                            "skills": [
+                                {
+                                    "id": 1999,
+                                    "level": 1,
+                                    "status": 1,
+                                    "curExp": 0,
+                                    "baseId": 1999,
+                                    "skillCfg": {
+                                        "id": 1999,
+                                        "name": "剑豪普攻",
+                                        "triggertype": 1,
+                                        "areashape": 0,
+                                        "targetside": 1,
+                                        "interval": 0.3,
+                                        "castingeffect": "1999",
+                                        "deviation": [
+                                            100,
+                                            0
+                                        ],
+                                        "playsound": "mp3_s999",
+                                        "hiteffect": "1002_hit",
+                                        "cdtype": 0,
+                                        "basecd": 1.3,
+                                        "type": 0,
+                                        "job": 0,
+                                        "level": 1,
+                                        "slevel": 1,
+                                        "exp": 0,
+                                        "distance": 1,
+                                        "spell": 0,
+                                        "vcombat ": 0,
+                                        "priority": 1,
+                                        "describe": "普通攻击"
+                                    }
+                                },
+                                {
+                                    "id": 10011,
+                                    "level": 1,
+                                    "status": 1,
+                                    "curExp": 13,
+                                    "baseId": 1001,
+                                    "skillCfg": {
+                                        "id": 10011,
+                                        "name": "顺劈",
+                                        "icon": "ic_sk_1001",
+                                        "triggertype": 0,
+                                        "abilityIds": [
+                                            100101
+                                        ],
+                                        "interval": 0.3,
+                                        "castingeffect": "1001",
+                                        "deviation": [
+                                            100,
+                                            0
+                                        ],
+                                        "cdtype": 0,
+                                        "basecd": 0,
+                                        "type": 1,
+                                        "job": 1,
+                                        "level": 1,
+                                        "slevel": 7,
+                                        "exp": 600,
+                                        "booknum": [
+                                            104003,
+                                            1
+                                        ],
+                                        "pagenum": [
+                                            104034,
+                                            0
+                                        ],
+                                        "spell": 0,
+                                        "vcombat ": 30,
+                                        "priority": 0,
+                                        "describe": "自身攻击力提高10点"
+                                    }
+                                },
+                                {
+                                    "id": 10021,
+                                    "level": 1,
+                                    "status": 0,
+                                    "curExp": 0,
+                                    "baseId": 1002,
+                                    "skillCfg": {
+                                        "id": 10021,
+                                        "name": "破军剑意",
+                                        "icon": "ic_sk_1002",
+                                        "triggertype": 0,
+                                        "areashape": 0,
+                                        "targetside": 1,
+                                        "maxnum": 1,
+                                        "interval": 0.3,
+                                        "castingeffect": "1002",
+                                        "deviation": [
+                                            100,
+                                            0
+                                        ],
+                                        "playsound": "mp3_s1002",
+                                        "hiteffect": "1002_hit",
+                                        "cdtype": 0,
+                                        "basecd": 0,
+                                        "type": 1,
+                                        "job": 1,
+                                        "level": 1,
+                                        "slevel": 17,
+                                        "exp": 600,
+                                        "booknum": [
+                                            104006,
+                                            1
+                                        ],
+                                        "pagenum": [
+                                            104034,
+                                            0
+                                        ],
+                                        "distance": 1,
+                                        "spell": 0,
+                                        "gailv": 20,
+                                        "atktype": 1,
+                                        "power": 10,
+                                        "power2": 200,
+                                        "vcombat ": 30,
+                                        "priority": 3,
+                                        "describe": "攻击时20几率额外造成200%攻击力+10点的伤害"
+                                    }
+                                },
+                                {
+                                    "id": 10031,
+                                    "level": 1,
+                                    "status": 0,
+                                    "curExp": 0,
+                                    "baseId": 1003,
+                                    "skillCfg": {
+                                        "id": 10031,
+                                        "name": "流星一闪",
+                                        "icon": "ic_sk_1003",
+                                        "triggertype": 1,
+                                        "areashape": 0,
+                                        "targetside": 1,
+                                        "maxnum": 1,
+                                        "interval": 0.3,
+                                        "castingeffect": "1003",
+                                        "deviation": [
+                                            100,
+                                            0
+                                        ],
+                                        "playsound": "mp3_s1003",
+                                        "hiteffect": "1002_hit",
+                                        "cdtype": 0,
+                                        "basecd": 0,
+                                        "type": 1,
+                                        "job": 1,
+                                        "level": 1,
+                                        "slevel": 25,
+                                        "exp": 800,
+                                        "booknum": [
+                                            104015,
+                                            1
+                                        ],
+                                        "pagenum": [
+                                            104034,
+                                            0
+                                        ],
+                                        "distance": 1,
+                                        "spell": 0,
+                                        "atktype": 1,
+                                        "power": 13,
+                                        "power2": 180,
+                                        "vcombat ": 30,
+                                        "priority": 2,
+                                        "describe": "造成180%攻击力+13点的伤害"
+                                    }
+                                },
+                                {
+                                    "id": 10041,
+                                    "level": 1,
+                                    "status": 0,
+                                    "curExp": 0,
+                                    "baseId": 1004,
+                                    "skillCfg": {
+                                        "id": 10041,
+                                        "name": "银月刀舞",
+                                        "icon": "ic_sk_1004",
+                                        "triggertype": 1,
+                                        "areashape": 2,
+                                        "targetside": 1,
+                                        "areacenter": 0,
+                                        "abilityIds": [
+                                            100301
+                                        ],
+                                        "maxnum": 3,
+                                        "interval": 0.3,
+                                        "castingeffect": "1004",
+                                        "playsound": "mp3_s1004",
+                                        "hiteffect": "1002_hit",
+                                        "cdtype": 0,
+                                        "basecd": 5,
+                                        "type": 1,
+                                        "job": 1,
+                                        "level": 1,
+                                        "slevel": 28,
+                                        "exp": 600,
+                                        "booknum": [
+                                            104033,
+                                            1
+                                        ],
+                                        "pagenum": [
+                                            104034,
+                                            0
+                                        ],
+                                        "distance": 1,
+                                        "spell": 3,
+                                        "atktype": 1,
+                                        "power2": 50,
+                                        "vcombat ": 30,
+                                        "priority": 4,
+                                        "describe": "对最多3个目标立即造成50%攻击力的伤害，并对目标造成流血效果，每秒造成攻击50%+40点伤害，持续5秒"
+                                    }
+                                },
+                                {
+                                    "id": 10051,
+                                    "level": 1,
+                                    "status": 0,
+                                    "curExp": 0,
+                                    "baseId": 1005,
+                                    "skillCfg": {
+                                        "id": 10051,
+                                        "name": "力破千军",
+                                        "icon": "ic_sk_1005",
+                                        "triggertype": 1,
+                                        "areashape": 0,
+                                        "targetside": 1,
+                                        "abilityIds": [
+                                            100901
+                                        ],
+                                        "maxnum": 1,
+                                        "interval": 0.3,
+                                        "castingeffect": "1005",
+                                        "playsound": "mp3_s1005",
+                                        "hiteffect": "1002_hit",
+                                        "cdtype": 0,
+                                        "basecd": 5,
+                                        "type": 1,
+                                        "job": 1,
+                                        "level": 1,
+                                        "slevel": 30,
+                                        "exp": 600,
+                                        "booknum": [
+                                            104017,
+                                            1
+                                        ],
+                                        "pagenum": [
+                                            104034,
+                                            0
+                                        ],
+                                        "distance": 1,
+                                        "spell": 5,
+                                        "atktype": 1,
+                                        "power": 120,
+                                        "power2": 300,
+                                        "vcombat ": 30,
+                                        "priority": 5,
+                                        "describe": "造成300%攻击力+120点伤害，30%几率眩晕目标2秒"
+                                    }
+                                },
+                                {
+                                    "id": 10061,
+                                    "level": 1,
+                                    "status": 0,
+                                    "curExp": 0,
+                                    "baseId": 1006,
+                                    "skillCfg": {
+                                        "id": 10061,
+                                        "name": "气海护盾",
+                                        "icon": "ic_sk_1006",
+                                        "triggertype": 2,
+                                        "parameter1": 80,
+                                        "areashape": 0,
+                                        "targetside": 0,
+                                        "abilityIds": [
+                                            100401,
+                                            100501
+                                        ],
+                                        "maxnum": 1,
+                                        "interval": 0.3,
+                                        "castingeffect": "1006",
+                                        "playsound": "mp3_s1006",
+                                        "cdtype": 0,
+                                        "basecd": 20,
+                                        "type": 1,
+                                        "job": 1,
+                                        "level": 1,
+                                        "slevel": 32,
+                                        "exp": 1000,
+                                        "booknum": [
+                                            104018,
+                                            1
+                                        ],
+                                        "pagenum": [
+                                            104034,
+                                            0
+                                        ],
+                                        "spell": 5,
+                                        "atktype": 1,
+                                        "vcombat ": 30,
+                                        "priority": 6,
+                                        "describe": "提升自身5%+5点防御"
+                                    }
+                                },
+                                {
+                                    "id": 10071,
+                                    "level": 1,
+                                    "status": 0,
+                                    "curExp": 0,
+                                    "baseId": 1007,
+                                    "skillCfg": {
+                                        "id": 10071,
+                                        "name": "炼狱剑斩",
+                                        "icon": "ic_sk_1007",
+                                        "triggertype": 1,
+                                        "areashape": 1,
+                                        "targetside": 1,
+                                        "maxnum": 1,
+                                        "interval": 0.3,
+                                        "castingeffect": "1007",
+                                        "deviation": [
+                                            100,
+                                            0
+                                        ],
+                                        "playsound": "mp3_s1007",
+                                        "hiteffect": "1002_hit",
+                                        "cdtype": 0,
+                                        "basecd": 6,
+                                        "type": 1,
+                                        "job": 1,
+                                        "level": 1,
+                                        "slevel": 35,
+                                        "exp": 1000,
+                                        "booknum": [
+                                            104016,
+                                            1
+                                        ],
+                                        "pagenum": [
+                                            104034,
+                                            0
+                                        ],
+                                        "distance": 1,
+                                        "spell": 10,
+                                        "atktype": 1,
+                                        "power": 310,
+                                        "power2": 500,
+                                        "vcombat ": 30,
+                                        "priority": 7,
+                                        "describe": "造成500%攻击力+310点伤害"
+                                    }
+                                }
+                            ],
+                            "maxBagCnt": 300,
+                            "partCnt": 10,
+                            "bagItems": [
+                                {
+                                    "_curAffixs": [],
+                                    "id": 2001,
+                                    "count": 1,
+                                    "isEquip": false,
+                                    "part": -1,
+                                    "quality": 4,
+                                    "baseAttr": null,
+                                    "cooling": 0,
+                                    "affixCnt": 0,
+                                    "affixInfo": [],
+                                    "nonsuchs": [
+                                        0,
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "isFixed": false,
+                                    "islock": false,
+                                    "uuid": 47693043,
+                                    "name": "新手礼包",
+                                    "itemCfg": {
+                                        "id": 2001,
+                                        "name": "新手礼包",
+                                        "type": 1,
+                                        "stdmode": 99,
+                                        "m_maxcount": 1,
+                                        "m_bconsume": true,
+                                        "needlevel": 1,
+                                        "icon": "ic_im2001",
+                                        "quality": 4,
+                                        "descr": "表达了对萌新们无微不至的关爱。"
+                                    }
+                                },
+                                {
+                                    "_curAffixs": [],
+                                    "id": 105004,
+                                    "count": 1,
+                                    "isEquip": false,
+                                    "part": 5,
+                                    "quality": 1,
+                                    "baseAttr": {
+                                        "minzs": 5,
+                                        "maxzs": 9,
+                                        "minac": 0,
+                                        "maxac": 1,
+                                        "minfs": 4,
+                                        "maxfs": 8,
+                                        "minds": 4,
+                                        "maxds": 8
+                                    },
+                                    "cooling": 0,
+                                    "affixCnt": 0,
+                                    "affixInfo": [],
+                                    "nonsuchs": [
+                                        0,
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "isFixed": false,
+                                    "islock": false,
+                                    "uuid": 76051862,
+                                    "name": "灵木剑",
+                                    "itemCfg": {
+                                        "id": 105004,
+                                        "name": "灵木剑",
+                                        "type": 2,
+                                        "stdmode": 5,
+                                        "m_maxcount": 1,
+                                        "profession": 0,
+                                        "needlevel": 1,
+                                        "minac": 0,
+                                        "maxac": 1,
+                                        "minzs": 5,
+                                        "maxzs": 9,
+                                        "minfs": 4,
+                                        "maxfs": 8,
+                                        "minds": 4,
+                                        "maxds": 8,
+                                        "bestgailv": [
+                                            25,
+                                            25,
+                                            25,
+                                            30,
+                                            100
+                                        ],
+                                        "points": 5,
+                                        "price": 80,
+                                        "sellprice": 25,
+                                        "icon": "ic_im105004",
+                                        "quality": 0,
+                                        "descr": "金贵灵木制成的剑，关于它的原料灵木，世间素有“灵木两尺胜你灵币一箱”"
+                                    }
+                                }
+                            ],
+                            "weapon": [
+                                {
+                                    "_curAffixs": [],
+                                    "id": 205001,
+                                    "count": 1,
+                                    "isEquip": true,
+                                    "part": 5,
+                                    "quality": 1,
+                                    "baseAttr": {
+                                        "minzs": 2,
+                                        "maxzs": 5,
+                                        "minac": 0,
+                                        "maxac": 0,
+                                        "minfs": 2,
+                                        "maxfs": 3,
+                                        "minds": 2,
+                                        "maxds": 3
+                                    },
+                                    "cooling": 0,
+                                    "affixCnt": 0,
+                                    "affixInfo": [],
+                                    "nonsuchs": [
+                                        0,
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "isFixed": false,
+                                    "islock": false,
+                                    "uuid": 25330105,
+                                    "name": "新人木剑",
+                                    "itemCfg": {
+                                        "id": 205001,
+                                        "name": "新人木剑",
+                                        "type": 2,
+                                        "stdmode": 5,
+                                        "m_maxcount": 1,
+                                        "profession": 0,
+                                        "needlevel": 1,
+                                        "minac": 0,
+                                        "maxac": 0,
+                                        "minzs": 2,
+                                        "maxzs": 5,
+                                        "minfs": 2,
+                                        "maxfs": 3,
+                                        "minds": 2,
+                                        "maxds": 3,
+                                        "bestgailv": [
+                                            25,
+                                            25,
+                                            25,
+                                            30,
+                                            100
+                                        ],
+                                        "points": 5,
+                                        "price": 50,
+                                        "sellprice": 25,
+                                        "icon": "ic_im205001",
+                                        "quality": 1,
+                                        "descr": "萌新专属，此乃开发相赠！"
+                                    }
+                                },
+                                {
+                                    "_curAffixs": [],
+                                    "id": 205002,
+                                    "count": 1,
+                                    "isEquip": true,
+                                    "part": 10,
+                                    "quality": 1,
+                                    "baseAttr": {
+                                        "hp": 50,
+                                        "minzs": 0,
+                                        "maxzs": 1,
+                                        "minac": 3,
+                                        "maxac": 4
+                                    },
+                                    "cooling": 0,
+                                    "affixCnt": 0,
+                                    "affixInfo": [],
+                                    "nonsuchs": [
+                                        0,
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    "isFixed": false,
+                                    "islock": false,
+                                    "uuid": 93263578,
+                                    "name": "新人布衣",
+                                    "itemCfg": {
+                                        "id": 205002,
+                                        "name": "新人布衣",
+                                        "type": 2,
+                                        "stdmode": 10,
+                                        "m_maxcount": 1,
+                                        "profession": 0,
+                                        "needlevel": 1,
+                                        "hp": 50,
+                                        "minac": 3,
+                                        "maxac": 4,
+                                        "minzs": 0,
+                                        "maxzs": 1,
+                                        "bestgailv": [
+                                            25,
+                                            25,
+                                            25,
+                                            30,
+                                            100
+                                        ],
+                                        "points": 5,
+                                        "price": 50,
+                                        "sellprice": 25,
+                                        "icon": "ic_im110001",
+                                        "quality": 1,
+                                        "descr": "萌新专属，此乃研发相赠！"
+                                    }
+                                }
+                            ],
+                            "roleInfo": {
+                                "gold": 109,
+                                "yuanbao": 0,
+                                "boss": [
+                                    {
+                                        "id": 1,
+                                        "mapId": 1001,
+                                        "status": "alive",
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2001,
+                                        "mapId": 1011,
+                                        "status": "alive",
+                                        "reborn": 1800,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2002,
+                                        "mapId": 1018,
+                                        "status": "alive",
+                                        "reborn": 1800,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2003,
+                                        "mapId": 1019,
+                                        "status": "alive",
+                                        "reborn": 1800,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2005,
+                                        "mapId": 1021,
+                                        "status": "alive",
+                                        "reborn": 1800,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2006,
+                                        "mapId": 1027,
+                                        "status": "alive",
+                                        "reborn": 1800,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2007,
+                                        "mapId": 1031,
+                                        "status": "alive",
+                                        "reborn": 3600,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2008,
+                                        "mapId": 1034,
+                                        "status": "alive",
+                                        "reborn": 3600,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2009,
+                                        "mapId": 1038,
+                                        "status": "alive",
+                                        "reborn": 3600,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2010,
+                                        "mapId": 1042,
+                                        "status": "alive",
+                                        "reborn": 3600,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2011,
+                                        "mapId": 1051,
+                                        "status": "alive",
+                                        "reborn": 3600,
+                                        "rebirth": 1766890797768
+                                    },
+                                    {
+                                        "id": 2004,
+                                        "mapId": 1058,
+                                        "status": "alive",
+                                        "reborn": 1800,
+                                        "rebirth": 1766890797768
+                                    }
+                                ],
+                                "uuids": [
+                                    46821389,
+                                    47693043,
+                                    25330105,
+                                    93263578,
+                                    75841228,
+                                    61272573,
+                                    90528689,
+                                    93345325,
+                                    28593495,
+                                    37701830,
+                                    68340402,
+                                    50533250,
+                                    55431051,
+                                    90894386,
+                                    85528083,
+                                    61380405,
+                                    56189152,
+                                    38296680,
+                                    42740720,
+                                    32374028,
+                                    1366332,
+                                    59715112,
+                                    73647869,
+                                    77444431,
+                                    44763207,
+                                    81644455,
+                                    53736425,
+                                    94723827,
+                                    38095880,
+                                    62258708,
+                                    65533248,
+                                    37896434,
+                                    41695769,
+                                    17200984,
+                                    90293008,
+                                    63271705,
+                                    35927141,
+                                    3088831,
+                                    41726400,
+                                    21222583,
+                                    48734236,
+                                    91094965,
+                                    21154256,
+                                    70902280,
+                                    72690488,
+                                    34817198,
+                                    4915701,
+                                    13168751,
+                                    79536361,
+                                    65087333,
+                                    93994182,
+                                    97800726,
+                                    90872106,
+                                    25920692,
+                                    29553232,
+                                    61743110,
+                                    24631808,
+                                    68553733,
+                                    97605673,
+                                    72176121,
+                                    87069196,
+                                    86681433,
+                                    59546930,
+                                    39043725,
+                                    96348607,
+                                    57107138,
+                                    79599805,
+                                    21753578,
+                                    29207237,
+                                    7524221,
+                                    61525472,
+                                    1039153,
+                                    22350032,
+                                    95666202,
+                                    77854966,
+                                    27738290,
+                                    78621330,
+                                    40126334,
+                                    10835751,
+                                    47397482,
+                                    27241899,
+                                    30823009,
+                                    10137141,
+                                    97436220,
+                                    7224082,
+                                    35538574,
+                                    81372267,
+                                    72299756,
+                                    31033839,
+                                    15843699,
+                                    42986869,
+                                    57244345,
+                                    14302990,
+                                    36904571,
+                                    49557649,
+                                    21452236,
+                                    43625797,
+                                    24396579,
+                                    50907001,
+                                    20328110,
+                                    76007823,
+                                    18345842,
+                                    5550764,
+                                    78832564,
+                                    97497977,
+                                    82538376,
+                                    67250662,
+                                    1566165,
+                                    89765801,
+                                    9378563,
+                                    35451872,
+                                    68912346,
+                                    55024328,
+                                    27173905,
+                                    87508369,
+                                    94408074,
+                                    22653676,
+                                    24041306,
+                                    96602390,
+                                    84814918,
+                                    5045022,
+                                    7066032,
+                                    21627606,
+                                    10907485,
+                                    62975388,
+                                    19643396,
+                                    76051862,
+                                    13871722,
+                                    47551386,
+                                    24321024,
+                                    62757657,
+                                    55778038,
+                                    81437777,
+                                    31278312,
+                                    39734350,
+                                    41988412,
+                                    44580345,
+                                    75886354,
+                                    44612487,
+                                    48536738,
+                                    57022816,
+                                    27040632,
+                                    7979127,
+                                    94779760,
+                                    8295106,
+                                    79495991,
+                                    70518307,
+                                    12018327,
+                                    67061447,
+                                    45088776,
+                                    18347882,
+                                    74248955,
+                                    53502250,
+                                    85185776,
+                                    65861426,
+                                    62581011,
+                                    45811372,
+                                    47574193,
+                                    3791141,
+                                    66711351,
+                                    61980404,
+                                    86738405,
+                                    95147986,
+                                    92335768,
+                                    1034547,
+                                    64743915,
+                                    53333403,
+                                    76147495,
+                                    64249180,
+                                    15620461,
+                                    42536269,
+                                    10024575,
+                                    15849069,
+                                    31696013,
+                                    90888899,
+                                    37656555,
+                                    39753197,
+                                    81928941,
+                                    89639714,
+                                    97253354,
+                                    98830315,
+                                    48576515,
+                                    81745007,
+                                    49119518,
+                                    16890828,
+                                    67874335,
+                                    74776615,
+                                    63854630,
+                                    52526814,
+                                    87031637,
+                                    37763740,
+                                    41282806,
+                                    35287312,
+                                    13717759,
+                                    58726249,
+                                    3547963,
+                                    31644818,
+                                    90087433,
+                                    34123812,
+                                    25574611,
+                                    17554547,
+                                    2588288,
+                                    91007133,
+                                    46735913,
+                                    70901991,
+                                    69627945,
+                                    30721166,
+                                    1775347,
+                                    18357960,
+                                    69582444,
+                                    5108446,
+                                    46544536,
+                                    74572571,
+                                    37565894,
+                                    62710600,
+                                    94400955,
+                                    67933069,
+                                    28546727,
+                                    77377785,
+                                    36428234,
+                                    46458529,
+                                    32759731,
+                                    95296570,
+                                    99596468,
+                                    25772658,
+                                    68309486,
+                                    70918790,
+                                    72422880,
+                                    57997888,
+                                    23184228,
+                                    76986400,
+                                    47585624,
+                                    63478995,
+                                    85434912,
+                                    66307506,
+                                    64657339,
+                                    2532804,
+                                    75579396,
+                                    45401700,
+                                    97309127,
+                                    71773006,
+                                    27052009,
+                                    40900606,
+                                    54524846,
+                                    40565436,
+                                    75561858,
+                                    72776353
+                                ],
+                                "blacksmith": null,
+                                "setupValue": {
+                                    "noProfession": false,
+                                    "nonsuch": false,
+                                    "eWhite": false,
+                                    "eGreen": false,
+                                    "eBule": false,
+                                    "ePurple": false,
+                                    "lifeId": 0,
+                                    "lifeRevert": true,
+                                    "lifePercent": 65,
+                                    "magicId": 0,
+                                    "magicRevert": false,
+                                    "magicPercent": 50,
+                                    "specialId": 0,
+                                    "specialRevert": false,
+                                    "specialPercent": 65,
+                                    "soundSwitch": true
+                                },
+                                "signInfo": {
+                                    "cumulative": 0,
+                                    "already": [],
+                                    "cur_sign": 0,
+                                    "already_week": []
+                                },
+                                "taskInfo": {
+                                    "kill_ji": 3,
+                                    "kill_lu": 1,
+                                    "kill_bsr": 0,
+                                    "kill_bsrys": 0,
+                                    "kill_kulou": 0,
+                                    "kill_shandong": 0,
+                                    "kill_kuloujingling": 0,
+                                    "kill_jiangshi": 0,
+                                    "kill_dianjiangshi": 0,
+                                    "kill_jiangshiwang": 0,
+                                    "all_coin": 0,
+                                    "equip_4": 0,
+                                    "equip_5": 0,
+                                    "book_w": 1,
+                                    "remake": 0
+                                },
+                                "taskList": [],
+                                "coinBagCnts": 0,
+                                "bagCoins": 0,
+                                "bagVideos": 0,
+                                "maxBagCoins": 20,
+                                "maxBagVideos": 50,
+                                "onlinetime": 1766890799925,
+                                "totalOnline": 1766890799925,
+                                "isLixian": true,
+                                "logintime": 1766890799925,
+                                "percentYy": 0,
+                                "refreshYy": 0,
+                                "yyReclaim": 200,
+                                "guideStage": 1011,
+                                "coinshop": [
+                                    {
+                                        "itemId": 100030,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 100031,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 100032,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 103033,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 103034,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104034,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104101,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104102,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104103,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104104,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104105,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104106,
+                                        "limitCnt": 999,
+                                        "curCnt": 0
+                                    }
+                                ],
+                                "yuanbaoshop": [
+                                    {
+                                        "itemId": 100030,
+                                        "limitCnt": 500,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 100031,
+                                        "limitCnt": 1000,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 100032,
+                                        "limitCnt": 500,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 103033,
+                                        "limitCnt": 1000,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 103034,
+                                        "limitCnt": 1000,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104034,
+                                        "limitCnt": 500,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104103,
+                                        "limitCnt": 10,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104104,
+                                        "limitCnt": 10,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 104105,
+                                        "limitCnt": 10,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 103036,
+                                        "limitCnt": 1000,
+                                        "curCnt": 0
+                                    },
+                                    {
+                                        "itemId": 103038,
+                                        "limitCnt": 1000,
+                                        "curCnt": 0
+                                    }
+                                ],
+                                "prerogative": {
+                                    "_huishoutime": 0,
+                                    "_huishou100": false,
+                                    "_lixianup": false,
+                                    "_yyshopup": false,
+                                    "_yyshop_priceup": false,
+                                    "_zdhsup": false,
+                                    "_zhanshentime": 0,
+                                    "_zhanshen100": false,
+                                    "_killexpup": false,
+                                    "_sendmap": false,
+                                    "_timereduce": false,
+                                    "_bossdrop": false
+                                },
+                                "videoDaliy": {
+                                    "videoCoin": 0,
+                                    "videoCoinMax": 5,
+                                    "videoBag": 0,
+                                    "videoBagMax": 5,
+                                    "videoBuild": 0,
+                                    "videoBuildMax": 5
+                                },
+                                "chongzhi": {
+                                    "_sc": 0,
+                                    "_6count": 0,
+                                    "_12count": 0,
+                                    "_30count": 0,
+                                    "_98count": 0,
+                                    "_198count": 0,
+                                    "_398count": 0,
+                                    "_648count": 0
+                                },
+                                "daliylibao": {
+                                    "_jb_6count": 0,
+                                    "_jb_30count": 0,
+                                    "_jb_68count": 0,
+                                    "_stonecount": 0,
+                                    "_bookcount": 0
+                                },
+                                "exchanges": []
+                            },
+                            "intensify": [
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                0,
+                                null,
+                                null,
+                                null,
+                                null,
+                                0,
+                                null,
+                                null,
+                                null,
+                                null,
+                                0,
+                                null,
+                                null,
+                                null,
+                                null,
+                                0,
+                                null,
+                                0,
+                                0,
+                                0,
+                                0,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                0,
+                                null,
+                                0
+                            ],
+                            "role_target": null,
+                            "is_gongsha": false,
+                            "deepDamage": {
+                                "gailv": 0,
+                                "d_precent": 0,
+                                "is_double": false
+                            },
+                            "skilleffect": "",
+                            "iAtkInfo": [],
+                            "ebaseAttr": {
+                                "hp": 116,
+                                "maxhp": 66,
+                                "mp": 33,
+                                "maxmp": 33,
+                                "shiled": 0,
+                                "exp": 8,
+                                "affix": {
+                                    "hp": 0,
+                                    "mp": 0,
+                                    "minzs": 0,
+                                    "maxzs": 0,
+                                    "minac": 0,
+                                    "maxac": 0,
+                                    "minfs": 0,
+                                    "maxfs": 0,
+                                    "minds": 0,
+                                    "maxds": 0,
+                                    "atkSpeed": 0,
+                                    "lucky": 0,
+                                    "fixeddamage": 0,
+                                    "fixedac": 0,
+                                    "hit": 0,
+                                    "evade": 0,
+                                    "critical": 0,
+                                    "tenacity": 0,
+                                    "absorbhp": 0,
+                                    "absorbmp": 0,
+                                    "maxhprate": 0,
+                                    "maxmprate": 0,
+                                    "addlevel": 0,
+                                    "addexp": 0,
+                                    "addgold": 0,
+                                    "dropbest": 0,
+                                    "adddrop": 0,
+                                    "adddamage": 0,
+                                    "addac": 0,
+                                    "crtdamage": 0,
+                                    "skillall": 0
+                                },
+                                "minzs": 2,
+                                "maxzs": 5,
+                                "minac": 2,
+                                "maxac": 3,
+                                "minfs": 1,
+                                "maxfs": 2,
+                                "minds": 1,
+                                "maxds": 2,
+                                "atkSpeed": 1.3,
+                                "lucky": 0,
+                                "fixeddamage": 0,
+                                "fixedac": 0,
+                                "hit": 0,
+                                "evade": 0,
+                                "critical": 0,
+                                "tenacity": 0,
+                                "absorbhp": 0,
+                                "absorbmp": 0,
+                                "maxhprate": 0,
+                                "maxmprate": 0,
+                                "addlevel": 0,
+                                "addexp": 0,
+                                "addgold": 0,
+                                "dropbest": 0,
+                                "adddrop": 0,
+                                "adddamage": 0,
+                                "addac": 0,
+                                "crtdamage": 0,
+                                "skillall": 0
+                            },
+                            "equipAttr": {
+                                "maxhp": 50,
+                                "maxmp": 0,
+                                "minzs": 2,
+                                "maxzs": 6,
+                                "minac": 3,
+                                "maxac": 4,
+                                "minfs": 2,
+                                "maxfs": 3,
+                                "minds": 2,
+                                "maxds": 3,
+                                "atkSpeed": 0,
+                                "lucky": 0,
+                                "fixeddamage": 0,
+                                "fixedac": 0,
+                                "hit": 0,
+                                "evade": 0,
+                                "critical": 0,
+                                "tenacity": 0,
+                                "absorbhp": 0,
+                                "absorbmp": 0,
+                                "maxhprate": 0,
+                                "maxmprate": 0,
+                                "addlevel": 0,
+                                "addexp": 0,
+                                "addgold": 0,
+                                "dropbest": 0,
+                                "adddrop": 0,
+                                "adddamage": 0,
+                                "addac": 0,
+                                "crtdamage": 0,
+                                "skillall": 0
+                            },
+                            "eotherAttr": {
+                                "hp": 0,
+                                "maxhp": 0,
+                                "mp": 0,
+                                "maxmp": 0,
+                                "shiled": 0,
+                                "exp": 0,
+                                "minzs": 0,
+                                "maxzs": 0,
+                                "minac": 0,
+                                "maxac": 0,
+                                "minfs": 0,
+                                "maxfs": 0,
+                                "minds": 0,
+                                "maxds": 0,
+                                "atkSpeed": 0,
+                                "lucky": 0,
+                                "fixeddamage": 0,
+                                "fixedac": 0,
+                                "hit": 0,
+                                "evade": 0,
+                                "critical": 0,
+                                "tenacity": 0,
+                                "absorbhp": 0,
+                                "absorbmp": 0,
+                                "maxhprate": 0,
+                                "maxmprate": 0,
+                                "addlevel": 0,
+                                "addexp": 0,
+                                "addgold": 0,
+                                "dropbest": 0,
+                                "adddrop": 0,
+                                "adddamage": 0,
+                                "addac": 0,
+                                "crtdamage": 0,
+                                "skillall": 0
+                            },
+                            "professionCfg": {
+                                "id": 1,
+                                "name": "剑豪",
+                                "icon": "skin_1001",
+                                "tips": "皮糙肉厚",
+                                "ishero": false,
+                                "unlock": 1,
+                                "level": 1,
+                                "hp": 30,
+                                "g_hp": 18,
+                                "mp": 15,
+                                "g_mp": 9,
+                                "minzs": 1,
+                                "g_minzs": 0.3,
+                                "maxzs": 3,
+                                "g_maxzs": 1,
+                                "minfs": 1,
+                                "g_minfs": 0,
+                                "maxfs": 2,
+                                "g_maxfs": 0,
+                                "minds": 1,
+                                "g_minds": 0,
+                                "maxds": 2,
+                                "g_maxds": 0,
+                                "minac": 1,
+                                "g_minac": 0.3,
+                                "maxac": 2,
+                                "g_maxac": 0.4,
+                                "atkspeed": 1.3,
+                                "walkwait": 1.3,
+                                "skill": 1999,
+                                "skillid": [
+                                    1001,
+                                    1002,
+                                    1003,
+                                    1004,
+                                    1005,
+                                    1006,
+                                    1007
+                                ],
+                                "mapid": 1001,
+                                "items": [
+                                    2001,
+                                    205001,
+                                    205002,
+                                    104003
+                                ],
+                                "describe": "拥有金刚不坏之身，力大无穷，刀剑之术已达化境。以一己之力在仙途的试炼中勇往直前。"
+                            },
+                            "zhuansheng": {
+                                "haveXwd": [
+                                    {
+                                        "lv": 1,
+                                        "num": 0
+                                    },
+                                    {
+                                        "lv": 2,
+                                        "num": 0
+                                    },
+                                    {
+                                        "lv": 3,
+                                        "num": 0
+                                    }
+                                ],
+                                "currentStar": 0,
+                                "zhuanshengNum": 0,
+                                "xwd": [
+                                    {
+                                        "lv": 1,
+                                        "num": 0,
+                                        "count": 5
+                                    },
+                                    {
+                                        "lv": 2,
+                                        "num": 0,
+                                        "count": 99
+                                    },
+                                    {
+                                        "lv": 3,
+                                        "num": 0,
+                                        "count": 10
+                                    }
+                                ],
+                                "expNum": [
+                                    {
+                                        "lv": 1,
+                                        "exp": 30000
+                                    },
+                                    {
+                                        "lv": 2,
+                                        "exp": 35000
+                                    },
+                                    {
+                                        "lv": 3,
+                                        "exp": 40000
+                                    },
+                                    {
+                                        "lv": 4,
+                                        "exp": 42000
+                                    },
+                                    {
+                                        "lv": 5,
+                                        "exp": 44000
+                                    },
+                                    {
+                                        "lv": 6,
+                                        "exp": 46000
+                                    },
+                                    {
+                                        "lv": 7,
+                                        "exp": 48000
+                                    },
+                                    {
+                                        "lv": 8,
+                                        "exp": 50000
+                                    },
+                                    {
+                                        "lv": 9,
+                                        "exp": 52000
+                                    },
+                                    {
+                                        "lv": 10,
+                                        "exp": 54000
+                                    }
+                                ],
+                                "currentProgress": 0
+                            },
+                            "lvCfg": {
+                                "id": 2,
+                                "exp": 75,
+                                "addexp": 698,
+                                "addgold": 5587,
+                                "costyuanbao": 100
+                            }
+                        }
+                    ],
+                    "selectId": 0,
+                    "isReset": false,
+                    "voice": true,
+                    "cundangTime": "2025\/12\/28",
+                    "cundangCs": 5,
+                    "mggk": 0,
+                    "hsk": 0
+                },
+                "DINO_LAND_putedDino": 1,
+                "DINO_LAND_guideIsFinished": 1,
+                "game_progress_12": {
+                    "game_id": 12,
+                    "progress_data": "[0,0,0,0,0,0,0,0,0,0,0,0]",
+                    "timestamp": "2025-12-28T02:46:12.417Z"
+                },
+                "DINO_LAND_signTimestamp": 1766889203293,
+                "mySkillAll": "undefined",
+                "GOODS": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "DINO_LAND_defaultSceneId": 10002,
+                "xtlyz_tapdb_key_105": {
+                    "userId": 198482585,
+                    "userLv": 2,
+                    "userName": "xtlyz198482585"
+                },
+                "ONLINE": 1078,
+                "DINO_LAND_VERSION": "2.0.2",
+                "DINO_LAND_GuideEnterScene": 0,
+                "WXVIDEOCOUNT": 8,
+                "SKILLLEVEL": [
+                    40,
+                    37,
+                    23,
+                    0,
+                    0
+                ],
+                "DRUGNUM": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "SHOPBOXTIME": [
+                    0,
+                    0
+                ],
+                "SAVETIME": 0,
+                "DINO_LAND_totalSigninDays": 1,
+                "DICETIME": 0,
+                "COIN": 113272727.30369753,
+                "CUSTOMS": 14,
+                "OREGOODS": [
+                    {
+                        "goodsid": 13,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 14,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 15,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 16,
+                        "ishave": true
+                    }
+                ],
+                "REALMEXP": 0,
+                "BUYCOUNT": 0,
+                "TEAM": [
+                    {
+                        "type": 0,
+                        "id": 0
+                    },
+                    {
+                        "type": 1,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    }
+                ],
+                "SCENEDATA_10001": {
+                    "id": 10001,
+                    "level": 0,
+                    "cashDeskMoney": 0,
+                    "customerQueues": 0,
+                    "checkoutMoney": 400,
+                    "visitMoney": 0,
+                    "businessManMoney": 0,
+                    "bossNum": 1,
+                    "myBag": {
+                        "dataListMap": {
+                            "1": [
+                                4,
+                                6
+                            ],
+                            "2": [],
+                            "3": []
+                        }
+                    },
+                    "dinoDiskList": [
+                        {
+                            "level": 1,
+                            "dataListMap": {
+                                "1": [
+                                    1,
+                                    1,
+                                    1,
+                                    1,
+                                    1,
+                                    1
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 2,
+                            "dataListMap": {
+                                "1": [
+                                    2,
+                                    2,
+                                    2,
+                                    2,
+                                    2
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 3,
+                            "dataListMap": {
+                                "1": [
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    3,
+                                    3
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 4,
+                            "dataListMap": {
+                                "1": [
+                                    4,
+                                    4,
+                                    4,
+                                    4,
+                                    4
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 5,
+                            "dataListMap": {
+                                "1": [
+                                    5,
+                                    5,
+                                    5,
+                                    5,
+                                    5
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 6,
+                            "dataListMap": {
+                                "1": [
+                                    6,
+                                    6,
+                                    6,
+                                    6,
+                                    6
+                                ],
+                                "3": []
+                            }
+                        }
+                    ],
+                    "eggSellDiskList": [
+                        {
+                            "level": 1,
+                            "dataListMap": {
+                                "3": [
+                                    1,
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            }
+                        }
+                    ],
+                    "cashierWorkTime": 0,
+                    "cashierLevel": 1,
+                    "hunterWorkTime": 0,
+                    "hunterLevel": 1,
+                    "hunterBag": {
+                        "level": 1,
+                        "dataListMap": {
+                            "1": [],
+                            "2": [],
+                            "3": []
+                        },
+                        "capacity": 1
+                    },
+                    "recoveryDinoIds": [
+                        0
+                    ],
+                    "recoveryDinoNums": [
+                        1
+                    ]
+                },
+                "FRIEND": [],
+                "PACK": [
+                    {
+                        "prop": {
+                            "id": 121,
+                            "type": 2,
+                            "name": "王牌盾碎片",
+                            "goodsid": 3,
+                            "capacity": 99,
+                            "info": "合成王牌盾的材料",
+                            "consumables": 1,
+                            "frame": "frameLevel_4",
+                            "icon": "item_debris_godEquip_armor_wangpai",
+                            "have": 0,
+                            "isOn": false,
+                            "rewardNum": 60,
+                            "userid": 0,
+                            "crystal": 999999
+                        },
+                        "have": 1
+                    },
+                    {
+                        "prop": {
+                            "id": 124,
+                            "type": 2,
+                            "name": "天真无鞋碎片",
+                            "goodsid": 6,
+                            "capacity": 99,
+                            "info": "合成天真无鞋的材料",
+                            "consumables": 1,
+                            "frame": "frameLevel_4",
+                            "icon": "item_debris_godEquip_shoes_wuxie",
+                            "have": 0,
+                            "isOn": false,
+                            "rewardNum": 60,
+                            "userid": 0,
+                            "crystal": 999999
+                        },
+                        "have": 1
+                    },
+                    {
+                        "prop": {
+                            "id": 119,
+                            "type": 2,
+                            "name": "屠龙刀碎片",
+                            "goodsid": 1,
+                            "capacity": 99,
+                            "info": "合成屠龙刀的材料",
+                            "consumables": 1,
+                            "frame": "frameLevel_4",
+                            "icon": "item_debris_godEquip_weapon_tulong",
+                            "have": 0,
+                            "isOn": false,
+                            "rewardNum": 60,
+                            "userid": 0,
+                            "crystal": 999999
+                        },
+                        "have": 1
+                    },
+                    {
+                        "prop": {
+                            "have": 0,
+                            "isOn": true,
+                            "userid": 0,
+                            "rewardNum": 120,
+                            "crystal": 0,
+                            "id": 8,
+                            "type": 1,
+                            "name": "珍品菜刀",
+                            "goodsid": 2,
+                            "capacity": 1,
+                            "info": "功夫再高，也怕菜刀",
+                            "consumables": 0,
+                            "frame": "frameLevel_2",
+                            "icon": "item_equip_weapon_caidao"
+                        },
+                        "have": 1
+                    },
+                    {
+                        "prop": {
+                            "id": 15,
+                            "type": 1,
+                            "name": "珍品平底锅",
+                            "goodsid": 9,
+                            "capacity": 1,
+                            "info": "某不知名草原上第一神器",
+                            "consumables": 0,
+                            "frame": "frameLevel_2",
+                            "icon": "item_equip_weapon_pingdiguo",
+                            "have": 0,
+                            "isOn": false,
+                            "rewardNum": 120,
+                            "userid": 0,
+                            "crystal": 30
+                        },
+                        "have": 1
+                    },
+                    {
+                        "prop": {
+                            "id": 120,
+                            "type": 2,
+                            "name": "大黑锅碎片",
+                            "goodsid": 2,
+                            "capacity": 99,
+                            "info": "合成大黑锅的材料",
+                            "consumables": 1,
+                            "frame": "frameLevel_4",
+                            "icon": "item_debris_godEquip_weapon_heiguo",
+                            "have": 0,
+                            "isOn": false,
+                            "rewardNum": 60,
+                            "userid": 0,
+                            "crystal": 999999
+                        },
+                        "have": 2
+                    },
+                    {
+                        "prop": {
+                            "id": 122,
+                            "type": 2,
+                            "name": "孙猴虎皮衣碎片",
+                            "goodsid": 4,
+                            "capacity": 99,
+                            "info": "合成孙猴虎皮衣的材料",
+                            "consumables": 1,
+                            "frame": "frameLevel_4",
+                            "icon": "item_debris_godEquip_armor_sunhou",
+                            "have": 0,
+                            "isOn": false,
+                            "rewardNum": 60,
+                            "userid": 0,
+                            "crystal": 999999
+                        },
+                        "have": 1
+                    },
+                    {
+                        "prop": {
+                            "id": 123,
+                            "type": 2,
+                            "name": "皇叔制靴碎片",
+                            "goodsid": 5,
+                            "capacity": 99,
+                            "info": "合成皇叔靴的材料",
+                            "consumables": 1,
+                            "frame": "frameLevel_4",
+                            "icon": "item_debris_godEquip_shoes_huangshu",
+                            "have": 0,
+                            "isOn": false,
+                            "rewardNum": 60,
+                            "userid": 0,
+                            "crystal": 999999
+                        },
+                        "have": 1
+                    }
+                ],
+                "myFileNum": 1,
+                "SCENEDATA_10002": {
+                    "id": 10002,
+                    "level": 0,
+                    "cashDeskMoney": 0,
+                    "customerQueues": 0,
+                    "checkoutMoney": 1100,
+                    "visitMoney": 0,
+                    "businessManMoney": 0,
+                    "bossNum": 0,
+                    "myBag": {
+                        "dataListMap": {
+                            "1": [],
+                            "2": [],
+                            "3": []
+                        }
+                    },
+                    "dinoDiskList": [
+                        {
+                            "level": 7,
+                            "dataListMap": {
+                                "1": [
+                                    7,
+                                    7,
+                                    7,
+                                    7,
+                                    7,
+                                    7,
+                                    7,
+                                    7,
+                                    7,
+                                    7
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 8,
+                            "dataListMap": {
+                                "1": [
+                                    8,
+                                    8,
+                                    8,
+                                    8,
+                                    8,
+                                    8
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 9,
+                            "dataListMap": {
+                                "1": [
+                                    9,
+                                    9,
+                                    9,
+                                    9,
+                                    9,
+                                    9,
+                                    9,
+                                    9,
+                                    9
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 10,
+                            "dataListMap": {
+                                "1": [
+                                    10,
+                                    10,
+                                    10,
+                                    10,
+                                    10
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 11,
+                            "dataListMap": {
+                                "1": [
+                                    11,
+                                    11,
+                                    11,
+                                    11,
+                                    11
+                                ],
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 12,
+                            "dataListMap": {
+                                "1": [
+                                    12,
+                                    12,
+                                    12,
+                                    12,
+                                    12,
+                                    12
+                                ],
+                                "3": []
+                            }
+                        }
+                    ],
+                    "eggSellDiskList": [
+                        {
+                            "level": 7,
+                            "dataListMap": {
+                                "3": []
+                            }
+                        },
+                        {
+                            "level": 8,
+                            "dataListMap": {
+                                "3": []
+                            }
+                        }
+                    ],
+                    "cashierWorkTime": 70.72549999999146,
+                    "cashierLevel": 1,
+                    "hunterWorkTime": 0,
+                    "hunterLevel": 1,
+                    "hunterBag": {
+                        "level": 1,
+                        "dataListMap": {
+                            "1": [],
+                            "2": [],
+                            "3": []
+                        },
+                        "capacity": 1
+                    },
+                    "recoveryDinoIds": [
+                        0
+                    ],
+                    "recoveryDinoNums": [
+                        1
+                    ]
+                },
+                "DRUGTIME": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "DEVIL": 0,
+                "OREREFTIME": [
+                    1,
+                    0
+                ],
+                "DINO_LAND_signinDays": 1,
+                "DINO_LAND_BirthPlaceFreeRemainderTimes": 3
+            }
+        },
+        "updated_at": "2025-12-28T11:38:08+08:00",
+        "bound_device": "5a115d4ecee6a4154fa5764ae1cc1afd22a33e21b656d355b2250e538d80f52f",
+        "binding_hash": "f1086b5a786a18742f493a22a93d829a71e3cfa73c55f131f0905fc80490bfbb"
+    }
+}

@@ -1,0 +1,5150 @@
+{
+    "user_full_cache_7": {
+        "value": {
+            "metadata": {
+                "timestamp": "2026-01-16T06:49:55.332Z",
+                "version": 1,
+                "totalKeys": 56,
+                "dataSize": 44632
+            },
+            "data": {
+                "mjGccjdld_ShopsBuyRecord": [],
+                "mjGccjdld_DailyTask": [
+                    {
+                        "id": 1,
+                        "pro": 1,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 2,
+                        "pro": 0,
+                        "type": 15,
+                        "isget": false
+                    },
+                    {
+                        "id": 3,
+                        "pro": 0,
+                        "type": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 4,
+                        "pro": 0,
+                        "type": 2,
+                        "isget": false
+                    },
+                    {
+                        "id": 5,
+                        "pro": 0,
+                        "type": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 6,
+                        "pro": 0,
+                        "type": 3,
+                        "isget": false
+                    },
+                    {
+                        "id": 7,
+                        "pro": 0,
+                        "type": 4,
+                        "isget": false
+                    },
+                    {
+                        "id": 8,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 9,
+                        "pro": 0,
+                        "type": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 10,
+                        "pro": 0,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 11,
+                        "pro": 0,
+                        "type": 8,
+                        "isget": false
+                    },
+                    {
+                        "id": 12,
+                        "pro": 0,
+                        "type": 9,
+                        "isget": false
+                    },
+                    {
+                        "id": 13,
+                        "pro": 0,
+                        "type": 10,
+                        "isget": false
+                    },
+                    {
+                        "id": 14,
+                        "pro": 0,
+                        "type": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 15,
+                        "pro": 0,
+                        "type": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 16,
+                        "pro": 0,
+                        "type": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 17,
+                        "pro": 0,
+                        "type": 16,
+                        "isget": false
+                    }
+                ],
+                "mjGccjdld_ISCLEARACHIEVEMENT": true,
+                "mjGccjdld_JackPotIdRecord": [],
+                "EatChicken_onLineGiftCurNum": 15,
+                "mjGccjdld_clearSummonTime": 1768545903366,
+                "luckydf_GuideVersion": 1,
+                "mjGccjdld_isClearTask": true,
+                "mjGccjdld_USER_HEAD": [
+                    10001,
+                    20001
+                ],
+                "EatChicken_activeValue": 0,
+                "EatChicken_activityCurNum": [
+                    1,
+                    3,
+                    1
+                ],
+                "mjGccjdld_achickenWinNumTime": 1768545903366,
+                "mjGccjdld_ISUNLOCKTREASURECHEST": true,
+                "game_progress_32": {
+                    "game_id": 32,
+                    "progress_data": "[{\"id\":1,\"pro\":1,\"type\":1,\"isget\":false},{\"id\":2,\"pro\":0,\"type\":15,\"isget\":false},{\"id\":3,\"pro\":0,\"type\":17,\"isget\":false},{\"id\":4,\"pro\":0,\"type\":2,\"isget\":false},{\"id\":5,\"pro\":0,\"type\":18,\"isget\":false},{\"id\":6,\"pro\":0,\"type\":3,\"isget\":false},{\"id\":7,\"pro\":0,\"type\":4,\"isget\":false},{\"id\":8,\"pro\":0,\"type\":5,\"isget\":false},{\"id\":9,\"pro\":0,\"type\":6,\"isget\":false},{\"id\":10,\"pro\":0,\"type\":7,\"isget\":false},{\"id\":11,\"pro\":0,\"type\":8,\"isget\":false},{\"id\":12,\"pro\":0,\"type\":9,\"isget\":false},{\"id\":13,\"pro\":0,\"type\":10,\"isget\":false},{\"id\":14,\"pro\":0,\"type\":11,\"isget\":false},{\"id\":15,\"pro\":0,\"type\":12,\"isget\":false},{\"id\":16,\"pro\":0,\"type\":13,\"isget\":false},{\"id\":17,\"pro\":0,\"type\":16,\"isget\":false}]",
+                    "timestamp": "2026-01-16T06:49:54.475Z"
+                },
+                "mjGccjdld_summonNum": 0,
+                "EatChicken_activityGifts": [
+                    0,
+                    0,
+                    0
+                ],
+                "mjGccjdld_ISSIGN": false,
+                "EatChicken_onLineGifts": [
+                    0,
+                    0,
+                    0
+                ],
+                "mjGccjdld_VIDEOGETENERGY": 10,
+                "EatChicken_onLineTime": 54,
+                "mjGccjdld_IsOpenShop": false,
+                "mjGccjdld_ACHIEVEMENT": [
+                    {
+                        "id": 1000000,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000001,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000002,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000003,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000004,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000005,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1010000,
+                        "pro": 0,
+                        "groupId": 101,
+                        "isget": false
+                    },
+                    {
+                        "id": 1010001,
+                        "pro": 0,
+                        "groupId": 101,
+                        "isget": false
+                    },
+                    {
+                        "id": 1010002,
+                        "pro": 0,
+                        "groupId": 101,
+                        "isget": false
+                    },
+                    {
+                        "id": 1010003,
+                        "pro": 0,
+                        "groupId": 101,
+                        "isget": false
+                    },
+                    {
+                        "id": 1010004,
+                        "pro": 0,
+                        "groupId": 101,
+                        "isget": false
+                    },
+                    {
+                        "id": 1010005,
+                        "pro": 0,
+                        "groupId": 101,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020000,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020001,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020002,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020003,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020004,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020005,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1030000,
+                        "pro": 0,
+                        "groupId": 103,
+                        "isget": false
+                    },
+                    {
+                        "id": 1030001,
+                        "pro": 0,
+                        "groupId": 103,
+                        "isget": false
+                    },
+                    {
+                        "id": 1030002,
+                        "pro": 0,
+                        "groupId": 103,
+                        "isget": false
+                    },
+                    {
+                        "id": 1030003,
+                        "pro": 0,
+                        "groupId": 103,
+                        "isget": false
+                    },
+                    {
+                        "id": 1030004,
+                        "pro": 0,
+                        "groupId": 103,
+                        "isget": false
+                    },
+                    {
+                        "id": 1030005,
+                        "pro": 0,
+                        "groupId": 103,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040000,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040001,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040002,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040003,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040004,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040005,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050000,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050001,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050002,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050003,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050004,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050005,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060001,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060002,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060003,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060004,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060005,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060006,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060007,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060008,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060009,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060010,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060011,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060012,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060013,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060014,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1060015,
+                        "pro": 0,
+                        "groupId": 106,
+                        "isget": false
+                    },
+                    {
+                        "id": 1080001,
+                        "pro": 0,
+                        "groupId": 108,
+                        "isget": false
+                    },
+                    {
+                        "id": 1080002,
+                        "pro": 0,
+                        "groupId": 108,
+                        "isget": false
+                    },
+                    {
+                        "id": 1080003,
+                        "pro": 0,
+                        "groupId": 108,
+                        "isget": false
+                    },
+                    {
+                        "id": 1080004,
+                        "pro": 0,
+                        "groupId": 108,
+                        "isget": false
+                    },
+                    {
+                        "id": 1080005,
+                        "pro": 0,
+                        "groupId": 108,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090001,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090002,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090003,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090004,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090005,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1100001,
+                        "pro": 0,
+                        "groupId": 110,
+                        "isget": false
+                    },
+                    {
+                        "id": 1100002,
+                        "pro": 0,
+                        "groupId": 110,
+                        "isget": false
+                    },
+                    {
+                        "id": 1100003,
+                        "pro": 0,
+                        "groupId": 110,
+                        "isget": false
+                    },
+                    {
+                        "id": 1100004,
+                        "pro": 0,
+                        "groupId": 110,
+                        "isget": false
+                    },
+                    {
+                        "id": 1100005,
+                        "pro": 0,
+                        "groupId": 110,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110001,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110002,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110003,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110004,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110005,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120001,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120002,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120003,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120004,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120005,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130001,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130002,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130003,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130004,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130005,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140001,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140002,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140003,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140004,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140005,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 450001,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450002,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450003,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450004,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450005,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450006,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450007,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450008,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450009,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450010,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450011,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450012,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450013,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450014,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 450015,
+                        "pro": 0,
+                        "groupId": 45,
+                        "isget": false
+                    },
+                    {
+                        "id": 440001,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440002,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440003,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440004,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440005,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440006,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440007,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440008,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440009,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440010,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440011,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440012,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440013,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 440014,
+                        "pro": 0,
+                        "groupId": 44,
+                        "isget": false
+                    },
+                    {
+                        "id": 430001,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430002,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430003,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430004,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430005,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430006,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430007,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430008,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430009,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430010,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430011,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430012,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 430013,
+                        "pro": 0,
+                        "groupId": 43,
+                        "isget": false
+                    },
+                    {
+                        "id": 420001,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420002,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420003,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420004,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420005,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420006,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420007,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420008,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420009,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420010,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420011,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420012,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 420013,
+                        "pro": 0,
+                        "groupId": 42,
+                        "isget": false
+                    },
+                    {
+                        "id": 410001,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410002,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410003,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410004,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410005,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410006,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410007,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410008,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410009,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410010,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410011,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410012,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410013,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410014,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410015,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410016,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410017,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410018,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410019,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410020,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410021,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410022,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410023,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410024,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410025,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410026,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 410027,
+                        "pro": 0,
+                        "groupId": 41,
+                        "isget": false
+                    },
+                    {
+                        "id": 400001,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400002,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400003,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400004,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400005,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400006,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400007,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400008,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400009,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400010,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400011,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400012,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400013,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400014,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 400015,
+                        "pro": 0,
+                        "groupId": 40,
+                        "isget": false
+                    },
+                    {
+                        "id": 60001,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60002,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60003,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60004,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60005,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60006,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60007,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60008,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60009,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60010,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60011,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60012,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60013,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60014,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60015,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60016,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60017,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60018,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60019,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60020,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60021,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60022,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60023,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60024,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60025,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60026,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60027,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60028,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60029,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60030,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 160000,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160001,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160002,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160003,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160004,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160005,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160006,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160007,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160008,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160009,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160010,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160011,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160012,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160013,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160014,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160015,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160016,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160017,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 180001,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180002,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180003,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180004,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180005,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180006,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180007,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180008,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180009,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180010,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180011,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180012,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180013,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180014,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180015,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180016,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180017,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180018,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180019,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180020,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180021,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180022,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180023,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180024,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180025,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180026,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180027,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180028,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180029,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180030,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180031,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 130001,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130002,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130003,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130004,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130005,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130006,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130007,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130008,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130009,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130010,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130011,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130012,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130013,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130014,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130015,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130016,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 120001,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120002,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120003,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120004,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120005,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120006,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120007,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120008,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120009,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120010,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120011,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120012,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120013,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120014,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120015,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120016,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 330001,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330002,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330003,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330004,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330005,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330006,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330007,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330008,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330009,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330010,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 330011,
+                        "pro": 0,
+                        "groupId": 33,
+                        "isget": false
+                    },
+                    {
+                        "id": 340001,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340002,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340003,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340004,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340005,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340006,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340007,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340008,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340009,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340010,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 340011,
+                        "pro": 0,
+                        "groupId": 34,
+                        "isget": false
+                    },
+                    {
+                        "id": 350001,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350002,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350003,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350004,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350005,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350006,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350007,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350008,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350009,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350010,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 350011,
+                        "pro": 0,
+                        "groupId": 35,
+                        "isget": false
+                    },
+                    {
+                        "id": 360001,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360002,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360003,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360004,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360005,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360006,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360007,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360008,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360009,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360010,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 360011,
+                        "pro": 0,
+                        "groupId": 36,
+                        "isget": false
+                    },
+                    {
+                        "id": 370001,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370002,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370003,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370004,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370005,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370006,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370007,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370008,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370009,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370010,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 370011,
+                        "pro": 0,
+                        "groupId": 37,
+                        "isget": false
+                    },
+                    {
+                        "id": 380001,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380002,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380003,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380004,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380005,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380006,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380007,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380008,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380009,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380010,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 380011,
+                        "pro": 0,
+                        "groupId": 38,
+                        "isget": false
+                    },
+                    {
+                        "id": 230001,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 230002,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 230003,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 230004,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 230005,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 270002,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270003,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270004,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270005,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270006,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270007,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270008,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270009,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270010,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270011,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270012,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270013,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270014,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270015,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270016,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270017,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270018,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270019,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270020,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270021,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270022,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270023,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270024,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270025,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270026,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270027,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270028,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270029,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270030,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 280001,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280002,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280003,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280004,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280005,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280006,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280007,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280008,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280009,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280010,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280011,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280012,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280013,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280014,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280015,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280016,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280017,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280018,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280019,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280020,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280021,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280022,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280023,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280024,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280025,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280026,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280027,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280028,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280029,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280030,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280031,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280032,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280033,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280034,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280035,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280036,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280037,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280038,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280039,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280040,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280041,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280042,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280043,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280044,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280045,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280046,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280047,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280048,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280049,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 290001,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290002,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290003,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290004,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290005,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290006,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290007,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290008,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290009,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290010,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 220001,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220002,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220003,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220004,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220005,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220006,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220007,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220008,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220009,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220010,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 200001,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200002,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200003,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200004,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200005,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200006,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200007,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200008,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200009,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200010,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 210001,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210002,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210003,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210004,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210005,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210006,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210007,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210008,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210009,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210010,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 190001,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190002,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190003,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190004,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190005,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190006,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190007,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190008,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190009,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190010,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190011,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 110001,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110002,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110003,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110004,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110005,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110006,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110007,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110008,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110009,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110010,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110011,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110012,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110013,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110014,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110015,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110016,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110017,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110018,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110019,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110020,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 310001,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310002,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310003,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310004,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310005,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310006,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310007,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310008,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310009,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310010,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310011,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310012,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310013,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310014,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310015,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310016,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310017,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310018,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310019,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310020,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310021,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310022,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310023,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310024,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310025,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310026,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310027,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310028,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310029,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310030,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310031,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310032,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310033,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310034,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310035,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310036,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310037,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310038,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310039,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310040,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310041,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310042,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310043,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310044,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310045,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310046,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310047,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310048,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 300001,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300002,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300003,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300004,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300005,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300006,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300007,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300008,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300009,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300010,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300011,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300012,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300013,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300014,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300015,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300016,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300017,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300018,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300019,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300020,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300021,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300022,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300023,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300024,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300025,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300026,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300027,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300028,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300029,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300030,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300031,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300032,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300033,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300034,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300035,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300036,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300037,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300038,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300039,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300040,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300041,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300042,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300043,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300044,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300045,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300046,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300047,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300048,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 320001,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320002,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320003,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320004,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320005,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320006,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320007,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320008,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320009,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320010,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320011,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320012,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320013,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320014,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320015,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320016,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320017,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320018,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320019,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320020,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320021,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320022,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320023,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320024,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320025,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320026,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320027,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320028,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320029,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320030,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320031,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320032,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320033,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320034,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320035,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320036,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320037,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320038,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320039,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320040,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320041,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320042,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320043,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320044,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320045,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320046,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320047,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320048,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 10001,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10002,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10003,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10004,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10005,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10006,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10007,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10008,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10009,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10010,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10011,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10012,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10013,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10014,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10015,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10016,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10017,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10018,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10019,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10020,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10021,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10022,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10023,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10024,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10025,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10026,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10027,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10028,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10029,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10030,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10031,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10032,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10033,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10034,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10035,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10036,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10037,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10038,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10039,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    }
+                ],
+                "cache_device_id": "x0ignp",
+                "mjGccjdld_task": [
+                    {
+                        "id": 1,
+                        "pro": 0,
+                        "type": 57,
+                        "isget": false
+                    },
+                    {
+                        "id": 2,
+                        "pro": 0,
+                        "type": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 3,
+                        "pro": 0,
+                        "type": 15,
+                        "isget": false
+                    },
+                    {
+                        "id": 4,
+                        "pro": 0,
+                        "type": 14,
+                        "isget": false
+                    },
+                    {
+                        "id": 5,
+                        "pro": 0,
+                        "type": 10,
+                        "isget": false
+                    },
+                    {
+                        "id": 6,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 7,
+                        "pro": 0,
+                        "type": 57,
+                        "isget": false
+                    },
+                    {
+                        "id": 8,
+                        "pro": 0,
+                        "type": 55,
+                        "isget": false
+                    },
+                    {
+                        "id": 9,
+                        "pro": 0,
+                        "type": 56,
+                        "isget": false
+                    },
+                    {
+                        "id": 10,
+                        "pro": 0,
+                        "type": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 11,
+                        "pro": 0,
+                        "type": 56,
+                        "isget": false
+                    },
+                    {
+                        "id": 12,
+                        "pro": 0,
+                        "type": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 13,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 14,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 15,
+                        "pro": 0,
+                        "type": 57,
+                        "isget": false
+                    },
+                    {
+                        "id": 16,
+                        "pro": 0,
+                        "type": 10,
+                        "isget": false
+                    },
+                    {
+                        "id": 17,
+                        "pro": 0,
+                        "type": 51,
+                        "isget": false
+                    },
+                    {
+                        "id": 18,
+                        "pro": 0,
+                        "type": 53,
+                        "isget": false
+                    },
+                    {
+                        "id": 19,
+                        "pro": 0,
+                        "type": 54,
+                        "isget": false
+                    },
+                    {
+                        "id": 20,
+                        "pro": 0,
+                        "type": 53,
+                        "isget": false
+                    },
+                    {
+                        "id": 21,
+                        "pro": 0,
+                        "type": 54,
+                        "isget": false
+                    },
+                    {
+                        "id": 22,
+                        "pro": 0,
+                        "type": 14,
+                        "isget": false
+                    },
+                    {
+                        "id": 23,
+                        "pro": 0,
+                        "type": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 24,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 25,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 26,
+                        "pro": 0,
+                        "type": 57,
+                        "isget": false
+                    },
+                    {
+                        "id": 27,
+                        "pro": 0,
+                        "type": 58,
+                        "isget": false
+                    },
+                    {
+                        "id": 28,
+                        "pro": 0,
+                        "type": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 29,
+                        "pro": 0,
+                        "type": 58,
+                        "isget": false
+                    },
+                    {
+                        "id": 30,
+                        "pro": 0,
+                        "type": 10,
+                        "isget": false
+                    },
+                    {
+                        "id": 31,
+                        "pro": 0,
+                        "type": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 32,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 33,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 34,
+                        "pro": 0,
+                        "type": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 35,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 36,
+                        "pro": 0,
+                        "type": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 37,
+                        "pro": 0,
+                        "type": 2,
+                        "isget": false
+                    },
+                    {
+                        "id": 38,
+                        "pro": 0,
+                        "type": 10,
+                        "isget": false
+                    },
+                    {
+                        "id": 39,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 40,
+                        "pro": 0,
+                        "type": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 41,
+                        "pro": 0,
+                        "type": 14,
+                        "isget": false
+                    },
+                    {
+                        "id": 42,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 43,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 44,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 45,
+                        "pro": 0,
+                        "type": 15,
+                        "isget": false
+                    },
+                    {
+                        "id": 46,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 47,
+                        "pro": 0,
+                        "type": 14,
+                        "isget": false
+                    },
+                    {
+                        "id": 48,
+                        "pro": 0,
+                        "type": 3,
+                        "isget": false
+                    },
+                    {
+                        "id": 49,
+                        "pro": 0,
+                        "type": 4,
+                        "isget": false
+                    },
+                    {
+                        "id": 50,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 51,
+                        "pro": 0,
+                        "type": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 52,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 53,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 54,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 55,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 56,
+                        "pro": 0,
+                        "type": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 57,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 58,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 59,
+                        "pro": 0,
+                        "type": 14,
+                        "isget": false
+                    },
+                    {
+                        "id": 60,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 61,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 62,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 63,
+                        "pro": 0,
+                        "type": 4,
+                        "isget": false
+                    },
+                    {
+                        "id": 64,
+                        "pro": 0,
+                        "type": 14,
+                        "isget": false
+                    },
+                    {
+                        "id": 65,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 66,
+                        "pro": 0,
+                        "type": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 67,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 68,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 69,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 70,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 71,
+                        "pro": 0,
+                        "type": 14,
+                        "isget": false
+                    },
+                    {
+                        "id": 72,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 73,
+                        "pro": 0,
+                        "type": 14,
+                        "isget": false
+                    },
+                    {
+                        "id": 74,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 75,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 76,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 77,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 78,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 79,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 80,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 81,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 82,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 83,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 84,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 85,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 86,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 87,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 88,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 89,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 90,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 91,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 92,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 93,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 94,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 95,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 96,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 97,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 98,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    },
+                    {
+                        "id": 99,
+                        "pro": 1120,
+                        "type": 7,
+                        "isget": false
+                    },
+                    {
+                        "id": 100,
+                        "pro": 0,
+                        "type": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 101,
+                        "pro": 0,
+                        "type": 52,
+                        "isget": false
+                    },
+                    {
+                        "id": 102,
+                        "pro": 0,
+                        "type": 5,
+                        "isget": false
+                    }
+                ],
+                "mjGccjdld_clearDailyTime": 1768545908348,
+                "mjGccjdld_VIDEOGETTREASURECHEST": 10,
+                "mjGccjdld_EXCHANGECOINNUM": 10,
+                "mjGccjdld_teacherFirstModel": 1,
+                "mjGccjdld_playerCamp": 1,
+                "mjGccjdld_TalentForgetNum": 0,
+                "mjGccjdld_FIRSTENDLESSMODE": true,
+                "mjGccjdld_DayFirstShare": false,
+                "mjGccjdld_unlockFeature": "{\"5\":true}",
+                "mjGccjdld_isTreasureOpenGuang": false,
+                "mjGccjdld_SAVETIME": 1768545912,
+                "mjGccjdld_NearDeathNumDay": 0,
+                "mjGccjdld_DailyTaskActivationGet": [],
+                "userdata": {
+                    "gold": 100,
+                    "level": 0,
+                    "gunid": 0,
+                    "gunlv": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "gunUnlockVedio": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "gunGoldUnlock": [
+                        true,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "maxLevel": 0,
+                    "shopVedioTimes": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "playDay": 0,
+                    "shopDay": 0,
+                    "rankDay": 0,
+                    "settingDay": 0,
+                    "packageDay": 0,
+                    "UAVVedioTimes": 0,
+                    "VivoShopVedioTimes": 0
+                },
+                "game_progress_221": {
+                    "game_id": 221,
+                    "progress_data": "[{\"id\":1,\"pro\":1,\"type\":1,\"isget\":false},{\"id\":2,\"pro\":0,\"type\":15,\"isget\":false},{\"id\":3,\"pro\":0,\"type\":17,\"isget\":false},{\"id\":4,\"pro\":0,\"type\":2,\"isget\":false},{\"id\":5,\"pro\":0,\"type\":18,\"isget\":false},{\"id\":6,\"pro\":0,\"type\":3,\"isget\":false},{\"id\":7,\"pro\":0,\"type\":4,\"isget\":false},{\"id\":8,\"pro\":0,\"type\":5,\"isget\":false},{\"id\":9,\"pro\":0,\"type\":6,\"isget\":false},{\"id\":10,\"pro\":0,\"type\":7,\"isget\":false},{\"id\":11,\"pro\":0,\"type\":8,\"isget\":false},{\"id\":12,\"pro\":0,\"type\":9,\"isget\":false},{\"id\":13,\"pro\":0,\"type\":10,\"isget\":false},{\"id\":14,\"pro\":0,\"type\":11,\"isget\":false},{\"id\":15,\"pro\":0,\"type\":12,\"isget\":false},{\"id\":16,\"pro\":0,\"type\":13,\"isget\":false},{\"id\":17,\"pro\":0,\"type\":16,\"isget\":false}]",
+                    "timestamp": "2026-01-16T06:45:39.096Z"
+                },
+                "mjGccjdld_TALENTLEVEL": [
+                    {
+                        "type": 2,
+                        "level": 0
+                    },
+                    {
+                        "type": 1,
+                        "level": 0
+                    },
+                    {
+                        "type": 4,
+                        "level": 0
+                    },
+                    {
+                        "type": 13,
+                        "level": 0
+                    },
+                    {
+                        "type": 9,
+                        "level": 0
+                    },
+                    {
+                        "type": 5,
+                        "level": 0
+                    },
+                    {
+                        "type": 7,
+                        "level": 0
+                    },
+                    {
+                        "type": 6,
+                        "level": 0
+                    },
+                    {
+                        "type": 8,
+                        "level": 0
+                    },
+                    {
+                        "type": 12,
+                        "level": 0
+                    },
+                    {
+                        "type": 11,
+                        "level": 0
+                    }
+                ],
+                "mjGccjdld_SIGN": 1,
+                "EatChicken_activityCurCoin": [
+                    50,
+                    100,
+                    100
+                ],
+                "game_progress_100": {
+                    "game_id": 100,
+                    "progress_data": "[{\"id\":1,\"pro\":1,\"type\":1,\"isget\":false},{\"id\":2,\"pro\":0,\"type\":15,\"isget\":false},{\"id\":3,\"pro\":0,\"type\":17,\"isget\":false},{\"id\":4,\"pro\":0,\"type\":2,\"isget\":false},{\"id\":5,\"pro\":0,\"type\":18,\"isget\":false},{\"id\":6,\"pro\":0,\"type\":3,\"isget\":false},{\"id\":7,\"pro\":0,\"type\":4,\"isget\":false},{\"id\":8,\"pro\":0,\"type\":5,\"isget\":false},{\"id\":9,\"pro\":0,\"type\":6,\"isget\":false},{\"id\":10,\"pro\":0,\"type\":7,\"isget\":false},{\"id\":11,\"pro\":0,\"type\":8,\"isget\":false},{\"id\":12,\"pro\":0,\"type\":9,\"isget\":false},{\"id\":13,\"pro\":0,\"type\":10,\"isget\":false},{\"id\":14,\"pro\":0,\"type\":11,\"isget\":false},{\"id\":15,\"pro\":0,\"type\":12,\"isget\":false},{\"id\":16,\"pro\":0,\"type\":13,\"isget\":false},{\"id\":17,\"pro\":0,\"type\":16,\"isget\":false}]",
+                    "timestamp": "2026-01-16T06:46:45.933Z"
+                },
+                "EatChicken_UserData": {
+                    "isFirstPlay": true,
+                    "playerName": "菠萝吹雪",
+                    "coinNum": 22210,
+                    "choosedSkinId": 29,
+                    "unLockedSkinIdArr": [
+                        1,
+                        21,
+                        22,
+                        23,
+                        26,
+                        24,
+                        29,
+                        25
+                    ],
+                    "playedVideoNum": 18,
+                    "havePieceNum": {
+                        "26": 10,
+                        "27": 10,
+                        "28": 0,
+                        "29": 40,
+                        "30": 0
+                    },
+                    "box1NeedCoinNum": 100,
+                    "box1RewardCoinNum": [
+                        50,
+                        150
+                    ],
+                    "box2RewardCoinNum": [
+                        250,
+                        500
+                    ],
+                    "baseHp": 100,
+                    "baseDamage": 1,
+                    "baseCrit": 0,
+                    "baseSpeed": 200,
+                    "baseCd": 0,
+                    "baseDef": 0,
+                    "baseRecovery": 1,
+                    "alDieNum": 1,
+                    "allKillNum": 0,
+                    "allPlayNum": 1,
+                    "winNum": 0,
+                    "top5Num": 0,
+                    "winRate": "0.00",
+                    "kd": "0.00",
+                    "avgRank": 28,
+                    "mostKill": 0,
+                    "avgLifeTime": 13
+                },
+                "EatChicken_dailyGotNum": 1,
+                "mjGccjdld_ShopsUpdateTime": 1768545903366,
+                "mjGccjdld_TOADYTIME": 1768492800000,
+                "mjGccjdld_FistLoadTime": 1768492800000,
+                "EatChicken_dailyDate": 1768546027,
+                "EatChicken_progressGifts": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "EatChicken_dailyGotState": true,
+                "mjGccjdld_teahouseldleClickNum": 0,
+                "EatChicken_passDays": 1,
+                "mjGccjdld_IsUnlockHomeTask": true,
+                "EatChicken_activityNum": [
+                    0,
+                    0,
+                    0
+                ],
+                "mjGccjdld_VideoDailyNum": 0
+            }
+        },
+        "updated_at": "2026-01-16T14:49:53+08:00",
+        "bound_device": "595d1977fbd2adf55193eb37ed37d369dadc25357b9fb4451b28d2501d5cf14e",
+        "binding_hash": "3f61863b2386287e9e4b349cb89ede3784b99b14f35b064359b8454d59a3ad46"
+    }
+}

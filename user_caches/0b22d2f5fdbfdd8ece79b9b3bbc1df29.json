@@ -1,0 +1,1317 @@
+{
+    "user_full_cache_2": {
+        "value": {
+            "metadata": {
+                "timestamp": "2025-12-29T03:44:14.634Z",
+                "version": 1,
+                "totalKeys": 320,
+                "dataSize": 20174
+            },
+            "data": {
+                "EscortAgency_achievement_progress_43": 0,
+                "EscortAgency_achievement_stage_16": 0,
+                "EscortAgency_FacilitiesLevel_Type9": -1,
+                "EscortAgency_achievement_stage_15": 0,
+                "mmhy_rztz_lmss_0_level": {
+                    "finishDayCountAll": 0,
+                    "finishDayLevelTypeCount": [],
+                    "matchCount": []
+                },
+                "EscortAgency_KnapsackItem_3_count": 20,
+                "EscortAgency_achievement_progress_51": 0,
+                "EscortAgency_achievement_stage_43": 0,
+                "EscortAgency_achievement_stage_13": 0,
+                "mmhy_rztz_lmss_0_LB_SIGN_DAY": 0,
+                "EscortAgency_achievement_progress_14": 0,
+                "EscortAgency_todo_progress": 0,
+                "EscortAgency_achievement_stage_7": 0,
+                "mmhy_rztz_lmss_0_LB_WISH": false,
+                "EscortAgency_achievement_progress_23": 0,
+                "EscortAgency_mission_status_6": 0,
+                "EscortAgency_achievement_stage_0": 0,
+                "mmhy_rztz_lmss_0_LB_IS_SHOW_UP_GUIDE": false,
+                "mmhy_rztz_lmss_0_pveSkinRewards": false,
+                "EscortAgency_achievement_progress_35": 0,
+                "EscortAgency_achievement_progress_9": 0,
+                "mmhy_rztz_lmss_0_LB_TITLE_LV": 1,
+                "EscortAgency_achievement_progress_40": 0,
+                "EscortAgency_achievement_progress_26": 0,
+                "mmhy_rztz_lmss_0_LB_AD_NUM": 0,
+                "EscortAgency_achievement_stage_3": 0,
+                "mmhy_rztz_lmss_0_unlockNetFlag": false,
+                "mmhy_rztz_lmss_0_LB_DOUBLE_MAJOR_TIME": 0,
+                "mmhy_rztz_lmss_0_DreamGuide": 0,
+                "mmhy_rztz_lmss_0_LB_CHALLENGE_COIN": 0,
+                "EscortAgency_mission_status_0": 0,
+                "EscortAgency_achievement_stage_47": 0,
+                "EscortAgency_achievement_progress_55": 0,
+                "game_progress_141": {
+                    "game_id": 141,
+                    "progress_data": "{\"finishDayCountAll\":0,\"finishDayLevelTypeCount\":[],\"matchCount\":[]}",
+                    "timestamp": "2025-12-29T03:44:14.117Z"
+                },
+                "mmhy_rztz_lmss_0_LB_IS_SHOW_AUTO_GUIDE": false,
+                "EscortAgency_achievement_stage_21": 0,
+                "mmhy_rztz_lmss_0_gameEffectSwitch": 1,
+                "EscortAgency_todo_required": 1,
+                "EscortAgency_achievement_progress_31": 0,
+                "EscortAgency_achievement_stage_50": 0,
+                "EscortAgency_achievement_stage_41": 0,
+                "EscortAgency_achievement_progress_4": 0,
+                "EscortAgency_achievement_progress_8": 0,
+                "EscortAgency_achievement_stage_30": 0,
+                "mmhy_rztz_lmss_0_pveDifficultOpens": {
+                    "difficultLv2": 0,
+                    "difficultLv3": 0,
+                    "difficultLv4": 0,
+                    "difficultLv5": 0
+                },
+                "EscortAgency_achievement_progress_37": 0,
+                "EscortAgency_achievement_progress_45": 0,
+                "EscortAgency_achievement_stage_17": 0,
+                "mmhy_rztz_lmss_0_LB_TICKET_COUNT": 3,
+                "EscortAgency_mission_progress_5": 0,
+                "mmhy_rztz_lmss_0_DreamResultWave": 0,
+                "mmhy_rztz_lmss_0_LB_UPGRADE_TIMES": 1,
+                "mmhy_rztz_lmss_0_tryRankingUseRole": false,
+                "EscortAgency_achievement_stage_14": 0,
+                "EscortAgency_mission_progress_1": 0,
+                "key_firstMGtkr11": 1,
+                "EscortAgency_achievement_stage_48": 0,
+                "EscortAgency_NowZhuangShi": 0,
+                "mmhy_rztz_lmss_0_LB_SMALL_NUM": false,
+                "mmhy_rztz_lmss_0_LB_SLEVEL": 1,
+                "EscortAgency_FacilitiesLevel_Type1": -1,
+                "mmhy_rztz_lmss_0_firstOpenWeChatClub": 1,
+                "EscortAgency_achievement_stage_45": 0,
+                "EscortAgency_KnapsackItem_75_count": 1,
+                "mmhy_rztz_lmss_0_version": "2.2.0",
+                "mmhy_rztz_lmss_0_showRankOpen": true,
+                "EscortAgency_SevenDayLand": {
+                    "ContinuousDays": 1,
+                    "ReceiveDays": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "last_login": 1766976083072,
+                    "AccumulativeDays": 1
+                },
+                "EscortAgency_achievement_stage_24": 0,
+                "GOODS": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "EscortAgency_mission_progress_8": 0,
+                "EscortAgency_DMStableLevel": 0,
+                "EscortAgency_NowShuanMaZhuang": 0,
+                "mmhy_rztz_lmss_0_LB_EQUIP_TIEMS": [],
+                "mmhy_rztz_lmss_0_LB_ACTIVE_SECOND": 14,
+                "EscortAgency_achievement_stage_40": 0,
+                "mmhy_rztz_lmss_0_once": [],
+                "EscortAgency_mission_type_1": 1,
+                "EscortAgency_NowYunShu_2": -1,
+                "mmhy_rztz_lmss_0_registerTime": 1774838515818,
+                "EscortAgency_achievement_progress_12": 0,
+                "SAVETIME": 0,
+                "EscortAgency_mission_status_4": 0,
+                "EscortAgency_achievement_progress_15": 0,
+                "EscortAgency_achievement_stage_18": 0,
+                "EscortAgency_achievement_progress_30": 0,
+                "mmhy_rztz_lmss_0_ClimbPeakSelectIndex": 0,
+                "EscortAgency_Escort_Data": [],
+                "EscortAgency_achievement_stage_2": 0,
+                "EscortAgency_mission_type_2": 2,
+                "mmhy_rztz_lmss_0_reset": 0,
+                "EscortAgency_achievement_progress_52": 0,
+                "EscortAgency_mission_progress_4": 0,
+                "EscortAgency_mission_progress_7": 0,
+                "EscortAgency_achievement_stage_12": 0,
+                "EscortAgency_achievement_stage_52": 0,
+                "EscortAgency_mission_type_5": 5,
+                "EscortAgency_KnapsackItem_72_count": 1,
+                "mmhy_rztz_lmss_0_redDots": {
+                    "wechatClub": 0,
+                    "sidebarEnter": 0,
+                    "addDesktop": 1,
+                    "LimitTimeChallenge": 0,
+                    "DiffcultLv2": 1,
+                    "DiffcultLv3": 1,
+                    "DiffcultLv4": 1,
+                    "DiffcultLv5": 1
+                },
+                "MMOPENID": "5b3378f6-8f67-be9a-0692-a2f2c6ece04f",
+                "EscortAgency_achievement_stage_51": 0,
+                "mmhy_rztz_lmss_0_LB_IS_SHOW_SIGN_GUIDE": false,
+                "EscortAgency_SignIn": {
+                    "ReceiveDays": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "last_login": 1766976083071,
+                    "Month": 11,
+                    "days": 31,
+                    "today": 29
+                },
+                "mmhy_rztz_lmss_0_LB_CURRENT_ROLE": 0,
+                "mmhy_rztz_lmss_0_LB_IS_SHOW_BOX": false,
+                "padmx_gameData": {
+                    "audio": {
+                        "musicVolume": 1,
+                        "effectVolume": 1
+                    },
+                    "player": {
+                        "saveTime": "2025-12-29T02:51:38.734Z",
+                        "backLifeCount": 0,
+                        "coinAddInfo": [],
+                        "diamondAdTime": "1970-01-01T00:00:00.000Z",
+                        "energyAddCount": 0,
+                        "energyRecoveryTime": "2025-12-29T02:51:35.942Z",
+                        "playerLv": 1,
+                        "playerExp": 0,
+                        "headId": 1,
+                        "giftObj": [],
+                        "isNewPlayer": 0,
+                        "handObj": [],
+                        "luckDrawCount": 0
+                    },
+                    "map": {
+                        "mapId": 11,
+                        "floor": 1,
+                        "round": 0,
+                        "cardArr": [
+                            {
+                                "cardId": 1305,
+                                "levelId": 11106,
+                                "isOpen": 1,
+                                "exploreEnd": 0,
+                                "id": 22,
+                                "pos": {
+                                    "row": 2,
+                                    "col": 2
+                                },
+                                "fog": 0,
+                                "idArr": [
+                                    22,
+                                    32
+                                ],
+                                "width": 135,
+                                "height": 312,
+                                "x": -135,
+                                "y": -78,
+                                "hasPos": 1
+                            },
+                            {
+                                "cardId": 901,
+                                "levelId": 11108,
+                                "isOpen": 0,
+                                "exploreEnd": 0,
+                                "id": 44,
+                                "pos": {
+                                    "row": 4,
+                                    "col": 4
+                                },
+                                "fog": 1,
+                                "idArr": [
+                                    44
+                                ],
+                                "width": 135,
+                                "height": 156,
+                                "x": 135,
+                                "y": 156,
+                                "hasPos": 1
+                            },
+                            {
+                                "cardId": 608,
+                                "levelId": 11107,
+                                "isOpen": 1,
+                                "exploreEnd": 0,
+                                "id": 43,
+                                "pos": {
+                                    "row": 4,
+                                    "col": 3
+                                },
+                                "fog": 0,
+                                "idArr": [
+                                    43
+                                ],
+                                "width": 135,
+                                "height": 156,
+                                "x": 0,
+                                "y": 156,
+                                "hasPos": 1
+                            },
+                            {
+                                "cardId": 1201,
+                                "levelId": 11105,
+                                "isOpen": 1,
+                                "exploreEnd": 0,
+                                "id": 33,
+                                "pos": {
+                                    "row": 3,
+                                    "col": 3
+                                },
+                                "fog": 0,
+                                "idArr": [
+                                    33
+                                ],
+                                "width": 135,
+                                "height": 156,
+                                "x": 0,
+                                "y": 0,
+                                "hasPos": 1
+                            },
+                            {
+                                "cardId": 401,
+                                "levelId": 11104,
+                                "isOpen": 0,
+                                "exploreEnd": 0,
+                                "id": 24,
+                                "pos": {
+                                    "row": 2,
+                                    "col": 4
+                                },
+                                "fog": 1,
+                                "idArr": [
+                                    24
+                                ],
+                                "width": 135,
+                                "height": 156,
+                                "x": 135,
+                                "y": -156,
+                                "hasPos": 1
+                            },
+                            {
+                                "monster": {
+                                    "id": 1003,
+                                    "round": 0,
+                                    "buffArr": [],
+                                    "hp": 3,
+                                    "maxHp": 3,
+                                    "atk": 2,
+                                    "mp": 0,
+                                    "maxMp": 0,
+                                    "dodge": 0,
+                                    "crit": 0,
+                                    "critDam": 2,
+                                    "atkAddBuff": null,
+                                    "gridId": 42
+                                },
+                                "cardId": 101,
+                                "levelId": 11103,
+                                "isOpen": 0,
+                                "exploreEnd": 0,
+                                "id": 42,
+                                "pos": {
+                                    "row": 4,
+                                    "col": 2
+                                },
+                                "fog": 1,
+                                "idArr": [
+                                    42
+                                ],
+                                "width": 135,
+                                "height": 156,
+                                "x": -135,
+                                "y": 156,
+                                "hasPos": 1
+                            },
+                            {
+                                "monster": {
+                                    "id": 1002,
+                                    "round": 0,
+                                    "buffArr": [],
+                                    "hp": 2,
+                                    "maxHp": 2,
+                                    "atk": 1,
+                                    "mp": 0,
+                                    "maxMp": 0,
+                                    "dodge": 0,
+                                    "crit": 0,
+                                    "critDam": 2,
+                                    "atkAddBuff": null,
+                                    "gridId": 34
+                                },
+                                "cardId": 101,
+                                "levelId": 11102,
+                                "isOpen": 0,
+                                "exploreEnd": 0,
+                                "id": 34,
+                                "pos": {
+                                    "row": 3,
+                                    "col": 4
+                                },
+                                "fog": 0,
+                                "idArr": [
+                                    34
+                                ],
+                                "width": 135,
+                                "height": 156,
+                                "x": 135,
+                                "y": 0,
+                                "hasPos": 1
+                            },
+                            {
+                                "monster": {
+                                    "id": 1001,
+                                    "round": 0,
+                                    "buffArr": [],
+                                    "hp": 1,
+                                    "maxHp": 1,
+                                    "atk": 1,
+                                    "mp": 0,
+                                    "maxMp": 0,
+                                    "dodge": 0,
+                                    "crit": 0,
+                                    "critDam": 2,
+                                    "atkAddBuff": null,
+                                    "gridId": 23
+                                },
+                                "cardId": 101,
+                                "levelId": 11101,
+                                "isOpen": 0,
+                                "exploreEnd": 0,
+                                "id": 23,
+                                "pos": {
+                                    "row": 2,
+                                    "col": 3
+                                },
+                                "fog": 0,
+                                "idArr": [
+                                    23
+                                ],
+                                "width": 135,
+                                "height": 156,
+                                "x": 0,
+                                "y": -156,
+                                "hasPos": 1
+                            }
+                        ],
+                        "dropArr": [],
+                        "cardDoor": {
+                            "cardId": 1201,
+                            "levelId": 11105,
+                            "isOpen": 1,
+                            "exploreEnd": 0,
+                            "id": 33,
+                            "pos": {
+                                "row": 3,
+                                "col": 3
+                            },
+                            "fog": 0,
+                            "idArr": [
+                                33
+                            ],
+                            "width": 135,
+                            "height": 156,
+                            "x": 0,
+                            "y": 0,
+                            "hasPos": 1
+                        },
+                        "cardBoss": null,
+                        "bagObj": [],
+                        "backLifeCount": 0,
+                        "settlementObj": {
+                            "floor": 0,
+                            "card": 0,
+                            "monster": 0,
+                            "boss": 0
+                        },
+                        "mapIdPassObj": []
+                    },
+                    "fight": {
+                        "role": {
+                            "id": 1,
+                            "isPlayer": 1,
+                            "round": 0,
+                            "buffArr": [],
+                            "hp": 40,
+                            "maxHp": 40,
+                            "atk": 2,
+                            "int": 1,
+                            "mp": 20,
+                            "maxMp": 20,
+                            "critDam": 2,
+                            "crit": 0.06,
+                            "trigNoBack": 0.06
+                        }
+                    },
+                    "role": {
+                        "fightRoleId": 1,
+                        "roleArr": [
+                            {
+                                "id": 1,
+                                "star": 1,
+                                "equips": []
+                            }
+                        ]
+                    },
+                    "item": {
+                        "itemArr": [
+                            {
+                                "id": 3,
+                                "num": 3
+                            }
+                        ]
+                    }
+                },
+                "EscortAgency_todo_reward_coin": 304,
+                "REFTIME": [
+                    0,
+                    1,
+                    0,
+                    0
+                ],
+                "EscortAgency_mission_type_9": 17,
+                "EscortAgency_mission_status_2": 0,
+                "cache_device_id": "74j43e",
+                "mmhy_rztz_lmss_0_eggsHandbook": {
+                    "unlocked": []
+                },
+                "EscortAgency_achievement_stage_28": 0,
+                "EscortAgency_mission_progress_2": 0,
+                "EscortAgency_achievement_progress_41": 0,
+                "EscortAgency_mission_progress_9": 0,
+                "mmhy_rztz_lmss_0_pveDifficultLevel": 1,
+                "mmhy_rztz_lmss_0_GetTaskAward": [],
+                "EscortAgency_mission_progress_3": 0,
+                "key_dataMGtkr11": {
+                    "coinNum": 200,
+                    "propData": [
+                        {
+                            "num": 1,
+                            "propName": "电磁打击"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "绝对壁垒"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "投资"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "冷冻实验室"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "捕猎"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "荆棘之盾"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "狗头铡"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "修理工作室"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "卫星时代"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "曲率加速器"
+                        },
+                        {
+                            "num": 1,
+                            "propName": "危机意识"
+                        }
+                    ],
+                    "guideState": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "playerUnlockArr": [
+                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "monsterUnlockArr": [
+                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "modeUnlockState": [
+                        {
+                            "modeName": "双人模式",
+                            "unlock": false
+                        },
+                        {
+                            "modeName": "无限创造",
+                            "unlock": false
+                        },
+                        {
+                            "modeName": "梦魇来敲门",
+                            "unlock": false
+                        },
+                        {
+                            "modeName": "猛鬼塔防赛",
+                            "unlock": false
+                        },
+                        {
+                            "modeName": "盲盒猜猜乐",
+                            "unlock": false
+                        }
+                    ],
+                    "onlineSecond": 10
+                },
+                "EscortAgency_achievement_stage_11": 0,
+                "game_progress_78": {
+                    "game_id": 78,
+                    "progress_data": "{\"finishDayCountAll\":0,\"finishDayLevelTypeCount\":[],\"matchCount\":[]}",
+                    "timestamp": "2025-12-29T03:44:09.137Z"
+                },
+                "EscortAgency_NowYunShu_1": -1,
+                "OREGOODS": [
+                    {
+                        "goodsid": 13,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 14,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 15,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 16,
+                        "ishave": true
+                    }
+                ],
+                "EscortAgency_achievement_stage_38": 0,
+                "EscortAgency_achievement_progress_11": 0,
+                "mmhy_rztz_lmss_0_dailyBuffs": [],
+                "EscortAgency_DMMaTouLevel": -1,
+                "EscortAgency_FacilitiesLevel_Type7": -1,
+                "mmhy_rztz_lmss_0_DreamBattleBox": 0,
+                "mmhy_rztz_lmss_0_DailyLucky": 0,
+                "ItemList": {
+                    "1": {
+                        "itemID": 1,
+                        "itemCount": 1000
+                    }
+                },
+                "mmhy_rztz_lmss_0_LB_AUTO_COUNT": 0,
+                "mmhy_rztz_lmss_0_ClimbPeakFreeCount": 1,
+                "EscortAgency_FacilitiesLevel_Type2": -1,
+                "EscortAgency_QiaoLiangLevel": -1,
+                "mmhy_rztz_lmss_0_gameDamageSwitch": 1,
+                "EscortAgency_MainRoomLevel": 0,
+                "mmhy_rztz_lmss_0_IsDreamGuide": false,
+                "EscortAgency_FacilitiesLevel_Type4": -1,
+                "EscortAgency_language": 0,
+                "mmhy_rztz_lmss_0_unlock_jlyc_level": [
+                    0,
+                    1
+                ],
+                "mmhy_rztz_lmss_0_LB_DAY_NUM": 1,
+                "EscortAgency_mission_count": 10,
+                "EscortAgency_achievement_stage_49": 0,
+                "EscortAgency_achievement_stage_33": 0,
+                "ISFRISTLOAD": false,
+                "EscortAgency_achievement_progress_7": 0,
+                "EscortAgency_achievement_stage_19": 0,
+                "mmhy_rztz_lmss_0_TABLE_IS_MUST": false,
+                "mmhy_rztz_lmss_0_unlockPveFlag": false,
+                "LocalData": {
+                    "level": 1,
+                    "coinValue": 0
+                },
+                "mmhy_rztz_lmss_0_ClimbPeakLayer": 1,
+                "ENC": 1,
+                "EscortAgency_achievement_stage_37": 0,
+                "EscortAgency_KnapsackCapacity": 120,
+                "EscortAgency_achievement_stage_42": 0,
+                "EscortAgency_achievement_stage_1": 0,
+                "EscortAgency_achievement_progress_46": 0,
+                "EscortAgency_achievement_stage_6": 0,
+                "mmhy_rztz_lmss_0_LB_GUIDE": 1,
+                "EscortAgency_MainTask_progress": 0,
+                "EscortAgency_DormitoryLevel": 0,
+                "mmhy_rztz_lmss_0_TABEL_RATE": 1,
+                "EscortAgency_FirstSignIn": false,
+                "EscortAgency_BasicData": {
+                    "MusicState": true,
+                    "SoundState": true,
+                    "level": 1,
+                    "gameCash": 20000,
+                    "gameGem": 50,
+                    "gameEnergy": 50,
+                    "gameEnergyMAX": 50,
+                    "EnergyRecoveryCycle": 90,
+                    "EnergyLastTime": 1766976083074,
+                    "Headicon": 1,
+                    "HeadName": "",
+                    "EscortAgencyName": "常扬镖局",
+                    "Reputation": 0,
+                    "task_refresh_cycle": 0
+                },
+                "EscortAgency_FacilitiesLevel_Type8": -1,
+                "DICETIME": 0,
+                "EscortAgency_achievement_progress_44": 0,
+                "mmhy_rztz_lmss_0_LB_FIRST": true,
+                "EscortAgency_mission_status_7": 0,
+                "mmhy_rztz_lmss_0_XYX_CD_TIME": [],
+                "EscortAgency_achievement_stage_10": 0,
+                "EscortAgency_Team_Data": [],
+                "EscortAgency_achievement_progress_3": 0,
+                "mmhy_rztz_lmss_0_unlockLimitFlag": false,
+                "EscortAgency_achievement_progress_13": 0,
+                "EscortAgency_achievement_stage_20": 0,
+                "EscortAgency_achievement_progress_49": 0,
+                "EscortAgency_mission_type_7": 7,
+                "mmhy_rztz_lmss_0_ClimbPeakRands": [
+                    null,
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0
+                    ]
+                ],
+                "mmhy_rztz_lmss_0_lastLogin": 0,
+                "EscortAgency_achievement_progress_39": 0,
+                "mmhy_rztz_lmss_0_LB_ROLE": {
+                    "1": true
+                },
+                "EscortAgency_todo_reward_gem": 5,
+                "EscortAgency_KnapsackItem_74_count": 2,
+                "tyq_item_openid": "dc207459-539e-4176-b378-e93f-220a5090dce",
+                "mmhy_rztz_lmss_0_videoPay": {
+                    "videoNum": [],
+                    "diamondTime": []
+                },
+                "mmhy_rztz_lmss_0_DreamShareReward": false,
+                "EscortAgency_achievement_progress_53": 0,
+                "EscortAgency_achievement_progress_24": 0,
+                "EscortAgency_mission_progress_0": 0,
+                "EscortAgency_achievement_progress_25": 0,
+                "EscortAgency_achievement_stage_22": 0,
+                "EscortAgency_achievement_progress_0": 0,
+                "mmhy_rztz_lmss_0_LB_FIRST_DAY": "2025\/12\/29",
+                "EscortAgency_mission_progress_6": 0,
+                "EscortAgency_mission_type_6": 14,
+                "EscortAgency_mission_status_3": 0,
+                "EscortAgency_achievement_stage_23": 0,
+                "EscortAgency_achievement_stage_4": 0,
+                "EscortAgency_NowBiaoQi": 0,
+                "EscortAgency_todo_status": 0,
+                "mmhy_rztz_lmss_0_LB_CLICK_LEVEL": 1,
+                "EscortAgency_NowYunShu_4": -1,
+                "EscortAgency_achievement_progress_19": 0,
+                "mmhy_rztz_lmss_0_LB_EQUIP_ATTACK": [],
+                "EscortAgency_achievement_progress_6": 0,
+                "EscortAgency_todo_type": 0,
+                "mmhy_rztz_lmss_0_ClimbPeakSkip": false,
+                "EscortAgency_achievement_stage_55": 0,
+                "mmhy_rztz_lmss_0_LB_EQUIP_BREAK": [],
+                "EscortAgency_achievement_progress_2": 0,
+                "EscortAgency_achievement_progress_27": 0,
+                "EscortAgency_KnapsackItem_73_count": 1,
+                "EscortAgency_KnapsackItem_71_count": 1,
+                "mmhy_rztz_lmss_0_LAST_ACTIVE_TIME": 1766976130434,
+                "EscortAgency_achievement_progress_32": 0,
+                "mmhy_rztz_lmss_0_background": {
+                    "use": 0
+                },
+                "mmhy_rztz_lmss_0_exchangetasknum": [],
+                "EscortAgency_achievement_progress_21": 0,
+                "EscortAgency_achievement_progress_29": 0,
+                "mmhy_rztz_lmss_0_LB_DIAMOND": 0,
+                "MMCACHE": "",
+                "EscortAgency_achievement_progress_36": 0,
+                "EscortAgency_achievement_stage_27": 0,
+                "mmhy_rztz_lmss_0_launch_first_scene": 0,
+                "EscortAgency_achievement_stage_44": 0,
+                "mmhy_rztz_lmss_0_roleData": {
+                    "useId": 100002,
+                    "useMonsterId": 300001,
+                    "skinUse": {
+                        "100002": 200201
+                    }
+                },
+                "EscortAgency_achievement_progress_28": 0,
+                "EscortAgency_mission_type_3": 3,
+                "mmhy_rztz_lmss_0_LB_CHALLENGE_EXP": 0,
+                "EscortAgency_mission_status_main": 0,
+                "game_progress_243": {
+                    "game_id": 243,
+                    "progress_data": "{\"finishDayCountAll\":0,\"finishDayLevelTypeCount\":[],\"matchCount\":[]}",
+                    "timestamp": "2025-12-29T02:51:39.738Z"
+                },
+                "mmhy_rztz_lmss_0_setting": {
+                    "music": 1,
+                    "effect": 1
+                },
+                "EscortAgency_KnapsackItem_1_count": 20,
+                "EscortAgency_achievement_progress_33": 0,
+                "COIN": 123.6,
+                "EscortAgency_achievement_stage_46": 0,
+                "EscortAgency_achievement_progress_22": 0,
+                "EscortAgency_NowBiaoPai": 0,
+                "mmhy_rztz_lmss_0_emojiData": {
+                    "assemble": []
+                },
+                "EscortAgency_achievement_progress_1": 0,
+                "EscortAgency_achievement_stage_29": 0,
+                "mmhy_rztz_lmss_0_LB_VIP_AWARD": [
+                    false
+                ],
+                "EscortAgency_achievement_stage_8": 0,
+                "EscortAgency_mission_type_8": 10,
+                "mmhy_rztz_lmss_0_LB_ASSIST_TIME": 0,
+                "EscortAgency_achievement_progress_48": 0,
+                "mmhy_rztz_lmss_0_TABEL_SHARE_COUNT": 1,
+                "mmhy_rztz_lmss_0_isNewPlayer": true,
+                "EscortAgency_FacilitiesLevel_Type3": -1,
+                "GOODSITEM": [
+                    {
+                        "id": 2,
+                        "type": 1,
+                        "goodsid": 2,
+                        "num": 10,
+                        "currency": 0,
+                        "price": 250
+                    },
+                    {
+                        "id": 4,
+                        "type": 2,
+                        "goodsid": 2,
+                        "num": 10,
+                        "currency": 1,
+                        "price": 75
+                    },
+                    {
+                        "id": 7,
+                        "type": 3,
+                        "goodsid": 21,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 10,
+                        "type": 4,
+                        "goodsid": 42,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 13,
+                        "type": 5,
+                        "goodsid": 91,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 50
+                    },
+                    {
+                        "id": 23,
+                        "type": 6,
+                        "goodsid": 50,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 600
+                    },
+                    {
+                        "id": 25,
+                        "type": 7,
+                        "goodsid": 120,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 600
+                    },
+                    {
+                        "id": 31,
+                        "type": 8,
+                        "goodsid": 22,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 100
+                    },
+                    {
+                        "id": 35,
+                        "type": 9,
+                        "goodsid": 28,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 39,
+                        "type": 10,
+                        "goodsid": 56,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 40,
+                        "type": 11,
+                        "goodsid": 91,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 100
+                    },
+                    {
+                        "id": 50,
+                        "type": 12,
+                        "goodsid": 50,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 1000
+                    }
+                ],
+                "EscortAgency_FacilitiesLevel_Type6": -1,
+                "Account": "5b3378f6-8f67-be9a-0692-a2f2c6ece04f",
+                "EscortAgency_achievement_progress_38": 0,
+                "mmhy_rztz_lmss_0_LB_IS_FIVE_TIMES": false,
+                "mmhy_rztz_lmss_0_LB_LAST_ACTIVE_TIME": 1766976130434,
+                "EscortAgency_achievement_progress_10": 0,
+                "mmhy_rztz_lmss_0_LB_WISH_ROLE": [],
+                "EscortAgency_DMLuMianLevel": 0,
+                "EscortAgency_achievement_stage_9": 0,
+                "EscortAgency_Equipment_Data": [],
+                "EscortAgency_achievement_progress_18": 0,
+                "EscortAgency_mission_status_5": 0,
+                "EscortAgency_achievement_progress_16": 0,
+                "EscortAgency_achievement_progress_20": 0,
+                "EscortAgency_achievement_stage_35": 0,
+                "EscortAgency_achievement_stage_5": 0,
+                "mmhy_rztz_lmss_0_exchange": [],
+                "EscortAgency_NowYunShu_0": 0,
+                "mmhy_rztz_lmss_0_LB_DOUBLE_EXP": 0,
+                "EscortAgency_achievement_progress_50": 0,
+                "EscortAgency_NowDiMian": 0,
+                "mmhy_rztz_lmss_0_recommendPveFlag": false,
+                "mmhy_rztz_lmss_0_LB_COIN": 0,
+                "mmhy_rztz_lmss_0_sideBarRewards": false,
+                "EscortAgency_mission_status_8": 0,
+                "EscortAgency_NowWeiQiang": 0,
+                "EscortAgency_achievement_stage_31": 0,
+                "mmhy_rztz_lmss_0_unlock_xyx": [],
+                "EscortAgency_mission_type_4": 4,
+                "EscortAgency_mission_type_0": 0,
+                "OREREFTIME": [
+                    1,
+                    0
+                ],
+                "EscortAgency_achievement_stage_54": 0,
+                "EscortAgency_achievement_stage_36": 0,
+                "EscortAgency_achievement_stage_53": 0,
+                "EscortAgency_achievement_stage_34": 0,
+                "EscortAgency_achievement_progress_42": 0,
+                "EscortAgency_Task_Data": [
+                    {
+                        "cityID": 0,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 1,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 2,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 3,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 4,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 5,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 6,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 7,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 8,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 9,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 10,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 11,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    },
+                    {
+                        "cityID": 12,
+                        "goods_list": [],
+                        "goods_list_remain": [],
+                        "status": 0,
+                        "refresh_time": 0,
+                        "earning": 0,
+                        "day": 0,
+                        "energy": 0,
+                        "event_data": [],
+                        "line_data": []
+                    }
+                ],
+                "EscortAgency_achievement_progress_5": 0,
+                "mmhy_rztz_lmss_0_newItems": {
+                    "100002": true,
+                    "200201": true
+                },
+                "EscortAgency_FacilitiesLevel_Type5": -1,
+                "mmhy_rztz_lmss_0_LB_SIGN": [],
+                "EscortAgency_KnapsackItem_2_count": 20,
+                "EscortAgency_achievement_progress_17": 0,
+                "mmhy_rztz_lmss_0_LB_TRIPLE_TIME": 0,
+                "EscortAgency_mission_status_9": 0,
+                "mmhy_rztz_lmss_0_LB_IS_DOUBLE": false,
+                "WXCDK": [
+                    {
+                        "CDK": "vip666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "vip888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "vip999",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli688",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli998",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao668",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao899",
+                        "state": false
+                    },
+                    {
+                        "CDK": "buchang420",
+                        "state": false
+                    },
+                    {
+                        "CDK": "buchang466",
+                        "state": false
+                    },
+                    {
+                        "CDK": "rongjing889",
+                        "state": false
+                    },
+                    {
+                        "CDK": "rongjing789",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri501",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri447",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri599",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri128",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri677",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao363",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao555",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu618",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu333",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu789",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia701",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia618",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia745",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli703",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli777",
+                        "state": false
+                    }
+                ],
+                "mmhy_rztz_lmss_0_LB_SIGN_CTRL": 0,
+                "mmhy_rztz_lmss_0_TABEL_LOTTERY_COUNT": 0,
+                "game_progress_12": {
+                    "game_id": 12,
+                    "progress_data": "{\"finishDayCountAll\":0,\"finishDayLevelTypeCount\":[],\"matchCount\":[]}",
+                    "timestamp": "2025-12-29T03:12:15.816Z"
+                },
+                "mmhy_rztz_lmss_0_LB_ACTIVE_TIME": 0,
+                "deviceUuid": "0e51a442-b731-5022-62fb-122464ef21e6",
+                "EscortAgency_FacilitiesLevel_Type0": 0,
+                "EscortAgency_mission_status_1": 0,
+                "EscortAgency_achievement_progress_34": 0,
+                "EscortAgency_achievement_stage_39": 0,
+                "mmhy_rztz_lmss_0_fightLock": false,
+                "EscortAgency_achievement_stage_25": 0,
+                "EscortAgency_achievement_progress_47": 0,
+                "mmhy_rztz_lmss_0_DailyCurLucky": 0,
+                "EscortAgency_achievement_stage_26": 0,
+                "EscortAgency_achievement_stage_32": 0,
+                "mmhy_rztz_lmss_0_LB_EQUIP": {
+                    "10": 1
+                },
+                "mmhy_rztz_lmss_0_LB_TICKET_VIDEO": 5,
+                "mmhy_rztz_lmss_0_LB_LOCK_WEAPON": {
+                    "1": 0
+                },
+                "mmhy_rztz_lmss_0_privacy": false,
+                "EscortAgency_achievement_progress_54": 0,
+                "EscortAgency_NowYunShu_3": -1
+            }
+        },
+        "updated_at": "2025-12-29T11:44:14+08:00",
+        "bound_device": "5a115d4ecee6a4154fa5764ae1cc1afd22a33e21b656d355b2250e538d80f52f",
+        "binding_hash": "41b08462ea6fb868e0d01641cde2b68202c581feb8787608c814f76a0e6853c0"
+    }
+}

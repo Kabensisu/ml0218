@@ -1,0 +1,5581 @@
+{
+    "user_full_cache_4": {
+        "value": {
+            "metadata": {
+                "timestamp": "2025-12-28T11:20:28.688Z",
+                "version": 1,
+                "totalKeys": 85,
+                "dataSize": 45766
+            },
+            "data": {
+                "ARTIFACTSLIST": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "DRUGBOXNUM": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "GOODSITEM": [
+                    {
+                        "id": 1,
+                        "type": 1,
+                        "goodsid": 1,
+                        "num": 10,
+                        "currency": 0,
+                        "price": 75
+                    },
+                    {
+                        "id": 4,
+                        "type": 2,
+                        "goodsid": 2,
+                        "num": 10,
+                        "currency": 1,
+                        "price": 75
+                    },
+                    {
+                        "id": 7,
+                        "type": 3,
+                        "goodsid": 21,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 10,
+                        "type": 4,
+                        "goodsid": 42,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 16,
+                        "type": 5,
+                        "goodsid": 112,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 50
+                    },
+                    {
+                        "id": 23,
+                        "type": 6,
+                        "goodsid": 50,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 600
+                    },
+                    {
+                        "id": 26,
+                        "type": 7,
+                        "goodsid": 121,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 600
+                    },
+                    {
+                        "id": 31,
+                        "type": 8,
+                        "goodsid": 22,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 100
+                    },
+                    {
+                        "id": 34,
+                        "type": 9,
+                        "goodsid": 21,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 39,
+                        "type": 10,
+                        "goodsid": 56,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 43,
+                        "type": 11,
+                        "goodsid": 112,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 100
+                    },
+                    {
+                        "id": 49,
+                        "type": 12,
+                        "goodsid": 43,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 1000
+                    }
+                ],
+                "UNLOCKARTIFACTS": [],
+                "REFTIME": [
+                    0,
+                    0,
+                    1,
+                    0
+                ],
+                "DRUGOVER": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "cache_device_id": "74j43e",
+                "xy_ISSIGN": false,
+                "kb_luckyTime": 1766901563046,
+                "kb_winBoxCount": 0,
+                "xy_FIRSTENDLESSMODE": true,
+                "xy_ACHIEVEMENT": [
+                    {
+                        "id": 1000001,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000002,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000003,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000004,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000005,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000006,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000007,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000008,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000009,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000010,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000011,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000012,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000013,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000014,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1000015,
+                        "pro": 0,
+                        "groupId": 100,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020000,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020001,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020002,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020003,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020004,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1020005,
+                        "pro": 0,
+                        "groupId": 102,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040000,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040001,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040002,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040003,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040004,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1040005,
+                        "pro": 0,
+                        "groupId": 104,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050000,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050001,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050002,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050003,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050004,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1050005,
+                        "pro": 0,
+                        "groupId": 105,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090001,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090002,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090003,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090004,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1090005,
+                        "pro": 0,
+                        "groupId": 109,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110000,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110001,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110002,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110003,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110004,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1110005,
+                        "pro": 0,
+                        "groupId": 111,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120000,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120001,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120002,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120003,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120004,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1120005,
+                        "pro": 0,
+                        "groupId": 112,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130001,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130002,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130003,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130004,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1130005,
+                        "pro": 0,
+                        "groupId": 113,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140000,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140001,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140002,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140003,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140004,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1140005,
+                        "pro": 0,
+                        "groupId": 114,
+                        "isget": false
+                    },
+                    {
+                        "id": 1200000,
+                        "pro": 0,
+                        "groupId": 120,
+                        "isget": false
+                    },
+                    {
+                        "id": 1200001,
+                        "pro": 0,
+                        "groupId": 120,
+                        "isget": false
+                    },
+                    {
+                        "id": 1200002,
+                        "pro": 0,
+                        "groupId": 120,
+                        "isget": false
+                    },
+                    {
+                        "id": 1200003,
+                        "pro": 0,
+                        "groupId": 120,
+                        "isget": false
+                    },
+                    {
+                        "id": 1200004,
+                        "pro": 0,
+                        "groupId": 120,
+                        "isget": false
+                    },
+                    {
+                        "id": 1200005,
+                        "pro": 0,
+                        "groupId": 120,
+                        "isget": false
+                    },
+                    {
+                        "id": 1270000,
+                        "pro": 0,
+                        "groupId": 127,
+                        "isget": false
+                    },
+                    {
+                        "id": 1270001,
+                        "pro": 0,
+                        "groupId": 127,
+                        "isget": false
+                    },
+                    {
+                        "id": 1270002,
+                        "pro": 0,
+                        "groupId": 127,
+                        "isget": false
+                    },
+                    {
+                        "id": 1270003,
+                        "pro": 0,
+                        "groupId": 127,
+                        "isget": false
+                    },
+                    {
+                        "id": 1270004,
+                        "pro": 0,
+                        "groupId": 127,
+                        "isget": false
+                    },
+                    {
+                        "id": 1270005,
+                        "pro": 0,
+                        "groupId": 127,
+                        "isget": false
+                    },
+                    {
+                        "id": 1280000,
+                        "pro": 0,
+                        "groupId": 128,
+                        "isget": false
+                    },
+                    {
+                        "id": 1280001,
+                        "pro": 0,
+                        "groupId": 128,
+                        "isget": false
+                    },
+                    {
+                        "id": 1280002,
+                        "pro": 0,
+                        "groupId": 128,
+                        "isget": false
+                    },
+                    {
+                        "id": 1280003,
+                        "pro": 0,
+                        "groupId": 128,
+                        "isget": false
+                    },
+                    {
+                        "id": 1280004,
+                        "pro": 0,
+                        "groupId": 128,
+                        "isget": false
+                    },
+                    {
+                        "id": 1280005,
+                        "pro": 0,
+                        "groupId": 128,
+                        "isget": false
+                    },
+                    {
+                        "id": 1300000,
+                        "pro": 0,
+                        "groupId": 130,
+                        "isget": false
+                    },
+                    {
+                        "id": 1300001,
+                        "pro": 0,
+                        "groupId": 130,
+                        "isget": false
+                    },
+                    {
+                        "id": 1300002,
+                        "pro": 0,
+                        "groupId": 130,
+                        "isget": false
+                    },
+                    {
+                        "id": 1300003,
+                        "pro": 0,
+                        "groupId": 130,
+                        "isget": false
+                    },
+                    {
+                        "id": 1300004,
+                        "pro": 0,
+                        "groupId": 130,
+                        "isget": false
+                    },
+                    {
+                        "id": 1300005,
+                        "pro": 0,
+                        "groupId": 130,
+                        "isget": false
+                    },
+                    {
+                        "id": 60001,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60002,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60003,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60004,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60005,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60006,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60007,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60008,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60009,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60010,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60011,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60012,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60013,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60014,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60015,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60016,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60017,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60018,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60019,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60020,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60021,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60022,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60023,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60024,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60025,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60026,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60027,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60028,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60029,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 60030,
+                        "pro": 0,
+                        "groupId": 6,
+                        "isget": false
+                    },
+                    {
+                        "id": 160000,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160001,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160002,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160003,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160004,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160005,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160006,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160007,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160008,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160009,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160010,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160011,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160012,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160013,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160014,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160015,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160016,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 160017,
+                        "pro": 0,
+                        "groupId": 16,
+                        "isget": false
+                    },
+                    {
+                        "id": 170001,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170002,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170003,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170004,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170005,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170006,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170007,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170008,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170009,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170010,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170011,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170012,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170013,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170014,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170015,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170016,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 170017,
+                        "pro": 0,
+                        "groupId": 17,
+                        "isget": false
+                    },
+                    {
+                        "id": 180001,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180002,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180003,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180004,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180005,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180006,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180007,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180008,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180009,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180010,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180011,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180012,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180013,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180014,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180015,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180016,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180017,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180018,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180019,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180020,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180021,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180022,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180023,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180024,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180025,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180026,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180027,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180028,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180029,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180030,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 180031,
+                        "pro": 0,
+                        "groupId": 18,
+                        "isget": false
+                    },
+                    {
+                        "id": 130001,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130002,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130003,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130004,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130005,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130006,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130007,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130008,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130009,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130010,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130011,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130012,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130013,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130014,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130015,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 130016,
+                        "pro": 0,
+                        "groupId": 13,
+                        "isget": false
+                    },
+                    {
+                        "id": 120001,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120002,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120003,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120004,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120005,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120006,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120007,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120008,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120009,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120010,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120011,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120012,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120013,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120014,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120015,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 120016,
+                        "pro": 0,
+                        "groupId": 12,
+                        "isget": false
+                    },
+                    {
+                        "id": 230001,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 230002,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 230003,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 230004,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 230005,
+                        "pro": 0,
+                        "groupId": 23,
+                        "isget": false
+                    },
+                    {
+                        "id": 240001,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240002,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240003,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240004,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240005,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240006,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240007,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240008,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240009,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240010,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240011,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240012,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 240013,
+                        "pro": 0,
+                        "groupId": 24,
+                        "isget": false
+                    },
+                    {
+                        "id": 260001,
+                        "pro": 0,
+                        "groupId": 26,
+                        "isget": false
+                    },
+                    {
+                        "id": 260002,
+                        "pro": 0,
+                        "groupId": 26,
+                        "isget": false
+                    },
+                    {
+                        "id": 260003,
+                        "pro": 0,
+                        "groupId": 26,
+                        "isget": false
+                    },
+                    {
+                        "id": 260004,
+                        "pro": 0,
+                        "groupId": 26,
+                        "isget": false
+                    },
+                    {
+                        "id": 260005,
+                        "pro": 0,
+                        "groupId": 26,
+                        "isget": false
+                    },
+                    {
+                        "id": 260006,
+                        "pro": 0,
+                        "groupId": 26,
+                        "isget": false
+                    },
+                    {
+                        "id": 270001,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270002,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270003,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270004,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270005,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270006,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270007,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270008,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270009,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270010,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270011,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270012,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270013,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270014,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270015,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270016,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270017,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270018,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270019,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270020,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270021,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270022,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270023,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270024,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270025,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270026,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270027,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270028,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270029,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 270030,
+                        "pro": 0,
+                        "groupId": 27,
+                        "isget": false
+                    },
+                    {
+                        "id": 280001,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280002,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280003,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280004,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280005,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280006,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280007,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280008,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280009,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280010,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280011,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280012,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280013,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280014,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280015,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280016,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280017,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280018,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280019,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280020,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280021,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280022,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280023,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280024,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280025,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280026,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280027,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280028,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280029,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280030,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280031,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280032,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280033,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280034,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280035,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280036,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280037,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280038,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280039,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280040,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280041,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280042,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280043,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280044,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280045,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280046,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280047,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280048,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 280049,
+                        "pro": 0,
+                        "groupId": 28,
+                        "isget": false
+                    },
+                    {
+                        "id": 290001,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290002,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290003,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290004,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290005,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290006,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290007,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290008,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290009,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 290010,
+                        "pro": 0,
+                        "groupId": 29,
+                        "isget": false
+                    },
+                    {
+                        "id": 220001,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220002,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220003,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220004,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220005,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220006,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220007,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220008,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220009,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 220010,
+                        "pro": 0,
+                        "groupId": 22,
+                        "isget": false
+                    },
+                    {
+                        "id": 200001,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200002,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200003,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200004,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200005,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200006,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200007,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200008,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200009,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 200010,
+                        "pro": 0,
+                        "groupId": 20,
+                        "isget": false
+                    },
+                    {
+                        "id": 210001,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210002,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210003,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210004,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210005,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210006,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210007,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210008,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210009,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 210010,
+                        "pro": 0,
+                        "groupId": 21,
+                        "isget": false
+                    },
+                    {
+                        "id": 190001,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190002,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190003,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190004,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190005,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190006,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190007,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190008,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190009,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190010,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 190011,
+                        "pro": 0,
+                        "groupId": 19,
+                        "isget": false
+                    },
+                    {
+                        "id": 110001,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110002,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110003,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110004,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110005,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110006,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110007,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110008,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110009,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110010,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110011,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110012,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110013,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110014,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110015,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110016,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110017,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110018,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110019,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 110020,
+                        "pro": 0,
+                        "groupId": 11,
+                        "isget": false
+                    },
+                    {
+                        "id": 310001,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310002,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310003,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310004,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310005,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310006,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310007,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310008,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310009,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310010,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310011,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310012,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310013,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310014,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310015,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310016,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310017,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310018,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310019,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310020,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310021,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310022,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310023,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310024,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310025,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310026,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310027,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310028,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310029,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310030,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310031,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310032,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310033,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310034,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310035,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310036,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310037,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310038,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310039,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310040,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310041,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310042,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310043,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310044,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310045,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310046,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310047,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 310048,
+                        "pro": 0,
+                        "groupId": 31,
+                        "isget": false
+                    },
+                    {
+                        "id": 300001,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300002,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300003,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300004,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300005,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300006,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300007,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300008,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300009,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300010,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300011,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300012,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300013,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300014,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300015,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300016,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300017,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300018,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300019,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300020,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300021,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300022,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300023,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300024,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300025,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300026,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300027,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300028,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300029,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300030,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300031,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300032,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300033,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300034,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300035,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300036,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300037,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300038,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300039,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300040,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300041,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300042,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300043,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300044,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300045,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300046,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300047,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 300048,
+                        "pro": 0,
+                        "groupId": 30,
+                        "isget": false
+                    },
+                    {
+                        "id": 320001,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320002,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320003,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320004,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320005,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320006,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320007,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320008,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320009,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320010,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320011,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320012,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320013,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320014,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320015,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320016,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320017,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320018,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320019,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320020,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320021,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320022,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320023,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320024,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320025,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320026,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320027,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320028,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320029,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320030,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320031,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320032,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320033,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320034,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320035,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320036,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320037,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320038,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320039,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320040,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320041,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320042,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320043,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320044,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320045,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320046,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320047,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 320048,
+                        "pro": 0,
+                        "groupId": 32,
+                        "isget": false
+                    },
+                    {
+                        "id": 10000,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10001,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10002,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10003,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10004,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10005,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10006,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10007,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10008,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10009,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10010,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10011,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10012,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10013,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10014,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10015,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10016,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10017,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10018,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10019,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10020,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10021,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10022,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10023,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10024,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10025,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10026,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10027,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10028,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10029,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10030,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10031,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10032,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10033,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10034,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10035,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10036,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10037,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10038,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10039,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10040,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10041,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10042,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10043,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10044,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10045,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10046,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10047,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    },
+                    {
+                        "id": 10048,
+                        "pro": 0,
+                        "groupId": 1,
+                        "isget": false
+                    }
+                ],
+                "kb_levelQuicks": [],
+                "LEVEL": 1,
+                "kb_shopRefreshCount": 0,
+                "Puzzle19_UserInfo": {
+                    "OtherInfo": [],
+                    "BagUnlocks": [],
+                    "IsFirst": true,
+                    "IsGuide": true,
+                    "IsOpenAni": false,
+                    "TipLevel": 1,
+                    "TipType": 0,
+                    "Gold": 0,
+                    "ShowHP": false,
+                    "CurChapter": 0,
+                    "NextChapterIsUnlock": true,
+                    "TodayShareTimes": 0,
+                    "Today": 0,
+                    "RemoveADS": false,
+                    "AnswerTipNodes": [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "UnLockTipNodes": [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
+                    "Achievements": [],
+                    "BagItems": [],
+                    "FsmStates": {
+                        "dataType": "Map",
+                        "value": []
+                    },
+                    "Peoples": {
+                        "dataType": "Map",
+                        "value": []
+                    },
+                    "CurLevel": "Level01"
+                },
+                "kb_freeHero": 1,
+                "TangDynasty:DrugstoreData": {
+                    "carryRiceGrade": 0,
+                    "carryRiceGradeExp": 0,
+                    "isPassDrugstoreAnswer": false,
+                    "isUnlockTest": false,
+                    "mementList": {
+                        "1": {
+                            "carryRiceGrade": 0,
+                            "carryRiceGradeExp": 0,
+                            "isPassDrugstoreAnswer": false
+                        }
+                    }
+                },
+                "kb_freeGold": 1,
+                "RoadCreator01": {
+                    "userSetting": {
+                        "AudioSwith": true,
+                        "ShakeSwith": true,
+                        "showPrivacy": false
+                    },
+                    "userAssets": {
+                        "asset": 15,
+                        "skin": {
+                            "choose": 0,
+                            "unlock": [
+                                0
+                            ]
+                        },
+                        "turntableNum": 1,
+                        "signData": {
+                            "lastTime": 1766917524043,
+                            "count": 0
+                        },
+                        "isDoubleSign": true,
+                        "props": {
+                            "RoleNumLv": 10,
+                            "GoldRateLv": 9,
+                            "GiantLv": 7
+                        },
+                        "unlockGoods": [
+                            0
+                        ],
+                        "displayGoods": [
+                            0
+                        ],
+                        "chooseWeapon": 0,
+                        "lastRecoverTime": 1766917521381,
+                        "tipNum": 1,
+                        "unlockLvRec": {
+                            "curId": 1,
+                            "curLv": 1
+                        },
+                        "shareResuergenceNum": 0
+                    },
+                    "levelAssets": {
+                        "curLv": 2,
+                        "maxLv": 1,
+                        "data": {
+                            "lv": 1,
+                            "path": [],
+                            "enemy": [],
+                            "prop": []
+                        },
+                        "randLvArr": []
+                    }
+                },
+                "kb_gemBuy2": 0,
+                "TangDynasty:MailData": {
+                    "sendMailNum": 0,
+                    "sendMailIdOrder": [],
+                    "mementList": {
+                        "1": {
+                            "sendMailNum": 0,
+                            "sendMailIdOrder": []
+                        }
+                    }
+                },
+                "DRUGNUM": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "kb_gemBuy1": 0,
+                "OREGOODS": [
+                    {
+                        "goodsid": 5,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 6,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 7,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 8,
+                        "ishave": true
+                    }
+                ],
+                "REALMEXP": 0,
+                "kb_goldBuy": 0,
+                "kb_diamondBuy": 0,
+                "TEAM": [
+                    {
+                        "type": 0,
+                        "id": 0
+                    },
+                    {
+                        "type": 1,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    }
+                ],
+                "kb_taskProgress": [],
+                "kb_lastTime": 1766901563045,
+                "DRUGTIME": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "kb_freeSjd": 1,
+                "DEVIL": 0,
+                "TangDynasty:ClosestoolData": {
+                    "closestoolGrade": 0,
+                    "closestoolGradeExp": 0,
+                    "mementList": {
+                        "1": {
+                            "closestoolGrade": 0,
+                            "closestoolGradeExp": 0
+                        }
+                    }
+                },
+                "OREREFTIME": [
+                    0,
+                    1
+                ],
+                "Puzzle19_User_UUID": "1ec25cb8-a7ed-483f-9582-d1fbb82d2a96",
+                "xy_VIDEOGETTREASURECHEST": 10,
+                "game_progress_254": {
+                    "game_id": 254,
+                    "progress_data": "[1,1,1,1,1,1,1,1,1,1,1,1]",
+                    "timestamp": "2025-12-28T05:59:40.355Z"
+                },
+                "xy_isTreasureOpenGuang": false,
+                "TangDynasty:YoumengTrackData": {
+                    "touchIdList": [],
+                    "closestoolNum": 0,
+                    "carryRicelNum": 0,
+                    "drugstoreNum": 0,
+                    "totalOnlineTime": 7,
+                    "massageNum": 0,
+                    "buyticketNum": 0,
+                    "fishGameNum": 0,
+                    "betNum": 0
+                },
+                "xy_achickenWinNumTime": 1766920397425,
+                "kb_freeChallenge": 1,
+                "xy_SIGN": 1,
+                "xy_VIDEOGETENERGY": 10,
+                "kb_freeTicket": 0,
+                "kapi-rt1": {
+                    "showGame1st": false,
+                    "mode": 0,
+                    "level": 1,
+                    "money": 5,
+                    "autoTimes": 0,
+                    "freeTimes": 1,
+                    "lv2Count": 1,
+                    "wave": 0,
+                    "lv": 0,
+                    "exp": 0,
+                    "speed": 1,
+                    "blocks": [
+                        11,
+                        12,
+                        13,
+                        16,
+                        17,
+                        18,
+                        21,
+                        22,
+                        23
+                    ],
+                    "items": [],
+                    "bagItems": [
+                        {
+                            "id": 5,
+                            "lv": 0,
+                            "hasAd": false,
+                            "id0Type": 0
+                        },
+                        {
+                            "id": 4,
+                            "lv": 0,
+                            "hasAd": false,
+                            "id0Type": 0
+                        },
+                        {
+                            "id": 6,
+                            "lv": 0,
+                            "hasAd": false,
+                            "id0Type": 0
+                        }
+                    ],
+                    "buffs": [],
+                    "buffValues": {
+                        "1": 0,
+                        "2": 0,
+                        "3": 0,
+                        "4": 0,
+                        "5": 0,
+                        "6": 0,
+                        "7": 0,
+                        "8": 0,
+                        "9": 0,
+                        "10": 0,
+                        "11": 0,
+                        "12": 0,
+                        "13": 0,
+                        "": 0
+                    },
+                    "actBuff1": -1,
+                    "actBuff2": -1,
+                    "openSpeed": true,
+                    "hasReborn": false,
+                    "forceAdWave": 3,
+                    "tryPlantId": 0,
+                    "stats": [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    "guide": 0,
+                    "adBlockCount": 3,
+                    "buyCoinCount": 10,
+                    "buffRefreshCount": 3,
+                    "buffAllCount": 1,
+                    "anger": 500,
+                    "hasUseReborn": false,
+                    "angerAdCount": 5,
+                    "buffInfo": {
+                        "1": {
+                            "type": 1,
+                            "value": 5
+                        },
+                        "2": {
+                            "type": 1,
+                            "value": 10
+                        },
+                        "3": {
+                            "type": 1,
+                            "value": 15
+                        },
+                        "4": {
+                            "type": 2,
+                            "value": 5
+                        },
+                        "5": {
+                            "type": 2,
+                            "value": 10
+                        },
+                        "6": {
+                            "type": 2,
+                            "value": 15
+                        },
+                        "7": {
+                            "type": 3,
+                            "value": 5
+                        },
+                        "8": {
+                            "type": 3,
+                            "value": 10
+                        },
+                        "9": {
+                            "type": 3,
+                            "value": 15
+                        },
+                        "10": {
+                            "type": 4,
+                            "value": 5
+                        },
+                        "11": {
+                            "type": 4,
+                            "value": 10
+                        },
+                        "12": {
+                            "type": 4,
+                            "value": 15
+                        },
+                        "13": {
+                            "type": 5,
+                            "value": 3
+                        },
+                        "14": {
+                            "type": 5,
+                            "value": 5
+                        },
+                        "15": {
+                            "type": 5,
+                            "value": 10
+                        },
+                        "16": {
+                            "type": 6,
+                            "value": 30
+                        },
+                        "17": {
+                            "type": 6,
+                            "value": 60
+                        },
+                        "18": {
+                            "type": 6,
+                            "value": 100
+                        },
+                        "19": {
+                            "type": 7,
+                            "value": 10
+                        },
+                        "20": {
+                            "type": 7,
+                            "value": 20
+                        },
+                        "21": {
+                            "type": 7,
+                            "value": 30
+                        },
+                        "22": {
+                            "type": 8,
+                            "value": 5
+                        },
+                        "23": {
+                            "type": 8,
+                            "value": 10
+                        },
+                        "24": {
+                            "type": 9,
+                            "value": 1
+                        },
+                        "25": {
+                            "type": 10,
+                            "value": 1
+                        },
+                        "26": {
+                            "type": 10,
+                            "value": 2
+                        },
+                        "27": {
+                            "type": 11,
+                            "value": 10
+                        },
+                        "28": {
+                            "type": 11,
+                            "value": 30
+                        },
+                        "29": {
+                            "type": 11,
+                            "value": 50
+                        },
+                        "30": {
+                            "type": 12,
+                            "value": 1
+                        },
+                        "101": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "102": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "103": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "104": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "105": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "201": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "202": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "203": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "204": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "205": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "301": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "302": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "303": {
+                            "type": 13,
+                            "value": 20
+                        },
+                        "304": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "305": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "401": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "402": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "403": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "404": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "405": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "501": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "502": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "503": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "504": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "505": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "601": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "602": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "603": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "604": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "605": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "701": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "702": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "703": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "704": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "705": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "801": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "802": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "803": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "804": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "805": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "901": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "902": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "903": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "904": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "905": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1001": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1002": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1003": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1004": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1005": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1101": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1102": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1103": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1104": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1105": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1201": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1202": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1203": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1204": {
+                            "type": "",
+                            "value": ""
+                        },
+                        "1205": {
+                            "type": "",
+                            "value": ""
+                        }
+                    }
+                },
+                "kb_unlockSpeedTip": 0,
+                "双人像素冒险10双人模式": {
+                    "isNewGame": true,
+                    "coinNum": 0,
+                    "skinNameUse": [
+                        null,
+                        null
+                    ],
+                    "skillArr": [],
+                    "skillUseingName": [],
+                    "dayNum": 0,
+                    "second": 0,
+                    "killedFirstBoss": false,
+                    "killedSecondBoss": false,
+                    "killedThirdBoss": false,
+                    "itemCfg": [],
+                    "build": [],
+                    "mainTask": [],
+                    "boxNpc": [
+                        [],
+                        [],
+                        []
+                    ],
+                    "mountArr": [],
+                    "guideEquip": [],
+                    "recommendEquip": [],
+                    "unLockHuiCheng": false,
+                    "huiChengNum": 3
+                },
+                "MAXARTIFACTS": 0,
+                "MAXCUSTOMS": 1,
+                "ISFRISTLOAD": false,
+                "EVERYDAY": [
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    }
+                ],
+                "G173_UserInfo": {
+                    "completeAchievements": [],
+                    "unlockWanteds": [],
+                    "maxLevel": 1,
+                    "guideComplete": false,
+                    "IsFirst": true,
+                    "Gold": 0,
+                    "captureChara": 0,
+                    "deathChara": 0,
+                    "releaseChara": 0,
+                    "checkChara": 0,
+                    "passLevel": 0,
+                    "FsmStates": {
+                        "dataType": "Map",
+                        "value": []
+                    }
+                },
+                "JEWEL": 300,
+                "双人像素冒险10": {
+                    "skinArr": [
+                        "小龙",
+                        "小美"
+                    ]
+                },
+                "TangDynasty:TaskData": {
+                    "curTaskId": 1,
+                    "curTaskProgress": 0,
+                    "mementList": {
+                        "1": {
+                            "curTaskId": 1,
+                            "curTaskProgress": 0
+                        }
+                    }
+                },
+                "kapipack1": {
+                    "dataVersion": 3,
+                    "t": -1,
+                    "isMMute": false,
+                    "isSMute": false,
+                    "itemData": {
+                        "2": 500,
+                        "3": 0
+                    },
+                    "power": 20,
+                    "powerDate": -1,
+                    "powerBuyDate": -1,
+                    "powerBuyTimes": [
+                        5,
+                        3
+                    ],
+                    "toolData": {
+                        "1": {
+                            "lv": 1,
+                            "c": 5,
+                            "pos": 0
+                        },
+                        "2": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": 1
+                        },
+                        "3": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": 2
+                        },
+                        "4": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": 3
+                        },
+                        "5": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": 4
+                        },
+                        "6": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": 5
+                        },
+                        "7": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": -1
+                        },
+                        "8": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": -1
+                        },
+                        "9": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": -1
+                        },
+                        "10": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": -1
+                        },
+                        "11": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": -1
+                        },
+                        "12": {
+                            "lv": 1,
+                            "c": 0,
+                            "pos": -1
+                        }
+                    },
+                    "gameDate": -1,
+                    "level": 1,
+                    "levelWave": 0,
+                    "sweepTimes": 5,
+                    "levelBoxData": [],
+                    "actLevelDate": -1,
+                    "actLevelData": {
+                        "level": 0,
+                        "times": 3,
+                        "score": 0,
+                        "buffList": [
+                            -1,
+                            -1
+                        ],
+                        "boxStatus": [
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "shopDate": -1,
+                    "isNewShop": true,
+                    "shopDailyData": [],
+                    "shopTimesData": [
+                        20,
+                        1,
+                        7
+                    ],
+                    "shopBoxData": {
+                        "lv": 1,
+                        "exp": 0,
+                        "date": [
+                            -1,
+                            -1
+                        ]
+                    },
+                    "isShare": false,
+                    "shareDate": -1,
+                    "shareTimes": 10,
+                    "adBuffDate": -1,
+                    "adBuffTimes": [
+                        10,
+                        3
+                    ],
+                    "adBuyData": {
+                        "bank": [
+                            3,
+                            3
+                        ],
+                        "toolBuy": [
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        "actTimes": 1
+                    },
+                    "guide1": 0,
+                    "signDate": -1,
+                    "signData": {
+                        "signDay": 1,
+                        "isReward": false
+                    },
+                    "signStatus": 0,
+                    "dayMissionDate": -1,
+                    "dayMissionData": [],
+                    "dayBoxData": [],
+                    "weekMissionDate": -1,
+                    "weekMissionData": [],
+                    "weekBoxData": [],
+                    "achievePro": {
+                        "17": 500
+                    },
+                    "achieveData": [],
+                    "adTimes": 0,
+                    "regTime": 1766917023578,
+                    "free3b": 1,
+                    "rankCount": 2
+                },
+                "xy_ISCLEARACHIEVEMENT": true,
+                "MAXLEVEL": 1,
+                "TangDynasty:trackdata": {
+                    "abName": "A",
+                    "isGet": true,
+                    "versionName": "1.0.0",
+                    "appStore": 0,
+                    "guideguide1_loading1": 1,
+                    "guideguide2_loading2": 1,
+                    "daudau": 1766917686,
+                    "guideguide3_firstopen": 1
+                },
+                "NOWARTIFACTS": 0,
+                "xy_EXCHANGECOINNUM": 10,
+                "WXCDK": [
+                    {
+                        "CDK": "vip666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "vip888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "vip999",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli688",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli998",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao668",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao899",
+                        "state": false
+                    },
+                    {
+                        "CDK": "buchang420",
+                        "state": false
+                    },
+                    {
+                        "CDK": "buchang466",
+                        "state": false
+                    },
+                    {
+                        "CDK": "rongjing889",
+                        "state": false
+                    },
+                    {
+                        "CDK": "rongjing789",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri501",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri447",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri599",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri128",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri677",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao363",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao555",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu618",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu333",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu789",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia701",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia618",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia745",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli703",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli777",
+                        "state": false
+                    }
+                ],
+                "ENC": 1,
+                "TangDynasty:BrandData": {
+                    "challengeData": [
+                        {
+                            "loseNum": 0,
+                            "levelId": 1
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 2
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 3
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 4
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 5
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 6
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 7
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 8
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 9
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 10
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 11
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 12
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 13
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 14
+                        },
+                        {
+                            "loseNum": 0,
+                            "levelId": 15
+                        }
+                    ],
+                    "challengeLevelId": 1,
+                    "mementList": {
+                        "1": {
+                            "challengeData": [],
+                            "challengeLevelId": 0
+                        }
+                    }
+                },
+                "game_progress_12": {
+                    "game_id": 12,
+                    "progress_data": "{\"game_id\":254,\"progress_data\":\"[1,1,1,1,1,1,1,1,1,1,1,1]\",\"timestamp\":\"2025-12-28T05:59:40.355Z\"}",
+                    "timestamp": "2025-12-28T06:15:38.635Z"
+                },
+                "xy_SAVETIME": 1766920692,
+                "kb_videoCount_day": 0,
+                "GOODS": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "ONLINE": 15,
+                "kb_frontFree": 1,
+                "game_progress_60": {
+                    "game_id": 60,
+                    "progress_data": "{\"game_id\":254,\"progress_data\":\"[1,1,1,1,1,1,1,1,1,1,1,1]\",\"timestamp\":\"2025-12-28T05:59:40.355Z\"}",
+                    "timestamp": "2025-12-28T06:08:13.667Z"
+                },
+                "SHOPBOXTIME": [
+                    0,
+                    0
+                ],
+                "SAVETIME": 0,
+                "DICETIME": 0,
+                "COIN": 246.60000000000005,
+                "CUSTOMS": 1,
+                "xy_TALENTLEVEL": [
+                    {
+                        "type": 2,
+                        "level": 0
+                    },
+                    {
+                        "type": 1,
+                        "level": 0
+                    },
+                    {
+                        "type": 4,
+                        "level": 0
+                    },
+                    {
+                        "type": 13,
+                        "level": 0
+                    },
+                    {
+                        "type": 9,
+                        "level": 0
+                    },
+                    {
+                        "type": 5,
+                        "level": 0
+                    },
+                    {
+                        "type": 7,
+                        "level": 0
+                    },
+                    {
+                        "type": 6,
+                        "level": 0
+                    },
+                    {
+                        "type": 8,
+                        "level": 0
+                    },
+                    {
+                        "type": 12,
+                        "level": 0
+                    }
+                ],
+                "BUYCOUNT": 0,
+                "xy_TOADYTIME": 1766851200000,
+                "双人像素冒险10单人模式": {
+                    "isNewGame": true,
+                    "coinNum": 0,
+                    "skinNameUse": [
+                        null,
+                        null
+                    ],
+                    "skillArr": [],
+                    "skillUseingName": [],
+                    "dayNum": 0,
+                    "second": 0,
+                    "killedFirstBoss": false,
+                    "killedSecondBoss": false,
+                    "killedThirdBoss": false,
+                    "itemCfg": [],
+                    "build": [],
+                    "mainTask": [],
+                    "boxNpc": [
+                        [],
+                        [],
+                        []
+                    ],
+                    "mountArr": [],
+                    "guideEquip": [],
+                    "recommendEquip": [],
+                    "unLockHuiCheng": false,
+                    "huiChengNum": 3
+                },
+                "FRIEND": [],
+                "TangDynasty:UserData": {
+                    "curTime": 23400,
+                    "survivalDay": 1,
+                    "hungerNum": 100,
+                    "healthyNum": 100,
+                    "moneyNum": 100,
+                    "mapId": "10001",
+                    "residenceState": 0,
+                    "loseCountNum": 30,
+                    "propList": [],
+                    "quickenStartTime": 0,
+                    "playerSpeedState": 0,
+                    "playerPos": [
+                        1010,
+                        1247
+                    ],
+                    "isFirstResidence": true,
+                    "reviveNum": 3,
+                    "prickPropNum": null,
+                    "isFiristOpenSubGame": [],
+                    "isPlayerFirstMoveOpenSpeedUI": true,
+                    "isInnBossTlakEndOpenSpeedUI": false,
+                    "bycarNum": 0,
+                    "bycarVideoNum": 0,
+                    "closestoolIsEye": false,
+                    "addSpeedRed": true,
+                    "buyByCarRed": true,
+                    "carryRiceIncrease": false,
+                    "carryRiceForeverProp": [
+                        false,
+                        false,
+                        false
+                    ],
+                    "drugstoreIsPerspective": false,
+                    "isFirstGame": true,
+                    "isSleep": false,
+                    "isFristReply": false,
+                    "isReplyMorningMail": false,
+                    "isReplyNightMail": false,
+                    "isFinishCollection": false,
+                    "mementList": {
+                        "1": {
+                            "curTime": 23400,
+                            "survivalDay": 1,
+                            "hungerNum": 100,
+                            "healthyNum": 100,
+                            "moneyNum": 100,
+                            "residenceState": 0,
+                            "loseCountNum": 30,
+                            "propList": [],
+                            "quickenStartTime": 0,
+                            "playerSpeedState": 0,
+                            "playerPos": [
+                                1010,
+                                1247
+                            ],
+                            "isFirstResidence": true,
+                            "prickPropNum": null,
+                            "isFiristOpenSubGame": [],
+                            "bycarNum": 0,
+                            "bycarVideoNum": 0,
+                            "closestoolIsEye": false,
+                            "addSpeedRed": true,
+                            "buyByCarRed": true,
+                            "carryRiceIncrease": false,
+                            "drugstoreIsPerspective": false,
+                            "houseDiceIsPerspective": false
+                        }
+                    },
+                    "carryRiceNum": 0,
+                    "clickBossBofangNum": 0,
+                    "clickNoodlesgNum": 0,
+                    "clickGirlgNum": 0,
+                    "isPassedDrugstoreExam": false,
+                    "durianList": [],
+                    "firstEnterDurian": true,
+                    "buyDurianNum": 0,
+                    "openDurianNum": 0,
+                    "houseDiceIsPerspective": false,
+                    "isPresGet": false,
+                    "usePersEyeNum": 0,
+                    "isPresFind": false,
+                    "NPC45result": null,
+                    "mtAdvNum": 0,
+                    "MiTuanRed": true
+                },
+                "TangDynasty:CarryRicelData": {
+                    "carryRiceGrade": 0,
+                    "carryRiceGradeExp": 0,
+                    "mementList": {
+                        "1": {
+                            "carryRiceGrade": 0,
+                            "carryRiceGradeExp": 0
+                        }
+                    }
+                }
+            }
+        },
+        "updated_at": "2025-12-28T19:20:28+08:00",
+        "bound_device": "5a115d4ecee6a4154fa5764ae1cc1afd22a33e21b656d355b2250e538d80f52f",
+        "binding_hash": "ec6a8193ccd5c6148506552e513ae4f3cd6b9b58cbf43ad80ca4561efefa90c7"
+    }
+}

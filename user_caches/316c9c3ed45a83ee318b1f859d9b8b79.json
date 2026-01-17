@@ -1,0 +1,428 @@
+{
+    "user_full_cache_9": {
+        "value": {
+            "metadata": {
+                "timestamp": "2026-01-16T11:59:58.734Z",
+                "version": 1,
+                "totalKeys": 33,
+                "dataSize": 2868
+            },
+            "data": {
+                "ARTIFACTSLIST": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "DRUGBOXNUM": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "MAXARTIFACTS": 0,
+                "MAXCUSTOMS": 2,
+                "EVERYDAY": [
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    },
+                    {
+                        "state": 0,
+                        "time": 0
+                    }
+                ],
+                "ISFRISTLOAD": false,
+                "JEWEL": 300,
+                "GOODSITEM": [
+                    {
+                        "id": 1,
+                        "type": 1,
+                        "goodsid": 1,
+                        "num": 10,
+                        "currency": 0,
+                        "price": 75
+                    },
+                    {
+                        "id": 3,
+                        "type": 2,
+                        "goodsid": 1,
+                        "num": 10,
+                        "currency": 1,
+                        "price": 25
+                    },
+                    {
+                        "id": 7,
+                        "type": 3,
+                        "goodsid": 21,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 12,
+                        "type": 4,
+                        "goodsid": 56,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 16,
+                        "type": 5,
+                        "goodsid": 112,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 50
+                    },
+                    {
+                        "id": 17,
+                        "type": 6,
+                        "goodsid": 8,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 600
+                    },
+                    {
+                        "id": 26,
+                        "type": 7,
+                        "goodsid": 121,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 600
+                    },
+                    {
+                        "id": 30,
+                        "type": 8,
+                        "goodsid": 15,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 100
+                    },
+                    {
+                        "id": 34,
+                        "type": 9,
+                        "goodsid": 21,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 38,
+                        "type": 10,
+                        "goodsid": 49,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 360
+                    },
+                    {
+                        "id": 41,
+                        "type": 11,
+                        "goodsid": 98,
+                        "num": 1,
+                        "currency": 1,
+                        "price": 100
+                    },
+                    {
+                        "id": 46,
+                        "type": 12,
+                        "goodsid": 22,
+                        "num": 1,
+                        "currency": 0,
+                        "price": 1000
+                    }
+                ],
+                "MAXLEVEL": 1,
+                "UNLOCKARTIFACTS": [],
+                "REFTIME": [
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "DRUGOVER": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "NOWARTIFACTS": 0,
+                "cache_device_id": "ppmews",
+                "LEVEL": 1,
+                "WXCDK": [
+                    {
+                        "CDK": "vip666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "vip888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "vip999",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli688",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli998",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao668",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao899",
+                        "state": false
+                    },
+                    {
+                        "CDK": "buchang420",
+                        "state": false
+                    },
+                    {
+                        "CDK": "buchang466",
+                        "state": false
+                    },
+                    {
+                        "CDK": "rongjing889",
+                        "state": false
+                    },
+                    {
+                        "CDK": "rongjing789",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri501",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri447",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri599",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri128",
+                        "state": false
+                    },
+                    {
+                        "CDK": "jieri677",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao363",
+                        "state": false
+                    },
+                    {
+                        "CDK": "libao555",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu618",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu333",
+                        "state": false
+                    },
+                    {
+                        "CDK": "duanwu789",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia701",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia666",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia888",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia618",
+                        "state": false
+                    },
+                    {
+                        "CDK": "shujia745",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli703",
+                        "state": false
+                    },
+                    {
+                        "CDK": "fuli777",
+                        "state": false
+                    }
+                ],
+                "ENC": 1,
+                "GOODS": [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "ONLINE": 103,
+                "DRUGNUM": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "SHOPBOXTIME": [
+                    0,
+                    0
+                ],
+                "SAVETIME": 0,
+                "DICETIME": 0,
+                "COIN": 1660.6980000000005,
+                "CUSTOMS": 2,
+                "OREGOODS": [
+                    {
+                        "goodsid": 5,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 6,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 7,
+                        "ishave": true
+                    },
+                    {
+                        "goodsid": 8,
+                        "ishave": true
+                    }
+                ],
+                "REALMEXP": 0,
+                "BUYCOUNT": 0,
+                "TEAM": [
+                    {
+                        "type": 0,
+                        "id": 0
+                    },
+                    {
+                        "type": 1,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    },
+                    {
+                        "type": 2,
+                        "id": -1
+                    }
+                ],
+                "FRIEND": [],
+                "DRUGTIME": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "DEVIL": 0,
+                "OREREFTIME": [
+                    0,
+                    1
+                ]
+            }
+        },
+        "updated_at": "2026-01-16T19:59:58+08:00",
+        "bound_device": "482b76d27381177cd077210c156ef596ba3332241b52459b51e57d2d5c5aa334",
+        "binding_hash": "169f7f67758920221980b7c75e7dced5eab5bb4fcae12e6e59c490b72437fa00"
+    }
+}
