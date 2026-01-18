@@ -4345,3 +4345,21 @@ body {
   }
 }
 
+body.guest-mode .games-tabs,
+body.guest-mode .pagination,
+body.guest-mode .my-games-sidebar {
+    display: none !important;
+}
+
+body.guest-mode #all-games {
+    min-height: 300px;
+}
+
+/* 主内容区与 header/footer 统一宽度基准 */
+.main-content {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
