@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+/* layout--PC 端统一布局最大宽度（替代 alignHeaderWidths） */
 :root {
     --primary-color: #ff6600;
     --secondary-color: #4a90e2;
@@ -15,6 +16,7 @@
     --card-bg: #fff;
     --shadow: 0 2px 8px rgba(0,0,0,0.1);
     --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+	--layout-max-width: 1200px; 
 }
 
 body {
@@ -2674,7 +2676,11 @@ body {
     /* PC端主内容区显示 */
     body > .main-content {
         display: block !important;
-}
+        max-width: var(--layout-max-width);
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
     
     /* PC端内容布局显示 */
     body > .main-content .content-layout {
@@ -2683,17 +2689,17 @@ body {
     
     body > .main-content .center-content {
         display: block !important;
-        max-width: 100% !important;
+        max-width: var(--layout-max-width) !important;
         margin: 0 auto !important;
-        /* 宽度由 alignHeaderWidths() 函数动态设置，不在这里设置 */
+        /* 宽度已由 CSS 变量 --layout-max-width 统一控制 */
     }
     
     /* PC端游戏网格宽度对齐 */
     body > .main-content .games-main-container {
-        max-width: 100% !important;
+        max-width: var(--layout-max-width) !important;
         margin: 0 auto !important;
         display: flex !important;
-        /* 宽度由 alignHeaderWidths() 函数动态设置，不在这里设置 */
+        /* 宽度已由 CSS 变量 --layout-max-width 统一控制 */
     }
     
     body > .main-content .games-main-content {
