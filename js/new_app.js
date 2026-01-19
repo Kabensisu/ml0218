@@ -204,7 +204,10 @@ const App = {
         taskIdCounter: 0,         // 新增：任务ID计数器
         
 		// 添加任务到队列 - 增强版：返回任务ID用于取消
-        addToQueue(url, priority = 'medium', callback = null, options = {}) {
+        addToQueue(url, priority, callback, options) {
+            priority = priority || 'medium';
+            callback = callback || null;
+            options = options || {};
 			// 【兜底】游客模式下阻止 games API 调度
 			// 系统尚未就绪，禁止任何任务入队（防启动雪崩）
 			if (!window.App || !App.isReady) {
