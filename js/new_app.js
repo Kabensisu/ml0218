@@ -17,9 +17,9 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
             if (syncing) return;
             syncing = true;
 
-            const payload = {
-                data: { ...cacheBuffer }
-            };
+			const payload = {
+				data: Object.assign({}, cacheBuffer)
+			};
 
             // 清空缓冲区（失败也不影响下次）
             cacheBuffer = {};
@@ -81,7 +81,7 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
                     { credentials: 'include' }
                 );
                 const json = await res.json();
-                return json?.data ?? null;
+                return json && json.data != null ? json.data : null;
             } catch (e) {
                 console.warn('[CloudSave] 获取缓存失败', e);
                 return null;
@@ -101,7 +101,7 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
                         action: 'save_cache',
                         key,
                         value,
-                        device_id: window.App?.deviceId || ''
+                        device_id: window.App && window.App.deviceId || ''
                     })
                 });
                 const json = await res.json();
@@ -229,10 +229,9 @@ const App = {
             const taskId = ++this.taskIdCounter;
             
             // 合并options，添加signal用于取消
-            const taskOptions = {
-                ...options,
-                signal: controller.signal
-            };
+			const taskOptions = Object.assign({}, options, {
+				signal: controller.signal
+			});
             
             const task = { 
                 id: taskId,
