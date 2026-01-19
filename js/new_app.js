@@ -2623,9 +2623,6 @@ const App = {
             });
         }
 
-        // 对齐所有header区域的宽度（已由 CSS 接管）
-        // this.alignHeaderWidths();
-
         // 渲染分类标签区域（异步加载）
         this.renderCategoryTags(categories).catch(err => {
             log.error('加载分类游戏失败:', err);
@@ -2636,55 +2633,8 @@ const App = {
     },
 
     // 对齐所有header区域的宽度（已由 CSS 接管）
-    //alignHeaderWidths() {
-        // 移动端不需要对齐，直接返回
-        //if (this.isMobile()) {
-        //    return;
-        //}
-        
-        // 使用 setTimeout 确保 DOM 完全渲染后再获取宽度
-        setTimeout(() => {
-            const navContainer = document.querySelector('.header-bottom .header-c');
-            if (!navContainer) return;
-
-            const navWidth = navContainer.offsetWidth;
-            
-            // 对齐顶部header
-            const topHeader = document.querySelector('.header-top .header-c');
-            if (topHeader) {
-                topHeader.style.width = navWidth + 'px';
-            }
-
-            // 对齐中间header（logo和搜索）
-            const centerHeader = document.querySelector('.header-center .header-c');
-            if (centerHeader) {
-                centerHeader.style.width = navWidth + 'px';
-            }
-
-            // 对齐分类标签区域（PC端主内容区内的）
-            const categoryTags = document.querySelector('body > .main-content #category-tags-section');
-            if (categoryTags) {
-                categoryTags.style.width = navWidth + 'px';
-            }
-
-            // 对齐随机游戏展示区域（PC端主内容区内的）
-            const randomGames = document.querySelector('body > .main-content .random-games-section');
-            if (randomGames) {
-                randomGames.style.width = navWidth + 'px';
-            }
-
-            // 对齐游戏区域（PC端主内容区内的）
-            const centerContent = document.querySelector('body > .main-content .center-content');
-            if (centerContent) {
-                centerContent.style.width = navWidth + 'px';
-            }
-            
-            // 对齐页脚内容
-            const footerContent = document.querySelector('.footer-content');
-            if (footerContent) {
-                footerContent.style.width = navWidth + 'px';
-            }
-        }, 0);
+    alignHeaderWidths() {
+		return;
     },
 
     // 渲染分类标签区域（两列布局，每列6个分类，每个分类显示最新5个游戏）
@@ -2771,14 +2721,6 @@ const App = {
             row.appendChild(gamesList);
             container.appendChild(row);
         });
-
-        // 对齐所有header区域的宽度（CSS 已接管）
-        //setTimeout(() => {
-        //    this.alignHeaderWidths();
-        //}, 0);
-        
-        // 监听窗口大小变化，重新对齐
-		// resize 下的 header width 对齐已废弃（CSS + media query）
 
     // 创建分类按钮（PC端）
     createCategoryBtn(name, category) {
