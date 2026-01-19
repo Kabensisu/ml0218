@@ -715,11 +715,11 @@ const App = {
         // 延迟执行非关键UI操作
         if (window.requestIdleCallback) {
             requestIdleCallback(() => {
-                this.alignHeaderWidths();
+                // this.alignHeaderWidths(); // CSS 已接管布局
             }, { timeout: 1000 });
         } else {
             setTimeout(() => {
-                this.alignHeaderWidths();
+                // this.alignHeaderWidths(); // CSS 已接管布局
             }, 50);
         }
         
@@ -2623,8 +2623,8 @@ const App = {
             });
         }
 
-        // 对齐所有header区域的宽度
-        this.alignHeaderWidths();
+        // 对齐所有header区域的宽度（已由 CSS 接管）
+        // this.alignHeaderWidths();
 
         // 渲染分类标签区域（异步加载）
         this.renderCategoryTags(categories).catch(err => {
@@ -2635,12 +2635,12 @@ const App = {
         this.renderCategorySidebar(categories);
     },
 
-    // 对齐所有header区域的宽度
-    alignHeaderWidths() {
+    // 对齐所有header区域的宽度（已由 CSS 接管）
+    //alignHeaderWidths() {
         // 移动端不需要对齐，直接返回
-        if (this.isMobile()) {
-            return;
-        }
+        //if (this.isMobile()) {
+        //    return;
+        //}
         
         // 使用 setTimeout 确保 DOM 完全渲染后再获取宽度
         setTimeout(() => {
@@ -2772,19 +2772,13 @@ const App = {
             container.appendChild(row);
         });
 
-        // 对齐所有header区域的宽度
-        setTimeout(() => {
-            this.alignHeaderWidths();
-        }, 0);
+        // 对齐所有header区域的宽度（CSS 已接管）
+        //setTimeout(() => {
+        //    this.alignHeaderWidths();
+        //}, 0);
         
         // 监听窗口大小变化，重新对齐
-        if (!window.headerWidthAligned) {
-            window.addEventListener('resize', () => {
-                this.alignHeaderWidths();
-            });
-            window.headerWidthAligned = true;
-        }
-    },
+		// resize 下的 header width 对齐已废弃（CSS + media query）
 
     // 创建分类按钮（PC端）
     createCategoryBtn(name, category) {
@@ -2992,11 +2986,11 @@ const App = {
             container.appendChild(rowDiv);
         }
 
-        // 对齐宽度
-        setTimeout(() => {
-            this.alignHeaderWidths();
-        }, 0);
-    },
+        // 对齐宽度（已废弃）
+        //setTimeout(() => {
+        //    this.alignHeaderWidths();
+        //}, 0);
+    //},
 
     // 切换随机游戏
     async switchRandomGames(direction) {
