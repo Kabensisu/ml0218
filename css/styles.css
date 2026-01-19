@@ -7,7 +7,7 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
         let debounceTimer = null;
         let syncing = false;
 
-        const DEBOUNCE_DELAY = 500; // ✅ 500ms 防抖
+        const DEBOUNCE_DELAY = 500; // 500ms 防抖
         const API_URL = '/api/user_cache.php';
 
         /**
@@ -3096,7 +3096,7 @@ const App = {
 			console.error('加载我玩过的游戏失败:', error);
 			container.innerHTML =
 				'<div class="header-game-dropdown-item" style="color:#999;justify-content:center;">加载失败</div>';
-			container.dataset.loaded = 'true'; // ✅ 最终兜底
+			container.dataset.loaded = 'true'; // 最终兜底
 		}
 	},
 
