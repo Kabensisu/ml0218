@@ -1,0 +1,5560 @@
+// 应用主文件
+// 开发模式标志（生产环境应设为false以提升性能）
+const DEBUG = false;
+
+// 条件化日志函数
+const log = {
+    log: (...args) => DEBUG && console.log(...args),
+    warn: (...args) => DEBUG && console.warn(...args),
+    error: (...args) => console.error(...args) // 错误始终输出
+};
+
+const App = {
+    // API请求缓存和去重
+    _requestCache: new Map(),
+    _pendingRequests: new Map(),
+    _cacheExpiry: 5 * 60 * 1000, // 缓存5分钟
+    
+    // 优化的fetch函数：支持缓存和请求去重
+    async fetchWithCache(url, options = {}, useCache = true) {
+        const cacheKey = `${url}_${JSON.stringify(options)}`;
+        
+        // 检查是否有正在进行的相同请求
+        if (this._pendingRequests.has(cacheKey)) {
+            return this._pendingRequests.get(cacheKey);
+        }
+        
+        // 检查缓存
+        if (useCache && this._requestCache.has(cacheKey)) {
+            const cached = this._requestCache.get(cacheKey);
+            if (Date.now() - cached.timestamp < this._cacheExpiry) {
+                return Promise.resolve(cached.data);
+            }
+            this._requestCache.delete(cacheKey);
+        }
+        
+        // 发起请求
+        const requestPromise = fetch(url, options)
+            .then(async response => {
+                const data = await response.json();
+                // 只缓存成功的GET请求
+                if (useCache && (!options.method || options.method === 'GET') && response.ok) {
+                    this._requestCache.set(cacheKey, {
+                        data,
+                        timestamp: Date.now()
+                    });
+                }
+                this._pendingRequests.delete(cacheKey);
+                return data;
+            })
+            .catch(error => {
+                this._pendingRequests.delete(cacheKey);
+                throw error;
+            });
+        
+        this._pendingRequests.set(cacheKey, requestPromise);
+        return requestPromise;
+    },
+    
+    // 配置
+    config: {
+        apiBase: 'api',
+        currentPage: 1,
+        pageSize: 20,
+        currentCategory: '首页'
+    },
+    currentGame: null,
+    pendingProgress: null,
+    gameProgressListenerSetup: false,
+    gameProgressMonitorInterval: null,
+    gameProgressAutoSaveInterval: null,
+    deviceId: null,
+    cacheSyncInProgress: false,
+    autoSaveInterval: 5 * 60 * 1000, // 自动保存间隔：5分钟（毫秒）
+
+    // 初始化
+    init() {
+        // 关键路径：立即执行
+        this.initDeviceId();
+        this.checkLogin();
+        this.bindEvents();
+        
+        // 只在移动端初始化底部导航
+        if (this.isMobile()) {
+            this.initMobileNav();
+        }
+        
+        // 关键内容：优先加载
+        this.loadCategories();
+        this.loadGames();
+        
+        // 非关键内容：延迟加载，使用requestIdleCallback或setTimeout
+        if (window.requestIdleCallback) {
+            requestIdleCallback(() => {
+                this.loadHeaderGames();
+                this.loadRandomGames();
+                this.loadMyGamesSidebar(1);
+                this.loadGamesTotal();
+                this.loadAds();
+            }, { timeout: 2000 });
+        } else {
+            setTimeout(() => {
+                this.loadHeaderGames();
+                this.loadRandomGames();
+                this.loadMyGamesSidebar(1);
+                this.loadGamesTotal();
+                this.loadAds();
+            }, 100);
+        }
+        
+        // 延迟执行非关键UI操作
+        if (window.requestIdleCallback) {
+            requestIdleCallback(() => {
+                this.alignHeaderWidths();
+            }, { timeout: 1000 });
+        } else {
+            setTimeout(() => {
+                this.alignHeaderWidths();
+            }, 50);
+        }
+        
+        // 如果是移动端，确保首页显示并加载游戏
+        if (this.isMobile()) {
+            const homePage = document.getElementById('mobile-page-home');
+            if (homePage) {
+                homePage.classList.add('active');
+            }
+            this.config.currentCategory = '首页';
+            this.config.currentPage = 1;
+            // 使用requestAnimationFrame优化DOM操作
+            requestAnimationFrame(() => {
+                this.loadGames();
+            });
+        }
+        
+        // 游戏进度同步：延迟到空闲时执行
+        if (window.requestIdleCallback) {
+            requestIdleCallback(async () => {
+                if (this.currentUser) {
+                    await this.syncCacheToServer();
+                }
+            }, { timeout: 5000 });
+        } else {
+            setTimeout(async () => {
+                if (this.currentUser) {
+                    await this.syncCacheToServer();
+                }
+            }, 2000);
+        }
+    },
+    
+    // 初始化移动端底部导航
+    initMobileNav() {
+        // 只在移动端执行
+        if (!this.isMobile()) {
+            return;
+        }
+        
+        // 延迟绑定，确保DOM完全加载
+        setTimeout(() => {
+            const bottomNav = document.querySelector('.bottom-nav');
+            if (!bottomNav) {
+                log.warn('底部导航元素未找到');
+                return;
+            }
+            
+            // 使用事件委托
+            const clickHandler = (e) => {
+                // 如果点击的是用户中心内的元素，不处理（多重检查）
+                if (e.target.closest('.mobile-user-page') || 
+                    e.target.closest('.user-center-tabs') || 
+                    e.target.closest('.tab-btn') || 
+                    e.target._isUserCenterClick ||
+                    e._isUserCenterClick ||
+                    (this._lastUserCenterClick && Date.now() - this._lastUserCenterClick < 2000)) {
+                    log.log('底部导航：检测到用户中心点击，忽略', {
+                        closest: !!e.target.closest('.mobile-user-page'),
+                        isUserCenterClick: !!e._isUserCenterClick,
+                        lastClick: this._lastUserCenterClick ? (Date.now() - this._lastUserCenterClick) + 'ms前' : 'none'
+                    });
+                    return;
+                }
+                
+                // 查找最近的.nav-item元素
+                let item = e.target;
+                while (item && item !== bottomNav && !item.classList.contains('nav-item')) {
+                    item = item.parentElement;
+                }
+                
+                if (!item || !item.classList.contains('nav-item')) {
+                    return;
+                }
+                
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // 移除所有active类
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(nav => nav.classList.remove('active'));
+                // 添加当前项的active类
+                item.classList.add('active');
+                
+                const view = item.dataset.view;
+                log.log('底部导航点击，view:', view);
+                if (view) {
+                    this.handleMobileNav(view, item);
+                }
+            };
+            
+            // 移除旧的事件监听器（如果存在）
+            if (this.bottomNavClickHandler) {
+                bottomNav.removeEventListener('click', this.bottomNavClickHandler);
+            }
+            this.bottomNavClickHandler = clickHandler;
+            // 使用冒泡阶段，让用户中心的事件先处理
+            bottomNav.addEventListener('click', clickHandler, false);
+            
+            // 直接绑定到每个nav-item作为备用
+            const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+            log.log('找到底部导航项数量:', navItems.length);
+            navItems.forEach((item) => {
+                const directHandler = (e) => {
+                    // 如果点击的是用户中心内的元素，不处理（多重检查）
+                    if (e.target.closest('.mobile-user-page') || 
+                        e.target.closest('.user-center-tabs') || 
+                        e.target.closest('.tab-btn') ||
+                        e._isUserCenterClick || 
+                        e.target._isUserCenterClick ||
+                        (this._lastUserCenterClick && Date.now() - this._lastUserCenterClick < 2000)) {
+                        log.log('底部导航直接绑定：检测到用户中心点击，忽略', {
+                            closest: !!e.target.closest('.mobile-user-page'),
+                            isUserCenterClick: !!e._isUserCenterClick,
+                            lastClick: this._lastUserCenterClick ? (Date.now() - this._lastUserCenterClick) + 'ms前' : 'none'
+                        });
+                        return;
+                    }
+                    
+                    // 确保点击的是nav-item本身或其子元素
+                    if (!item.contains(e.target) && e.target !== item) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    log.log('直接点击事件触发，view:', item.dataset.view);
+                    
+                    // 移除所有active类
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    // 添加当前项的active类
+                    item.classList.add('active');
+                    
+                    const view = item.dataset.view;
+                    if (view) {
+                        this.handleMobileNav(view, item);
+                    }
+                };
+                
+                // 移除旧的事件监听器
+                if (item._directClickHandler) {
+                    item.removeEventListener('click', item._directClickHandler, false);
+                }
+                item._directClickHandler = directHandler;
+                // 使用冒泡阶段，让用户中心的事件先处理
+                item.addEventListener('click', directHandler, false);
+            });
+        }, 300);
+    },
+    
+    // 处理移动端导航切换
+    handleMobileNav(view, eventSource) {
+        log.log('handleMobileNav 被调用，view:', view, 'eventSource:', eventSource);
+        
+        // 如果当前在用户中心页面，且要切换到首页，检查是否真的是从底部导航触发的
+        const currentUserPage = document.querySelector('.mobile-page-user.active');
+        if (currentUserPage && view === 'home') {
+            // 检查是否真的是从底部导航触发的（通过检查是否有用户中心点击标记）
+            const activeTabBtn = document.querySelector('.mobile-user-page .tab-btn.active');
+            if (activeTabBtn) {
+                log.log('检测到用户中心标签页激活，阻止跳转到首页');
+                return; // 阻止跳转
+            }
+            
+            // 额外检查：如果最近有用户中心点击，也阻止跳转（延长到2秒）
+            if (this._lastUserCenterClick && Date.now() - this._lastUserCenterClick < 2000) {
+                log.log('检测到最近的用户中心点击（' + (Date.now() - this._lastUserCenterClick) + 'ms前），阻止跳转到首页');
+                return;
+            }
+            
+            // 如果事件源不是底部导航，也阻止跳转
+            if (eventSource && !eventSource.closest('.bottom-nav')) {
+                log.log('事件源不是底部导航，阻止跳转到首页');
+                return;
+            }
+            
+            // 如果事件源不存在，但最近有用户中心点击，也阻止跳转
+            if (!eventSource && this._lastUserCenterClick && Date.now() - this._lastUserCenterClick < 2000) {
+                log.log('无事件源但最近有用户中心点击，阻止跳转到首页');
+                return;
+            }
+            
+            // 如果事件源不存在，但最近有用户中心点击，也阻止跳转
+            if (!eventSource && this._lastUserCenterClick && Date.now() - this._lastUserCenterClick < 2000) {
+                log.log('无事件源但最近有用户中心点击，阻止跳转到首页');
+                return;
+            }
+        }
+        
+        // 切换页面显示
+        const pages = ['home', 'chat', 'user'];
+        pages.forEach(page => {
+            const pageElement = document.getElementById(`mobile-page-${page}`);
+            if (pageElement) {
+                pageElement.classList.remove('active');
+            }
+        });
+        
+        // 移除body上的页面状态类
+        document.body.classList.remove('mobile-chat-active', 'mobile-user-active');
+        
+        const currentPage = document.getElementById(`mobile-page-${view}`);
+        if (currentPage) {
+            currentPage.classList.add('active');
+        }
+        
+        // 根据当前页面给body添加状态类，用于隐藏header
+        if (view === 'chat') {
+            document.body.classList.add('mobile-chat-active');
+        } else if (view === 'user') {
+            document.body.classList.add('mobile-user-active');
+        }
+        
+        switch(view) {
+            case 'home':
+                log.log('执行首页操作');
+                // 如果当前在游戏页面，关闭游戏
+                if (this.currentGame) {
+                    this.closeGame();
+                }
+                // 切换到首页分类
+                this.config.currentCategory = '首页';
+                this.config.currentPage = 1;
+                this.loadGames();
+                break;
+            case 'chat':
+                log.log('执行聊天操作');
+                // 初始化移动端聊天
+                this.initMobileChat();
+                break;
+            case 'user':
+                // 加载用户中心内容
+                this.loadMobileUserPage();
+                break;
+        }
+    },
+    
+    // 加载移动端用户页面
+    loadMobileUserPage() {
+        const mobileUserPage = document.querySelector('.mobile-user-page');
+        if (!mobileUserPage) {
+            return;
+        }
+        
+        // 检查用户是否登录
+        if (!this.currentUser) {
+            // 未登录时直接显示登录和注册表单
+            mobileUserPage.innerHTML = `
+                <div class="mobile-auth-container">
+                    <div class="mobile-auth-tabs">
+                        <button class="mobile-auth-tab active" data-tab="login">登录</button>
+                        <button class="mobile-auth-tab" data-tab="register">注册</button>
+                    </div>
+                    
+                    <!-- 登录表单 -->
+                    <div class="mobile-auth-content active" id="mobile-auth-login">
+                        <form id="mobile-login-form" class="mobile-auth-form">
+                            <div class="form-group">
+                                <label>用户名</label>
+                                <input type="text" name="username" id="mobile-login-username" required>
+                            </div>
+                            <div class="form-group">
+                                <label>密码</label>
+                                <input type="password" name="password" id="mobile-login-password" required>
+                            </div>
+                            <div class="error-message" id="mobile-login-error"></div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary" id="mobile-login-submit">登录</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- 注册表单 -->
+                    <div class="mobile-auth-content" id="mobile-auth-register">
+                        <form id="mobile-register-form" class="mobile-auth-form">
+                            <div class="form-group">
+                                <label>用户名</label>
+                                <input type="text" name="username" id="mobile-register-username" required minlength="3" maxlength="20">
+                                <small class="form-hint">3-20个字符</small>
+                            </div>
+                            <div class="form-group">
+                                <label>密码</label>
+                                <input type="password" name="password" id="mobile-register-password" required minlength="6">
+                                <small class="form-hint">至少6个字符</small>
+                            </div>
+                            <div class="form-group">
+                                <label>昵称</label>
+                                <input type="text" name="nickname" id="mobile-register-nickname">
+                            </div>
+                            <div class="form-group">
+                                <label>邮箱（可选）</label>
+                                <input type="email" name="email" id="mobile-register-email">
+                            </div>
+                            <div class="error-message" id="mobile-register-error"></div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary" id="mobile-register-submit">注册</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `;
+            
+            // 绑定标签页切换
+            const authTabs = mobileUserPage.querySelectorAll('.mobile-auth-tab');
+            const authContents = mobileUserPage.querySelectorAll('.mobile-auth-content');
+            
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetTab = tab.dataset.tab;
+                    
+                    // 移除所有active类
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    authContents.forEach(c => c.classList.remove('active'));
+                    
+                    // 添加当前active类
+                    tab.classList.add('active');
+                    const targetContent = mobileUserPage.querySelector(`#mobile-auth-${targetTab}`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+            
+            // 绑定登录表单提交
+            const mobileLoginForm = document.getElementById('mobile-login-form');
+            if (mobileLoginForm) {
+                mobileLoginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    await this.handleMobileLogin();
+                });
+            }
+            
+            // 绑定注册表单提交
+            const mobileRegisterForm = document.getElementById('mobile-register-form');
+            if (mobileRegisterForm) {
+                mobileRegisterForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    await this.handleMobileRegister();
+                });
+            }
+            
+            return;
+        }
+        
+        // 已登录时显示完整的用户中心内容
+        const userCenterModal = document.getElementById('user-center-modal');
+        if (userCenterModal) {
+            const modalBody = userCenterModal.querySelector('.modal-body');
+            if (modalBody) {
+                // 克隆用户中心内容到移动端页面
+                mobileUserPage.innerHTML = modalBody.innerHTML;
+                
+                // 添加退出登录按钮到标签页
+                const tabsContainer = mobileUserPage.querySelector('.user-center-tabs');
+                if (tabsContainer) {
+                    const logoutTab = document.createElement('button');
+                    logoutTab.className = 'tab-btn';
+                    logoutTab.dataset.tab = 'logout';
+                    logoutTab.textContent = '退出登录';
+                    tabsContainer.appendChild(logoutTab);
+                }
+                
+                // 添加退出登录内容区域
+                const tabContents = mobileUserPage.querySelector('.tab-content').parentElement;
+                if (tabContents) {
+                    const logoutContent = document.createElement('div');
+                    logoutContent.className = 'tab-content';
+                    logoutContent.id = 'tab-logout';
+                    logoutContent.innerHTML = `
+                        <div class="logout-section">
+                            <div class="logout-warning">
+                                <p>确定要退出登录吗？</p>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-primary" id="mobile-logout-btn">退出登录</button>
+                            </div>
+                        </div>
+                    `;
+                    tabContents.appendChild(logoutContent);
+                }
+                
+                // 重新绑定移动端用户中心的事件（延迟执行，确保在底部导航之后绑定，使用捕获阶段优先处理）
+                setTimeout(() => {
+                    this.initMobileUserCenter();
+                }, 50);
+            }
+        }
+    },
+    
+    // 初始化移动端用户中心
+    initMobileUserCenter() {
+        const mobileUserPage = document.querySelector('.mobile-user-page');
+        const mobileUserPageContainer = document.getElementById('mobile-page-user');
+        
+        // 在个人中心页面容器上阻止点击事件冒泡，防止触发游戏卡片
+        // 但排除交互元素（按钮、链接、输入框等）
+        if (mobileUserPage) {
+            mobileUserPage.addEventListener('click', (e) => {
+                // 如果点击的是交互元素，不阻止事件冒泡
+                // 特别允许"我的游戏"列表中的游戏项点击
+                const isInteractiveElement = e.target.closest('button') || 
+                                            e.target.closest('a') || 
+                                            e.target.closest('input') || 
+                                            e.target.closest('textarea') ||
+                                            e.target.closest('select') ||
+                                            e.target.closest('.tab-btn') ||
+                                            e.target.closest('.btn-primary') ||
+                                            e.target.closest('.btn-secondary') ||
+                                            e.target.closest('#my-games-list') ||
+                                            e.target.closest('.my-games-list') ||
+                                            e.target.closest('.recommended-game-item');
+                
+                // 如果点击的是个人中心界面内的元素，但不是交互元素，阻止事件冒泡
+                if (mobileUserPage.contains(e.target) && !isInteractiveElement) {
+                    e.stopPropagation();
+                }
+            }, true); // 使用捕获阶段
+        }
+        
+        if (mobileUserPageContainer) {
+            mobileUserPageContainer.addEventListener('click', (e) => {
+                // 如果点击的是交互元素，不阻止事件冒泡
+                // 特别允许"我的游戏"列表中的游戏项点击
+                const isInteractiveElement = e.target.closest('button') || 
+                                            e.target.closest('a') || 
+                                            e.target.closest('input') || 
+                                            e.target.closest('textarea') ||
+                                            e.target.closest('select') ||
+                                            e.target.closest('.tab-btn') ||
+                                            e.target.closest('.btn-primary') ||
+                                            e.target.closest('.btn-secondary') ||
+                                            e.target.closest('#my-games-list') ||
+                                            e.target.closest('.my-games-list') ||
+                                            e.target.closest('.recommended-game-item');
+                
+                // 如果点击的是个人中心页面内的元素，但不是交互元素，阻止事件冒泡
+                if (mobileUserPageContainer.contains(e.target) && !isInteractiveElement) {
+                    e.stopPropagation();
+                }
+            }, true); // 使用捕获阶段
+        }
+        
+        // 绑定标签页切换
+        const tabBtns = document.querySelectorAll('.mobile-user-page .tab-btn');
+        const tabContents = document.querySelectorAll('.mobile-user-page .tab-content');
+        
+        // 确保所有按钮都是button类型，防止表单提交
+        tabBtns.forEach(btn => {
+            if (btn.tagName === 'BUTTON' && !btn.type) {
+                btn.type = 'button';
+            }
+        });
+        
+        tabBtns.forEach((btn, index) => {
+            // 移除可能存在的旧事件监听器
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            
+            log.log('绑定标签页按钮', index, 'tab:', newBtn.dataset.tab);
+            
+            // 使用捕获阶段，确保在底部导航之前执行
+            newBtn.addEventListener('click', (e) => {
+                // 确保点击的是按钮本身或其子元素
+                if (e.target !== newBtn && !newBtn.contains(e.target)) {
+                    return;
+                }
+                
+                // 立即阻止所有事件传播，防止底部导航处理
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                
+                // 标记这是用户中心的点击
+                e._isUserCenterClick = true;
+                e.target._isUserCenterClick = true;
+                if (e.target.parentElement) {
+                    e.target.parentElement._isUserCenterClick = true;
+                }
+                
+                const tab = newBtn.dataset.tab;
+                log.log('移动端标签页点击:', tab, '事件已阻止传播');
+                
+                // 记录用户中心点击时间，用于防止底部导航误触发
+                this._lastUserCenterClick = Date.now();
+                
+                // 立即确保用户中心页面保持激活，防止任何异步操作导致跳转
+                const userPage = document.querySelector('.mobile-page-user');
+                if (userPage) {
+                    userPage.classList.add('active');
+                    const homePage = document.querySelector('.mobile-page-home');
+                    if (homePage) {
+                        homePage.classList.remove('active');
+                    }
+                }
+                
+                // 如果是退出登录标签页，直接执行退出
+                if (tab === 'logout') {
+                    if (confirm('确定要退出登录吗？')) {
+                        this.logout();
+                    }
+                    return false;
+                }
+                
+                // 移除所有active类
+                document.querySelectorAll('.mobile-user-page .tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.mobile-user-page .tab-content').forEach(c => c.classList.remove('active'));
+                
+                // 添加当前active类
+                newBtn.classList.add('active');
+                const targetContent = document.querySelector(`.mobile-user-page #tab-${tab}`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                } else {
+                    log.warn('未找到标签页内容:', `#tab-${tab}`);
+                }
+                
+                // 再次确保用户中心页面保持激活（双重保护）
+                if (userPage) {
+                    userPage.classList.add('active');
+                    if (homePage) {
+                        homePage.classList.remove('active');
+                    }
+                }
+                
+                // 加载对应标签页数据
+                if (tab === 'profile') {
+                    // 个人资料标签页
+                    log.log('切换到个人资料标签页');
+                    // 立即确保用户中心页面保持激活
+                    if (userPage) {
+                        userPage.classList.add('active');
+                        if (homePage) {
+                            homePage.classList.remove('active');
+                        }
+                    }
+                    // 再次确保用户中心页面保持激活（双重保护）
+                    setTimeout(() => {
+                        const userPageCheck = document.querySelector('.mobile-page-user');
+                        if (userPageCheck) {
+                            userPageCheck.classList.add('active');
+                            const homePageCheck = document.querySelector('.mobile-page-home');
+                            if (homePageCheck) {
+                                homePageCheck.classList.remove('active');
+                            }
+                        }
+                    }, 0);
+                    // 加载个人资料数据（异步等待完成后再绑定表单事件）
+                    const self = this; // 保存this引用
+                    log.log('开始加载个人资料并绑定表单');
+                    
+                    // 定义一个绑定表单的函数
+                    const bindProfileForm = () => {
+                        const profileForm = self.getUserCenterElement('profile-form');
+                        log.log('尝试绑定个人资料表单，找到表单:', !!profileForm);
+                        if (profileForm) {
+                            log.log('表单元素:', profileForm);
+                            // 移除旧的事件监听器
+                            if (profileForm._submitHandler) {
+                                profileForm.removeEventListener('submit', profileForm._submitHandler);
+                            }
+                            
+                            profileForm._submitHandler = async (e) => {
+                                log.log('个人资料表单提交事件被触发');
+                                e.preventDefault();
+                                e.stopPropagation();
+                                e.stopImmediatePropagation();
+                                
+                                // 确保获取的是表单元素，而不是按钮
+                                let form = profileForm;
+                                if (e.target) {
+                                    if (e.target.tagName === 'FORM') {
+                                        form = e.target;
+                                    } else if (e.target.closest) {
+                                        const closestForm = e.target.closest('form');
+                                        if (closestForm) {
+                                            form = closestForm;
+                                        }
+                                    }
+                                }
+                                const formData = new FormData(form);
+                                const data = Object.fromEntries(formData);
+                                log.log('表单数据:', data);
+                                const messageEl = self.getUserCenterElement('profile-message');
+
+                                // 显示加载状态
+                                if (messageEl) {
+                                    messageEl.textContent = '保存中...';
+                                    messageEl.className = 'form-message';
+                                }
+
+                                try {
+                                    log.log('发送请求到:', `${self.config.apiBase}/user_update.php`);
+                                    const response = await fetch(`${self.config.apiBase}/user_update.php`, {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify(data)
+                                    });
+                                    log.log('收到响应:', response.status);
+                                    const result = await response.json();
+                                    log.log('响应结果:', result);
+
+                                    if (result.code === 200) {
+                                        if (messageEl) {
+                                            messageEl.textContent = '保存成功';
+                                            messageEl.className = 'form-message success';
+                                        }
+                                        self.checkLogin(); // 刷新用户信息
+                                    } else {
+                                        if (messageEl) {
+                                            messageEl.textContent = result.message || '保存失败';
+                                            messageEl.className = 'form-message error';
+                                        }
+                                    }
+                                } catch (error) {
+                                    log.error('保存个人资料时出错:', error);
+                                    if (messageEl) {
+                                        messageEl.textContent = '保存失败，请重试: ' + error.message;
+                                        messageEl.className = 'form-message error';
+                                    }
+                                }
+                                return false;
+                            };
+                            
+                            profileForm.addEventListener('submit', profileForm._submitHandler);
+                            profileForm.onsubmit = profileForm._submitHandler; // 双重绑定确保生效
+                            log.log('移动端个人资料表单提交事件已绑定');
+                            
+                            // 测试：直接绑定提交按钮的点击事件作为备用
+                            const submitBtn = profileForm.querySelector('button[type="submit"]');
+                            if (submitBtn) {
+                                log.log('找到提交按钮，添加备用点击事件');
+                                submitBtn.addEventListener('click', (e) => {
+                                    log.log('提交按钮被点击（备用事件）');
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    // 直接调用表单的 submit 事件，而不是手动创建事件
+                                    profileForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                                });
+                            }
+                        } else {
+                            log.warn('移动端个人资料表单未找到');
+                            // 尝试直接查找
+                            const directForm = document.querySelector('.mobile-user-page #profile-form');
+                            log.log('直接查找表单:', !!directForm);
+                        }
+                    };
+                    
+                    // 先尝试立即绑定（如果表单已存在）
+                    bindProfileForm();
+                    
+                    // 然后加载数据，加载完成后再绑定一次
+                    this.loadUserProfile().then(() => {
+                        log.log('个人资料加载完成，再次尝试绑定表单');
+                        setTimeout(bindProfileForm, 200);
+                    }).catch(error => {
+                        log.error('加载个人资料失败:', error);
+                        // 即使加载失败，也尝试绑定表单
+                        setTimeout(bindProfileForm, 200);
+                    });
+                } else if (tab === 'games') {
+                    // 我玩过的游戏标签页
+                    console.log('切换到我玩过的游戏标签页');
+                    // 立即确保用户中心页面保持激活
+                    if (userPage) {
+                        userPage.classList.add('active');
+                        if (homePage) {
+                            homePage.classList.remove('active');
+                        }
+                    }
+                    // 再次确保用户中心页面保持激活（双重保护）
+                    setTimeout(() => {
+                        const userPageCheck = document.querySelector('.mobile-page-user');
+                        if (userPageCheck) {
+                            userPageCheck.classList.add('active');
+                            const homePageCheck = document.querySelector('.mobile-page-home');
+                            if (homePageCheck) {
+                                homePageCheck.classList.remove('active');
+                            }
+                        }
+                    }, 0);
+                    this.loadMyGames();
+                } else if (tab === 'password') {
+                    // 修改密码标签页不需要加载数据，只需要显示表单
+                    log.log('切换到修改密码标签页');
+                    // 第三次确保用户中心页面保持激活（三重保护）
+                    setTimeout(() => {
+                        const userPageCheck = document.querySelector('.mobile-page-user');
+                        if (userPageCheck) {
+                            userPageCheck.classList.add('active');
+                            const homePageCheck = document.querySelector('.mobile-page-home');
+                            if (homePageCheck) {
+                                homePageCheck.classList.remove('active');
+                            }
+                        }
+                    }, 0);
+                    
+                    // 确保修改密码表单的提交事件被正确绑定（延迟绑定，确保表单已渲染）
+                    setTimeout(() => {
+                        const passwordForm = this.getUserCenterElement('password-form');
+                        if (passwordForm) {
+                            // 移除旧的事件监听器
+                            if (passwordForm._submitHandler) {
+                                passwordForm.removeEventListener('submit', passwordForm._submitHandler);
+                            }
+                            
+                            passwordForm._submitHandler = async (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                e.stopImmediatePropagation();
+                                
+                                // 确保获取的是表单元素，而不是按钮
+                                let form = passwordForm;
+                                if (e.target) {
+                                    if (e.target.tagName === 'FORM') {
+                                        form = e.target;
+                                    } else if (e.target.closest) {
+                                        const closestForm = e.target.closest('form');
+                                        if (closestForm) {
+                                            form = closestForm;
+                                        }
+                                    }
+                                }
+                                const formData = new FormData(form);
+                                const data = Object.fromEntries(formData);
+                                const messageEl = this.getUserCenterElement('password-message');
+
+                                if (data.new_password !== data.confirm_password) {
+                                    if (messageEl) {
+                                        messageEl.textContent = '两次输入的密码不一致';
+                                        messageEl.className = 'form-message error';
+                                    }
+                                    return false;
+                                }
+
+                                try {
+                                    const response = await fetch(`${this.config.apiBase}/user_password.php`, {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify(data)
+                                    });
+                                    const result = await response.json();
+
+                                    if (result.code === 200) {
+                                        if (messageEl) {
+                                            messageEl.textContent = '密码修改成功';
+                                            messageEl.className = 'form-message success';
+                                        }
+                                        // 清空表单
+                                        passwordForm.reset();
+                                    } else {
+                                        if (messageEl) {
+                                            messageEl.textContent = result.message || '密码修改失败';
+                                            messageEl.className = 'form-message error';
+                                        }
+                                    }
+                                } catch (error) {
+                                    if (messageEl) {
+                                        messageEl.textContent = '密码修改失败，请重试';
+                                        messageEl.className = 'form-message error';
+                                    }
+                                }
+                                return false;
+                            };
+                            
+                            passwordForm.addEventListener('submit', passwordForm._submitHandler);
+                            passwordForm.onsubmit = passwordForm._submitHandler; // 双重绑定确保生效
+                            log.log('移动端修改密码表单提交事件已绑定');
+                        } else {
+                            log.warn('移动端修改密码表单未找到');
+                        }
+                    }, 100);
+                } else if (tab === 'avatar') {
+                    // 头像设置标签页
+                    console.log('切换到头像设置标签页');
+                    // 立即确保用户中心页面保持激活
+                    if (userPage) {
+                        userPage.classList.add('active');
+                        if (homePage) {
+                            homePage.classList.remove('active');
+                        }
+                    }
+                    // 再次确保用户中心页面保持激活（双重保护）
+                    setTimeout(() => {
+                        const userPageCheck = document.querySelector('.mobile-page-user');
+                        if (userPageCheck) {
+                            userPageCheck.classList.add('active');
+                            const homePageCheck = document.querySelector('.mobile-page-home');
+                            if (homePageCheck) {
+                                homePageCheck.classList.remove('active');
+                            }
+                        }
+                    }, 0);
+                    
+                    // 加载头像数据并绑定上传事件
+                    const self = this;
+                    const bindAvatarForm = () => {
+                        // 头像上传（PC端和移动端都支持）
+                        const avatarInput = self.getUserCenterElement('avatar-input');
+                        if (avatarInput) {
+                            // 移除旧的事件监听器
+                            const newInput = avatarInput.cloneNode(true);
+                            avatarInput.parentNode.replaceChild(newInput, avatarInput);
+                            
+                            newInput.onchange = (e) => {
+                                const file = e.target.files[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = (event) => {
+                                        const img = self.getUserCenterElement('avatar-preview-img');
+                                        const placeholder = self.getUserCenterElement('avatar-placeholder');
+                                        if (img && placeholder) {
+                                            img.src = event.target.result;
+                                            img.style.display = 'block';
+                                            placeholder.style.display = 'none';
+                                        }
+                                    };
+                                    reader.readAsDataURL(file);
+                                }
+                            };
+                            log.log('移动端头像输入框事件已绑定');
+                        } else {
+                            log.warn('移动端头像输入框未找到');
+                        }
+
+                        const avatarForm = self.getUserCenterElement('avatar-form');
+                        if (avatarForm) {
+                            // 移除旧的事件监听器
+                            if (avatarForm._submitHandler) {
+                                avatarForm.removeEventListener('submit', avatarForm._submitHandler);
+                            }
+                            
+                            avatarForm._submitHandler = async (e) => {
+                                log.log('移动端头像表单提交事件被触发');
+                                e.preventDefault();
+                                e.stopPropagation();
+                                e.stopImmediatePropagation();
+                                
+                                const fileInput = self.getUserCenterElement('avatar-input');
+                                const file = fileInput ? fileInput.files[0] : null;
+                                const messageEl = self.getUserCenterElement('avatar-message');
+
+                                if (!file) {
+                                    if (messageEl) {
+                                        messageEl.textContent = '请选择图片文件';
+                                        messageEl.className = 'form-message error';
+                                    }
+                                    return false;
+                                }
+
+                                // 显示上传中状态
+                                if (messageEl) {
+                                    messageEl.textContent = '上传中...';
+                                    messageEl.className = 'form-message';
+                                }
+
+                                const formData = new FormData();
+                                formData.append('avatar', file);
+
+                                try {
+                                    const response = await fetch(`${self.config.apiBase}/user_avatar.php`, {
+                                        method: 'POST',
+                                        body: formData
+                                    });
+                                    const result = await response.json();
+
+                                    if (result.code === 200) {
+                                        if (messageEl) {
+                                            messageEl.textContent = '头像上传成功';
+                                            messageEl.className = 'form-message success';
+                                        }
+                                        self.checkLogin(); // 刷新用户信息
+                                        // 重新加载头像预览
+                                        setTimeout(() => {
+                                            self.loadAvatar();
+                                        }, 500);
+                                    } else {
+                                        if (messageEl) {
+                                            messageEl.textContent = result.message || '上传失败';
+                                            messageEl.className = 'form-message error';
+                                        }
+                                    }
+                                } catch (error) {
+                                    log.error('上传头像时出错:', error);
+                                    if (messageEl) {
+                                        messageEl.textContent = '上传失败，请重试: ' + error.message;
+                                        messageEl.className = 'form-message error';
+                                    }
+                                }
+                                return false;
+                            };
+                            
+                            avatarForm.addEventListener('submit', avatarForm._submitHandler);
+                            avatarForm.onsubmit = avatarForm._submitHandler; // 双重绑定确保生效
+                            log.log('移动端头像表单提交事件已绑定');
+                            
+                            // 备用：直接绑定提交按钮的点击事件
+                            const submitBtn = avatarForm.querySelector('button[type="submit"]');
+                            if (submitBtn) {
+                                log.log('找到头像提交按钮，添加备用点击事件');
+                                submitBtn.addEventListener('click', (e) => {
+                                    log.log('头像提交按钮被点击（备用事件）');
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    // 直接调用表单的 submit 事件
+                                    avatarForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                                });
+                            }
+                        } else {
+                            log.warn('移动端头像表单未找到');
+                        }
+                    };
+                    
+                    // 先加载头像数据
+                    this.loadAvatar().then(() => {
+                        log.log('头像数据加载完成，绑定上传表单');
+                        // 延迟绑定，确保DOM已渲染
+                        setTimeout(bindAvatarForm, 200);
+                    }).catch(error => {
+                        log.error('加载头像数据失败:', error);
+                        // 即使加载失败，也尝试绑定表单
+                        setTimeout(bindAvatarForm, 200);
+                    });
+                } else if (tab === 'cache') {
+                    this.initCacheManagement();
+                }
+                
+                return false;
+            }, true); // 使用捕获阶段，确保优先处理
+        });
+        
+        // 检查当前激活的标签页，如果是个人资料或头像，立即绑定表单
+        const activeTabBtn = document.querySelector('.mobile-user-page .tab-btn.active');
+        if (activeTabBtn && activeTabBtn.dataset.tab === 'profile') {
+            log.log('检测到个人资料标签页已激活，立即绑定表单');
+            // 定义一个绑定表单的函数
+            const self = this;
+            const bindProfileForm = () => {
+                const profileForm = self.getUserCenterElement('profile-form');
+                log.log('尝试绑定个人资料表单，找到表单:', !!profileForm);
+                if (profileForm) {
+                    log.log('表单元素:', profileForm);
+                    // 移除旧的事件监听器
+                    if (profileForm._submitHandler) {
+                        profileForm.removeEventListener('submit', profileForm._submitHandler);
+                    }
+                    
+                    profileForm._submitHandler = async (e) => {
+                        log.log('个人资料表单提交事件被触发');
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        
+                        // 确保获取的是表单元素，而不是按钮
+                        let form = profileForm;
+                        if (e.target) {
+                            if (e.target.tagName === 'FORM') {
+                                form = e.target;
+                            } else if (e.target.closest) {
+                                const closestForm = e.target.closest('form');
+                                if (closestForm) {
+                                    form = closestForm;
+                                }
+                            }
+                        }
+                        const formData = new FormData(form);
+                        const data = Object.fromEntries(formData);
+                        log.log('表单数据:', data);
+                        const messageEl = self.getUserCenterElement('profile-message');
+
+                        // 显示加载状态
+                        if (messageEl) {
+                            messageEl.textContent = '保存中...';
+                            messageEl.className = 'form-message';
+                        }
+
+                        try {
+                            log.log('发送请求到:', `${self.config.apiBase}/user_update.php`);
+                            const response = await fetch(`${self.config.apiBase}/user_update.php`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(data)
+                            });
+                            log.log('收到响应:', response.status);
+                            const result = await response.json();
+                            log.log('响应结果:', result);
+
+                            if (result.code === 200) {
+                                if (messageEl) {
+                                    messageEl.textContent = '保存成功';
+                                    messageEl.className = 'form-message success';
+                                }
+                                self.checkLogin(); // 刷新用户信息
+                            } else {
+                                if (messageEl) {
+                                    messageEl.textContent = result.message || '保存失败';
+                                    messageEl.className = 'form-message error';
+                                }
+                            }
+                        } catch (error) {
+                            console.error('保存个人资料时出错:', error);
+                            if (messageEl) {
+                                messageEl.textContent = '保存失败，请重试: ' + error.message;
+                                messageEl.className = 'form-message error';
+                            }
+                        }
+                        return false;
+                    };
+                    
+                    profileForm.addEventListener('submit', profileForm._submitHandler);
+                    profileForm.onsubmit = profileForm._submitHandler; // 双重绑定确保生效
+                    log.log('移动端个人资料表单提交事件已绑定（初始化时）');
+                    
+                    // 测试：直接绑定提交按钮的点击事件作为备用
+                    const submitBtn = profileForm.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        log.log('找到提交按钮，添加备用点击事件');
+                        submitBtn.addEventListener('click', (e) => {
+                            log.log('提交按钮被点击（备用事件）');
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // 直接调用表单的 submit 事件，而不是手动创建事件
+                            profileForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                        });
+                    }
+                } else {
+                    log.warn('移动端个人资料表单未找到（初始化时）');
+                }
+            };
+            
+            // 先尝试立即绑定（如果表单已存在）
+            bindProfileForm();
+            
+            // 然后加载数据，加载完成后再绑定一次
+            this.loadUserProfile().then(() => {
+                log.log('个人资料加载完成，再次尝试绑定表单（初始化时）');
+                setTimeout(bindProfileForm, 200);
+            }).catch(error => {
+                log.error('加载个人资料失败:', error);
+                // 即使加载失败，也尝试绑定表单
+                setTimeout(bindProfileForm, 200);
+            });
+        }
+        
+        // 检查当前激活的标签页，如果是头像，立即绑定表单
+        if (activeTabBtn && activeTabBtn.dataset.tab === 'avatar') {
+            log.log('检测到头像标签页已激活，立即绑定表单');
+            const self = this;
+            const bindAvatarForm = () => {
+                // 头像上传（PC端和移动端都支持）
+                const avatarInput = self.getUserCenterElement('avatar-input');
+                if (avatarInput) {
+                    // 移除旧的事件监听器
+                    const newInput = avatarInput.cloneNode(true);
+                    avatarInput.parentNode.replaceChild(newInput, avatarInput);
+                    
+                    newInput.onchange = (e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                                const img = self.getUserCenterElement('avatar-preview-img');
+                                const placeholder = self.getUserCenterElement('avatar-placeholder');
+                                if (img && placeholder) {
+                                    img.src = event.target.result;
+                                    img.style.display = 'block';
+                                    placeholder.style.display = 'none';
+                                }
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    };
+                    log.log('移动端头像输入框事件已绑定（初始化时）');
+                } else {
+                    log.warn('移动端头像输入框未找到（初始化时）');
+                }
+
+                const avatarForm = self.getUserCenterElement('avatar-form');
+                if (avatarForm) {
+                    // 移除旧的事件监听器
+                    if (avatarForm._submitHandler) {
+                        avatarForm.removeEventListener('submit', avatarForm._submitHandler);
+                    }
+                    
+                    avatarForm._submitHandler = async (e) => {
+                        log.log('移动端头像表单提交事件被触发（初始化时）');
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        
+                        const fileInput = self.getUserCenterElement('avatar-input');
+                        const file = fileInput ? fileInput.files[0] : null;
+                        const messageEl = self.getUserCenterElement('avatar-message');
+
+                        if (!file) {
+                            if (messageEl) {
+                                messageEl.textContent = '请选择图片文件';
+                                messageEl.className = 'form-message error';
+                            }
+                            return false;
+                        }
+
+                        // 显示上传中状态
+                        if (messageEl) {
+                            messageEl.textContent = '上传中...';
+                            messageEl.className = 'form-message';
+                        }
+
+                        const formData = new FormData();
+                        formData.append('avatar', file);
+
+                        try {
+                            const response = await fetch(`${self.config.apiBase}/user_avatar.php`, {
+                                method: 'POST',
+                                body: formData
+                            });
+                            const result = await response.json();
+
+                            if (result.code === 200) {
+                                if (messageEl) {
+                                    messageEl.textContent = '头像上传成功';
+                                    messageEl.className = 'form-message success';
+                                }
+                                self.checkLogin(); // 刷新用户信息
+                                // 重新加载头像预览
+                                setTimeout(() => {
+                                    self.loadAvatar();
+                                }, 500);
+                            } else {
+                                if (messageEl) {
+                                    messageEl.textContent = result.message || '上传失败';
+                                    messageEl.className = 'form-message error';
+                                }
+                            }
+                        } catch (error) {
+                            console.error('上传头像时出错:', error);
+                            if (messageEl) {
+                                messageEl.textContent = '上传失败，请重试: ' + error.message;
+                                messageEl.className = 'form-message error';
+                            }
+                        }
+                        return false;
+                    };
+                    
+                    avatarForm.addEventListener('submit', avatarForm._submitHandler);
+                    avatarForm.onsubmit = avatarForm._submitHandler; // 双重绑定确保生效
+                    log.log('移动端头像表单提交事件已绑定（初始化时）');
+                    
+                    // 备用：直接绑定提交按钮的点击事件
+                    const submitBtn = avatarForm.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        log.log('找到头像提交按钮，添加备用点击事件（初始化时）');
+                        submitBtn.addEventListener('click', (e) => {
+                            log.log('头像提交按钮被点击（备用事件）');
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // 直接调用表单的 submit 事件
+                            avatarForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                        });
+                    }
+                } else {
+                    log.warn('移动端头像表单未找到（初始化时）');
+                }
+            };
+            
+            // 先加载头像数据
+            this.loadAvatar().then(() => {
+                log.log('头像数据加载完成，绑定上传表单（初始化时）');
+                // 延迟绑定，确保DOM已渲染
+                setTimeout(bindAvatarForm, 200);
+            }).catch(error => {
+                console.error('加载头像数据失败:', error);
+                // 即使加载失败，也尝试绑定表单
+                setTimeout(bindAvatarForm, 200);
+            });
+        }
+        
+        // 绑定退出登录按钮
+        const logoutBtn = document.getElementById('mobile-logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                if (confirm('确定要退出登录吗？')) {
+                    this.logout();
+                }
+            });
+        }
+        
+        // 表单提交已经在bindEvents中统一处理，这里不需要重复绑定
+        
+        // 加载用户数据
+        if (this.currentUser) {
+            this.loadUserProfile();
+        }
+    },
+    
+    // 处理移动端登录
+    async handleMobileLogin() {
+        const usernameInput = document.getElementById('mobile-login-username');
+        const passwordInput = document.getElementById('mobile-login-password');
+        const submitBtn = document.getElementById('mobile-login-submit');
+        const errorEl = document.getElementById('mobile-login-error');
+        
+        if (!usernameInput || !passwordInput || !submitBtn) {
+            log.error('移动端登录表单元素未找到');
+            return;
+        }
+        
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        
+        if (!username || !password) {
+            if (errorEl) {
+                errorEl.textContent = '请输入用户名和密码';
+                errorEl.style.display = 'block';
+            }
+            return;
+        }
+        
+        // 显示加载状态
+        submitBtn.disabled = true;
+        submitBtn.textContent = '登录中...';
+        if (errorEl) {
+            errorEl.style.display = 'none';
+        }
+        
+        try {
+            const response = await fetch(`${this.config.apiBase}/login.php`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            
+            const result = await response.json();
+            
+            if (result.code === 200) {
+                // 登录成功，更新用户状态
+                this.updateUserUI(result.data);
+                // 重新加载移动端用户页面（显示用户中心）
+                this.loadMobileUserPage();
+            } else {
+                if (errorEl) {
+                    errorEl.textContent = result.message || '登录失败';
+                    errorEl.style.display = 'block';
+                }
+                submitBtn.disabled = false;
+                submitBtn.textContent = '登录';
+            }
+        } catch (error) {
+            log.error('登录失败:', error);
+            if (errorEl) {
+                errorEl.textContent = '登录失败，请稍后重试';
+                errorEl.style.display = 'block';
+            }
+            submitBtn.disabled = false;
+            submitBtn.textContent = '登录';
+        }
+    },
+    
+    // 处理移动端注册
+    async handleMobileRegister() {
+        const usernameInput = document.getElementById('mobile-register-username');
+        const passwordInput = document.getElementById('mobile-register-password');
+        const nicknameInput = document.getElementById('mobile-register-nickname');
+        const emailInput = document.getElementById('mobile-register-email');
+        const submitBtn = document.getElementById('mobile-register-submit');
+        const errorEl = document.getElementById('mobile-register-error');
+        
+        if (!usernameInput || !passwordInput || !submitBtn) {
+            log.error('移动端注册表单元素未找到');
+            return;
+        }
+        
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const nickname = nicknameInput ? nicknameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        
+        if (!username || !password) {
+            if (errorEl) {
+                errorEl.textContent = '请输入用户名和密码';
+                errorEl.style.display = 'block';
+            }
+            return;
+        }
+        
+        if (username.length < 3 || username.length > 20) {
+            if (errorEl) {
+                errorEl.textContent = '用户名长度必须在3-20个字符之间';
+                errorEl.style.display = 'block';
+            }
+            return;
+        }
+        
+        if (password.length < 6) {
+            if (errorEl) {
+                errorEl.textContent = '密码长度至少6个字符';
+                errorEl.style.display = 'block';
+            }
+            return;
+        }
+        
+        // 显示加载状态
+        submitBtn.disabled = true;
+        submitBtn.textContent = '注册中...';
+        if (errorEl) {
+            errorEl.style.display = 'none';
+        }
+        
+        try {
+            const response = await fetch(`${this.config.apiBase}/register.php`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password, nickname, email })
+            });
+            
+            const result = await response.json();
+            
+            if (result.code === 200) {
+                // 注册成功，自动登录
+                const loginResponse = await fetch(`${this.config.apiBase}/login.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const loginResult = await loginResponse.json();
+                
+                if (loginResult.code === 200) {
+                    // 登录成功，更新用户状态
+                    this.updateUserUI(loginResult.data);
+                    // 重新加载移动端用户页面（显示用户中心）
+                    this.loadMobileUserPage();
+                } else {
+                    if (errorEl) {
+                        errorEl.textContent = '注册成功，但自动登录失败，请手动登录';
+                        errorEl.style.display = 'block';
+                    }
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '注册';
+                }
+            } else {
+                if (errorEl) {
+                    errorEl.textContent = result.message || '注册失败';
+                    errorEl.style.display = 'block';
+                }
+                submitBtn.disabled = false;
+                submitBtn.textContent = '注册';
+            }
+        } catch (error) {
+            log.error('注册失败:', error);
+            if (errorEl) {
+                errorEl.textContent = '注册失败，请稍后重试';
+                errorEl.style.display = 'block';
+            }
+            submitBtn.disabled = false;
+            submitBtn.textContent = '注册';
+        }
+    },
+    
+    // 初始化移动端聊天
+    async initMobileChat() {
+        // 如果已经初始化过，直接返回
+        if (this.mobileChatInitialized) {
+            return;
+        }
+        
+        const chatInput = document.getElementById('mobile-chat-input');
+        const chatSendBtn = document.getElementById('mobile-chat-send');
+        const chatMessages = document.getElementById('mobile-chat-messages');
+        const chatEmojiBtn = document.getElementById('mobile-chat-emoji-btn');
+        const chatPage = document.querySelector('.mobile-chat-page');
+        const mobileChatPage = document.getElementById('mobile-page-chat');
+        
+        if (!chatInput || !chatSendBtn || !chatMessages) {
+            return;
+        }
+        
+        // 如果还没有绑定事件，则绑定
+        if (!this.mobileChatInitialized) {
+            // 在聊天页面容器上阻止点击事件冒泡，防止触发游戏卡片
+            // 但排除交互元素（按钮、输入框等）
+            if (chatPage) {
+                chatPage.addEventListener('click', (e) => {
+                    // 如果点击的是交互元素，不阻止事件冒泡
+                    const isInteractiveElement = e.target.closest('button') || 
+                                                e.target.closest('input') || 
+                                                e.target.closest('textarea') ||
+                                                e.target.closest('.mobile-chat-send-btn') ||
+                                                e.target.closest('.mobile-chat-emoji-btn');
+                    
+                    // 如果点击的是聊天界面内的元素，但不是交互元素，阻止事件冒泡
+                    if (chatPage.contains(e.target) && !isInteractiveElement) {
+                        e.stopPropagation();
+                    }
+                }, true); // 使用捕获阶段
+            }
+            
+            if (mobileChatPage) {
+                mobileChatPage.addEventListener('click', (e) => {
+                    // 如果点击的是交互元素，不阻止事件冒泡
+                    const isInteractiveElement = e.target.closest('button') || 
+                                                e.target.closest('input') || 
+                                                e.target.closest('textarea') ||
+                                                e.target.closest('.mobile-chat-send-btn') ||
+                                                e.target.closest('.mobile-chat-emoji-btn');
+                    
+                    // 如果点击的是聊天页面内的元素，但不是交互元素，阻止事件冒泡
+                    if (mobileChatPage.contains(e.target) && !isInteractiveElement) {
+                        e.stopPropagation();
+                    }
+                }, true); // 使用捕获阶段
+            }
+            
+            // 绑定发送按钮（使用捕获阶段，确保优先执行）
+            chatSendBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                this.sendMobileChatMessage();
+            }, true); // 使用捕获阶段，确保优先执行
+            
+            // 绑定回车键发送
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.stopPropagation();
+                    this.sendMobileChatMessage();
+                }
+            });
+            
+            // 初始化表情选择器
+            if (chatEmojiBtn) {
+                this.initMobileEmojiPicker();
+            }
+            
+            this.mobileChatInitialized = true;
+        }
+        
+        // 加载历史消息
+        await this.loadMobileChatHistory();
+        
+        // 启动消息轮询
+        this.startMobileChatPolling();
+    },
+    
+    // 初始化移动端表情选择器
+    initMobileEmojiPicker() {
+        const emojiBtn = document.getElementById('mobile-chat-emoji-btn');
+        const emojiPicker = document.getElementById('mobile-chat-emoji-picker');
+        const chatInput = document.getElementById('mobile-chat-input');
+        
+        if (!emojiBtn || !emojiPicker || !chatInput) return;
+        
+        // 生成表情列表
+        emojiPicker.innerHTML = '';
+        const emojiGrid = document.createElement('div');
+        emojiGrid.className = 'mobile-chat-emoji-grid';
+        
+        this.emojiList.forEach(emoji => {
+            const emojiItem = document.createElement('button');
+            emojiItem.className = 'mobile-chat-emoji-item';
+            emojiItem.textContent = emoji;
+            emojiItem.title = emoji;
+            emojiItem.onclick = () => {
+                const cursorPos = chatInput.selectionStart || chatInput.value.length;
+                const textBefore = chatInput.value.substring(0, cursorPos);
+                const textAfter = chatInput.value.substring(cursorPos);
+                chatInput.value = textBefore + emoji + textAfter;
+                
+                const newCursorPos = cursorPos + emoji.length;
+                chatInput.setSelectionRange(newCursorPos, newCursorPos);
+                chatInput.focus();
+                
+                emojiPicker.classList.remove('show');
+            };
+            emojiGrid.appendChild(emojiItem);
+        });
+        
+        emojiPicker.appendChild(emojiGrid);
+        
+        // 点击表情按钮切换显示/隐藏
+        emojiBtn.onclick = (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            emojiPicker.classList.toggle('show');
+        };
+        
+        // 点击外部关闭表情选择器
+        const closeHandler = (e) => {
+            if (emojiPicker.classList.contains('show')) {
+                if (!emojiPicker.contains(e.target) && e.target !== emojiBtn && !emojiBtn.contains(e.target)) {
+                    emojiPicker.classList.remove('show');
+                }
+            }
+        };
+        
+        if (this.mobileEmojiPickerCloseHandler) {
+            document.removeEventListener('click', this.mobileEmojiPickerCloseHandler);
+        }
+        
+        this.mobileEmojiPickerCloseHandler = closeHandler;
+        document.addEventListener('click', this.mobileEmojiPickerCloseHandler);
+    },
+    
+    // 发送移动端聊天消息
+    async sendMobileChatMessage() {
+        const chatInput = document.getElementById('mobile-chat-input');
+        if (!chatInput) return;
+        
+        const message = chatInput.value.trim();
+        if (!message) return;
+        
+        // 检查是否登录
+        if (!this.currentUser) {
+            alert('请先登录后再发送消息');
+            return;
+        }
+        
+        const sendBtn = document.getElementById('mobile-chat-send');
+        sendBtn.disabled = true;
+        
+        try {
+            const response = await fetch(`${this.config.apiBase}/chat.php?action=send`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: message
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.code === 200) {
+                chatInput.value = '';
+                // 重新加载消息以确保同步
+                await this.loadMobileChatHistory();
+            } else {
+                alert(result.message || '发送失败');
+            }
+        } catch (error) {
+            console.error('发送消息失败:', error);
+            alert('发送失败，请重试');
+        } finally {
+            sendBtn.disabled = false;
+            chatInput.focus();
+        }
+    },
+    
+    // 添加移动端聊天消息
+    appendMobileChatMessage(msg) {
+        const chatMessages = document.getElementById('mobile-chat-messages');
+        if (!chatMessages) return;
+        
+        const isOwn = this.currentUser && (msg.user_id === this.currentUser.id || msg.username === this.currentUser.username);
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `mobile-chat-message ${isOwn ? 'mobile-chat-message-own' : ''}`;
+        
+        // 头像
+        const avatarDiv = document.createElement('div');
+        avatarDiv.className = 'mobile-chat-avatar';
+        if (msg.avatar) {
+            const avatarImg = document.createElement('img');
+            avatarImg.src = msg.avatar;
+            avatarImg.alt = msg.username || '用户';
+            avatarDiv.appendChild(avatarImg);
+        } else {
+            const avatarPlaceholder = document.createElement('div');
+            avatarPlaceholder.className = 'mobile-chat-avatar-placeholder';
+            avatarPlaceholder.textContent = (msg.nickname || msg.username || '用户').charAt(0).toUpperCase();
+            avatarDiv.appendChild(avatarPlaceholder);
+        }
+        
+        // 消息内容容器
+        const messageContent = document.createElement('div');
+        messageContent.className = 'mobile-chat-message-content';
+        
+        // 用户名
+        const usernameDiv = document.createElement('div');
+        usernameDiv.className = 'mobile-chat-username';
+        usernameDiv.textContent = msg.nickname || msg.username || '游客';
+        
+        // 消息气泡容器
+        const messageBubble = document.createElement('div');
+        messageBubble.className = 'mobile-chat-message-bubble';
+        
+        // 消息文本
+        const messageText = document.createElement('div');
+        messageText.className = 'mobile-chat-message-text';
+        messageText.textContent = msg.message;
+        
+        messageBubble.appendChild(messageText);
+        
+        messageContent.appendChild(usernameDiv);
+        messageContent.appendChild(messageBubble);
+        
+        messageDiv.appendChild(avatarDiv);
+        messageDiv.appendChild(messageContent);
+        chatMessages.appendChild(messageDiv);
+        
+        // 滚动到底部
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    },
+    
+    // 加载移动端聊天历史
+    async loadMobileChatHistory() {
+        const chatMessages = document.getElementById('mobile-chat-messages');
+        if (!chatMessages) return;
+        
+        try {
+            const response = await fetch(`${this.config.apiBase}/chat.php?action=list&limit=50`);
+            const result = await response.json();
+            
+            if (result.code === 200 && result.data) {
+                chatMessages.innerHTML = '';
+                result.data.forEach(msg => {
+                    this.appendMobileChatMessage(msg);
+                });
+            }
+        } catch (error) {
+            log.error('加载聊天历史失败:', error);
+        }
+    },
+    
+    // 设置移动端聊天轮询
+    startMobileChatPolling() {
+        // 如果已经有轮询，先停止
+        if (this.mobileChatPollingInterval) {
+            clearInterval(this.mobileChatPollingInterval);
+        }
+        
+        // 每3秒刷新一次消息
+        this.mobileChatPollingInterval = setInterval(async () => {
+            const chatPage = document.getElementById('mobile-page-chat');
+            if (chatPage && chatPage.classList.contains('active')) {
+                await this.loadMobileChatHistory();
+            }
+        }, 3000);
+    },
+    
+    // 停止移动端聊天轮询
+    stopMobileChatPolling() {
+        if (this.mobileChatPollingInterval) {
+            clearInterval(this.mobileChatPollingInterval);
+            this.mobileChatPollingInterval = null;
+        }
+    },
+    
+    // 初始化设备ID（基于浏览器指纹）
+    initDeviceId() {
+        try {
+            // 尝试从 localStorage 获取已保存的设备ID
+            let deviceId = localStorage.getItem('cache_device_id');
+            
+            if (!deviceId) {
+                // 生成设备ID（基于浏览器指纹）
+                const fingerprint = [
+                    navigator.userAgent,
+                    navigator.language,
+                    screen.width + 'x' + screen.height,
+                    new Date().getTimezoneOffset(),
+                    navigator.platform
+                ].join('|');
+                
+                // 生成简单的哈希
+                deviceId = this.hashString(fingerprint);
+                localStorage.setItem('cache_device_id', deviceId);
+            }
+            
+            this.deviceId = deviceId;
+        } catch (error) {
+            log.error('初始化设备ID失败:', error);
+            this.deviceId = 'unknown_device_' + Date.now();
+        }
+    },
+    
+    // 简单的字符串哈希函数
+    hashString(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // 转换为32位整数
+        }
+        return Math.abs(hash).toString(36);
+    },
+
+    // 检查登录状态
+    async checkLogin() {
+        try {
+            const response = await fetch(`${this.config.apiBase}/userinfo.php`);
+            const result = await response.json();
+            
+            if (result.code === 200 && result.data) {
+                this.updateUserUI(result.data);
+                
+                // 登录成功后，重新加载"我玩过的"游戏
+                const myGamesDropdown = document.getElementById('my-games-dropdown');
+                if (myGamesDropdown) {
+                    myGamesDropdown.dataset.loaded = 'false';
+                    this.loadMyGamesDropdown(true);
+                }
+                
+                // 登录成功后，执行缓存同步（文件系统）
+                setTimeout(async () => {
+                    await this.syncCacheToServer();
+                }, 1000);
+            }
+        } catch (error) {
+        }
+    },
+
+    // 更新用户UI
+    updateUserUI(user) {
+        const loginNo = document.getElementById('login-no');
+        const loginAlready = document.getElementById('login-already');
+        const userMenuWrapper = document.getElementById('user-menu-wrapper');
+        const userDisplayName = document.getElementById('user-display-name');
+        const userAvatar = document.getElementById('user-avatar');
+
+        if (user) {
+            if (loginNo) loginNo.style.display = 'none';
+            if (loginAlready) loginAlready.style.display = 'flex';
+            if (userDisplayName) userDisplayName.textContent = user.nickname || user.username;
+            
+            // 显示头像
+            const userNameLink = document.getElementById('user-name-link');
+            if (userAvatar && userNameLink) {
+                // 移除旧的占位符
+                const oldPlaceholder = userNameLink.querySelector('.avatar-placeholder');
+                if (oldPlaceholder) {
+                    oldPlaceholder.remove();
+                }
+                
+                if (user.avatar) {
+                    // 有头像，显示图片
+                    userAvatar.src = user.avatar;
+                    userAvatar.style.display = 'block';
+                } else {
+                    // 没有头像，显示默认占位符（使用用户名首字母）
+                    userAvatar.style.display = 'none';
+                    const placeholderEl = document.createElement('div');
+                    placeholderEl.className = 'avatar-placeholder';
+                    placeholderEl.textContent = (user.nickname || user.username || 'U').charAt(0).toUpperCase();
+                    userNameLink.insertBefore(placeholderEl, userDisplayName);
+                }
+            }
+            
+            this.currentUser = user;
+            
+            // 用户登录后，重新加载"我玩过的"游戏
+            const myGamesDropdown = document.getElementById('my-games-dropdown');
+            if (myGamesDropdown) {
+                myGamesDropdown.dataset.loaded = 'false';
+                this.loadMyGamesDropdown(true);
+            }
+            
+            // 移动端：更新用户页面
+            if (this.isMobile()) {
+                this.loadMobileUserPage();
+            }
+            
+            // 用户登录后，执行游戏进度智能同步
+            setTimeout(async () => {
+                await this.syncGameProgressIntelligently();
+            }, 1500);
+        } else {
+            if (loginNo) loginNo.style.display = 'flex';
+            if (loginAlready) loginAlready.style.display = 'none';
+            if (userAvatar) {
+                userAvatar.style.display = 'none';
+            }
+            const userNameLink = document.getElementById('user-name-link');
+            if (userNameLink) {
+                const placeholder = userNameLink.querySelector('.avatar-placeholder');
+                if (placeholder) {
+                    placeholder.remove();
+                }
+            }
+            this.currentUser = null;
+            
+            // 移动端：更新用户页面（显示登录提示）
+            if (this.isMobile()) {
+                this.loadMobileUserPage();
+            }
+        }
+    },
+
+    // 加载分类
+    async loadCategories() {
+        try {
+            const result = await this.fetchWithCache(`${this.config.apiBase}/games.php?action=categories`, {}, true);
+            
+            if (result.code === 200) {
+                this.renderCategories(result.data);
+            }
+        } catch (error) {
+            log.error('加载分类失败:', error);
+        }
+    },
+
+    // 渲染分类
+    renderCategories(categories) {
+        // PC端导航
+        const nav = document.getElementById('category-nav');
+        if (nav) {
+            nav.innerHTML = '';
+
+            // 添加"首页"按钮
+            const homeBtn = this.createCategoryBtn('首页', '首页');
+            homeBtn.classList.add('active');
+            nav.appendChild(homeBtn);
+
+            // 添加其他分类
+            categories.forEach(cat => {
+                if (cat.name !== '首页') {
+                    nav.appendChild(this.createCategoryBtn(cat.name, cat.name));
+                }
+            });
+        }
+
+        // 移动端导航
+        const mobileNav = document.getElementById('mobile-category-nav');
+        if (mobileNav) {
+            mobileNav.innerHTML = '';
+
+            // 添加"首页"按钮
+            const mobileHomeBtn = this.createMobileCategoryBtn('首页', '首页');
+            mobileHomeBtn.classList.add('active');
+            mobileNav.appendChild(mobileHomeBtn);
+
+            // 添加其他分类（最多16个，一行8个，两行）
+            const categoriesToShow = categories
+                .filter(cat => cat.name !== '首页')
+                .slice(0, 15); // 首页 + 15个其他分类 = 16个
+            
+            categoriesToShow.forEach(cat => {
+                mobileNav.appendChild(this.createMobileCategoryBtn(cat.name, cat.name));
+            });
+        }
+
+        // 对齐所有header区域的宽度
+        this.alignHeaderWidths();
+
+        // 渲染分类标签区域（异步加载）
+        this.renderCategoryTags(categories).catch(err => {
+            log.error('加载分类游戏失败:', err);
+        });
+        
+        // 渲染侧边栏分类列表
+        this.renderCategorySidebar(categories);
+    },
+
+    // 对齐所有header区域的宽度
+    alignHeaderWidths() {
+        // 移动端不需要对齐，直接返回
+        if (this.isMobile()) {
+            return;
+        }
+        
+        // 使用 setTimeout 确保 DOM 完全渲染后再获取宽度
+        setTimeout(() => {
+            const navContainer = document.querySelector('.header-bottom .header-c');
+            if (!navContainer) return;
+
+            const navWidth = navContainer.offsetWidth;
+            
+            // 对齐顶部header
+            const topHeader = document.querySelector('.header-top .header-c');
+            if (topHeader) {
+                topHeader.style.width = navWidth + 'px';
+            }
+
+            // 对齐中间header（logo和搜索）
+            const centerHeader = document.querySelector('.header-center .header-c');
+            if (centerHeader) {
+                centerHeader.style.width = navWidth + 'px';
+            }
+
+            // 对齐分类标签区域（PC端主内容区内的）
+            const categoryTags = document.querySelector('body > .main-content #category-tags-section');
+            if (categoryTags) {
+                categoryTags.style.width = navWidth + 'px';
+            }
+
+            // 对齐随机游戏展示区域（PC端主内容区内的）
+            const randomGames = document.querySelector('body > .main-content .random-games-section');
+            if (randomGames) {
+                randomGames.style.width = navWidth + 'px';
+            }
+
+            // 对齐游戏区域（PC端主内容区内的）
+            const centerContent = document.querySelector('body > .main-content .center-content');
+            if (centerContent) {
+                centerContent.style.width = navWidth + 'px';
+            }
+            
+            // 对齐页脚内容
+            const footerContent = document.querySelector('.footer-content');
+            if (footerContent) {
+                footerContent.style.width = navWidth + 'px';
+            }
+        }, 0);
+    },
+
+    // 渲染分类标签区域（两列布局，每列6个分类，每个分类显示最新5个游戏）
+    async renderCategoryTags(categories) {
+        const container = document.getElementById('category-tags-section');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        // 获取所有分类名称（排除"首页"）
+        const categoryNames = categories
+            .filter(cat => cat.name !== '首页')
+            .map(cat => cat.name)
+            .slice(0, 12); // 只显示12个分类（两列，每列6个）
+
+        // 为每个分类加载最新的5个游戏
+        const categoryPromises = categoryNames.map(async (categoryName) => {
+            try {
+                const response = await fetch(`${this.config.apiBase}/games.php?action=list&category=${encodeURIComponent(categoryName)}&page=1&pageSize=5`);
+                const result = await response.json();
+                return {
+                    name: categoryName,
+                    games: result.data?.list || []
+                };
+            } catch (error) {
+                log.error(`加载分类 ${categoryName} 的游戏失败:`, error);
+                return {
+                    name: categoryName,
+                    games: []
+                };
+            }
+        });
+
+        const categoryData = await Promise.all(categoryPromises);
+
+        // 创建分类行（两列布局）
+        categoryData.forEach((category, index) => {
+            const row = document.createElement('div');
+            row.className = 'category-tags-row';
+
+            // 分类标签
+            const categoryLabel = document.createElement('div');
+            categoryLabel.className = 'category-label';
+            categoryLabel.textContent = category.name;
+            row.appendChild(categoryLabel);
+
+            // 游戏列表
+            const gamesList = document.createElement('div');
+            gamesList.className = 'games-list';
+            
+            if (category.games && category.games.length > 0) {
+                category.games.forEach(game => {
+                    const gameItem = document.createElement('a');
+                    gameItem.className = 'game-item';
+                    gameItem.href = '#';
+                    gameItem.textContent = game.name;
+                    // 随机将30%的游戏名字设置为橙色
+                    if (Math.random() < 0.3) {
+                        gameItem.style.color = '#ff6600';
+                    }
+                    gameItem.onclick = (e) => {
+                        e.preventDefault();
+                        // 防止在聊天界面或个人中心界面时触发游戏
+                        if (e.target.closest('.mobile-chat-page') || 
+                            e.target.closest('.mobile-user-page') ||
+                            document.querySelector('#mobile-page-chat.active') ||
+                            document.querySelector('#mobile-page-user.active')) {
+                            e.stopPropagation();
+                            return;
+                        }
+                        this.playGame(game);
+                    };
+                    gamesList.appendChild(gameItem);
+                });
+            } else {
+                // 如果没有游戏，显示提示
+                const emptyTip = document.createElement('span');
+                emptyTip.className = 'game-item';
+                emptyTip.style.color = '#999';
+                emptyTip.textContent = '暂无游戏';
+                gamesList.appendChild(emptyTip);
+            }
+            
+            row.appendChild(gamesList);
+            container.appendChild(row);
+        });
+
+        // 对齐所有header区域的宽度
+        setTimeout(() => {
+            this.alignHeaderWidths();
+        }, 0);
+        
+        // 监听窗口大小变化，重新对齐
+        if (!window.headerWidthAligned) {
+            window.addEventListener('resize', () => {
+                this.alignHeaderWidths();
+            });
+            window.headerWidthAligned = true;
+        }
+    },
+
+    // 创建分类按钮（PC端）
+    createCategoryBtn(name, category) {
+        const btn = document.createElement('button');
+        btn.className = 'cat-btn';
+        btn.textContent = name;
+        btn.onclick = () => {
+            // 更新PC端按钮状态
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            // 同步移动端按钮状态
+            document.querySelectorAll('.mobile-cat-btn').forEach(b => b.classList.remove('active'));
+            const mobileBtn = Array.from(document.querySelectorAll('.mobile-cat-btn')).find(b => b.textContent === name);
+            if (mobileBtn) {
+                mobileBtn.classList.add('active');
+            }
+            this.config.currentCategory = category;
+            this.config.currentPage = 1;
+            this.loadGames();
+        };
+        return btn;
+    },
+    
+    // 创建分类按钮（移动端）
+    createMobileCategoryBtn(name, category) {
+        const btn = document.createElement('button');
+        btn.className = 'mobile-cat-btn';
+        btn.textContent = name;
+        btn.onclick = () => {
+            // 同时更新PC端和移动端的active状态
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.mobile-cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            // 同步PC端按钮状态
+            const pcBtn = Array.from(document.querySelectorAll('.cat-btn')).find(b => b.textContent === name);
+            if (pcBtn) {
+                pcBtn.classList.add('active');
+            }
+            this.config.currentCategory = category;
+            this.config.currentPage = 1;
+            this.loadGames();
+        };
+        return btn;
+    },
+
+    // 加载游戏
+    async loadGames() {
+        // 根据当前分类加载游戏
+        if (this.config.currentCategory === '首页') {
+            // 首页加载热门推荐
+            await this.loadHotGames(1);
+        } else {
+            // 其他分类加载对应分类的游戏
+            await this.loadGamesByCategory(this.config.currentCategory, 1);
+        }
+    },
+    
+    // 根据分类加载游戏
+    async loadGamesByCategory(category, page = 1) {
+        try {
+            // 更新当前页码
+            this.config.currentPage = page;
+            // 7列 x 30行 = 210个游戏
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&category=${encodeURIComponent(category)}&page=${page}&pageSize=210`);
+            const result = await response.json();
+            if (result.code === 200) {
+                this.renderGames(result.data);
+            }
+        } catch (error) {
+            log.error('加载分类游戏失败:', error);
+        }
+    },
+
+    // 加载header区域的随机游戏
+    async loadHeaderGames() {
+        const container = document.getElementById('header-games');
+        if (!container) return;
+
+        try {
+            // 获取所有游戏（获取足够多的游戏以便随机选择）
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&page=1&pageSize=100`);
+            const result = await response.json();
+            
+            if (result.code === 200 && result.data && result.data.list) {
+                const games = result.data.list;
+                
+                // 随机选择5个游戏
+                const shuffled = games.sort(() => 0.5 - Math.random());
+                const selectedGames = shuffled.slice(0, 5);
+                
+                // 渲染游戏logo
+                container.innerHTML = '';
+                selectedGames.forEach(game => {
+                    const gameItem = document.createElement('div');
+                    gameItem.className = 'header-game-item';
+                    gameItem.onclick = (e) => {
+                        // 防止在聊天界面或个人中心界面时触发游戏
+                        if (e.target.closest('.mobile-chat-page') || 
+                            e.target.closest('.mobile-user-page') ||
+                            document.querySelector('#mobile-page-chat.active') ||
+                            document.querySelector('#mobile-page-user.active')) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            return;
+                        }
+                        this.playGame(game);
+                    };
+                    
+                    const preview = document.createElement('div');
+                    preview.className = 'header-game-preview';
+                    if (game.preview) {
+                        preview.style.backgroundImage = `url('${game.preview}')`;
+                    }
+                    
+                    const title = document.createElement('div');
+                    title.className = 'header-game-title';
+                    title.textContent = game.name || '';
+                    
+                    gameItem.appendChild(preview);
+                    gameItem.appendChild(title);
+                    container.appendChild(gameItem);
+                });
+            }
+        } catch (error) {
+            log.error('加载header游戏失败:', error);
+        }
+    },
+
+    // 加载随机游戏展示
+    async loadRandomGames() {
+        const container = document.getElementById('random-games-container');
+        if (!container) return;
+
+        try {
+            // 获取所有游戏
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&page=1&pageSize=200`);
+            const result = await response.json();
+
+            if (result.code === 200 && result.data && result.data.list) {
+                const allGames = result.data.list;
+                // 随机打乱并选择33个游戏（3行 x 11个）
+                const shuffled = allGames.sort(() => 0.5 - Math.random());
+                const selectedGames = shuffled.slice(0, 33);
+
+                // 存储当前游戏列表
+                this.randomGamesList = selectedGames;
+                this.currentRandomPage = 0;
+
+                // 渲染游戏
+                this.renderRandomGames(selectedGames);
+            }
+        } catch (error) {
+            log.error('加载随机游戏失败:', error);
+        }
+    },
+
+    // 渲染随机游戏
+    renderRandomGames(games) {
+        const container = document.getElementById('random-games-container');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        // 分成3行，每行11个
+        for (let row = 0; row < 3; row++) {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'random-games-row';
+
+            for (let col = 0; col < 11; col++) {
+                const index = row * 11 + col;
+                if (index < games.length) {
+                    const game = games[index];
+                    const gameItem = document.createElement('a');
+                    gameItem.className = 'random-game-item';
+                    gameItem.href = '#';
+                    gameItem.onclick = (e) => {
+                        e.preventDefault();
+                        // 防止在聊天界面或个人中心界面时触发游戏
+                        if (e.target.closest('.mobile-chat-page') || 
+                            e.target.closest('.mobile-user-page') ||
+                            document.querySelector('#mobile-page-chat.active') ||
+                            document.querySelector('#mobile-page-user.active')) {
+                            e.stopPropagation();
+                            return;
+                        }
+                        this.playGame(game);
+                    };
+
+                    const icon = document.createElement('div');
+                    icon.className = 'random-game-icon';
+                    if (game.preview) {
+                        icon.style.backgroundImage = `url('${game.preview}')`;
+                    }
+
+                    const title = document.createElement('div');
+                    title.className = 'random-game-title';
+                    title.textContent = game.name || '';
+
+                    gameItem.appendChild(icon);
+                    gameItem.appendChild(title);
+                    rowDiv.appendChild(gameItem);
+                }
+            }
+
+            container.appendChild(rowDiv);
+        }
+
+        // 对齐宽度
+        setTimeout(() => {
+            this.alignHeaderWidths();
+        }, 0);
+    },
+
+    // 切换随机游戏
+    async switchRandomGames(direction) {
+        try {
+            // 获取所有游戏
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&page=1&pageSize=200`);
+            const result = await response.json();
+
+            if (result.code === 200 && result.data && result.data.list) {
+                const allGames = result.data.list;
+                // 随机打乱并选择33个游戏（3行 x 11个）
+                const shuffled = allGames.sort(() => 0.5 - Math.random());
+                const selectedGames = shuffled.slice(0, 33);
+
+                // 更新游戏列表并渲染
+                this.randomGamesList = selectedGames;
+                this.renderRandomGames(selectedGames);
+            }
+        } catch (error) {
+            log.error('切换随机游戏失败:', error);
+        }
+    },
+
+    // 加载"我玩过的"下拉菜单
+    async loadMyGamesDropdown(forceReload = false) {
+        const container = document.getElementById('my-games-dropdown');
+        if (!container) return;
+
+        // 如果已经加载过且不是强制重新加载，不重复加载
+        if (!forceReload && container.dataset.loaded === 'true') return;
+
+        try {
+            container.innerHTML = '';
+            
+            // 先尝试获取用户玩过的游戏
+            let games = [];
+            let useRandomGames = false;
+            
+            try {
+                const userGamesResponse = await fetch(`${this.config.apiBase}/user_games.php?action=list`);
+                const userGamesResult = await userGamesResponse.json();
+                
+                if (userGamesResult.code === 200 && userGamesResult.data && userGamesResult.data.length > 0) {
+                    games = userGamesResult.data;
+                } else {
+                    // 如果没有玩过的游戏，使用随机游戏
+                    useRandomGames = true;
+                }
+            } catch (error) {
+                // 如果请求失败（可能是未登录），使用随机游戏
+                useRandomGames = true;
+            }
+            
+            // 如果没有玩过的游戏，从所有游戏中随机选择
+            if (useRandomGames || games.length === 0) {
+                try {
+                    const allGamesResponse = await fetch(`${this.config.apiBase}/games.php?action=list&page=1&pageSize=100`);
+                    const allGamesResult = await allGamesResponse.json();
+                    
+                    if (allGamesResult.code === 200 && allGamesResult.data && allGamesResult.data.list) {
+                        const allGames = allGamesResult.data.list;
+                        // 随机选择9个游戏（3行 x 3个）
+                        const shuffled = [...allGames].sort(() => 0.5 - Math.random());
+                        games = shuffled.slice(0, 9);
+                    }
+                } catch (error) {
+                    log.error('加载随机游戏失败:', error);
+                }
+            }
+            
+            if (games.length > 0) {
+                // 如果游戏数量超过9个，随机选择9个
+                const selectedGames = games.length > 9 
+                    ? games.sort(() => 0.5 - Math.random()).slice(0, 9)
+                    : games;
+
+                selectedGames.forEach(game => {
+                    const item = this.createRecommendedGameItem(game);
+                    container.appendChild(item);
+                });
+            } else {
+                const empty = document.createElement('div');
+                empty.className = 'header-game-dropdown-item';
+                empty.style.color = '#999';
+                empty.style.justifyContent = 'center';
+                empty.textContent = '暂无游戏';
+                container.appendChild(empty);
+            }
+
+            container.dataset.loaded = 'true';
+        } catch (error) {
+            console.error('加载我玩过的游戏失败:', error);
+            container.innerHTML = '<div class="header-game-dropdown-item" style="color:#999;justify-content:center;">加载失败</div>';
+        }
+    },
+
+    // 创建推荐游戏项（用于下拉菜单）
+    createRecommendedGameItem(game) {
+        const item = document.createElement('a');
+        item.className = 'recommended-game-item';
+        item.href = '#';
+        item.onclick = (e) => {
+            e.preventDefault();
+            this.playGame(game);
+            document.querySelectorAll('.header-menu-item').forEach(menu => {
+                menu.classList.remove('active');
+            });
+        };
+
+        const iconWrapper = document.createElement('div');
+        iconWrapper.className = 'recommended-game-icon-wrapper';
+
+        const icon = document.createElement('div');
+        icon.className = 'recommended-game-icon';
+        if (game.preview) {
+            icon.style.backgroundImage = `url('${game.preview}')`;
+        }
+
+        // 添加"荐"标签
+        const tag = document.createElement('div');
+        tag.className = 'recommended-tag';
+        tag.textContent = '荐';
+
+        iconWrapper.appendChild(icon);
+        iconWrapper.appendChild(tag);
+
+        const title = document.createElement('div');
+        title.className = 'recommended-game-title';
+        title.textContent = game.name || '';
+
+        item.appendChild(iconWrapper);
+        item.appendChild(title);
+        
+        return item;
+    },
+
+    // 绑定下拉菜单事件
+    bindDropdownEvents(menuId, dropdownId) {
+        const menu = document.getElementById(menuId);
+        const dropdown = document.getElementById(dropdownId);
+        if (!menu || !dropdown) return;
+        
+        // 查找对应的timeout变量（存储在window上）
+        const timeoutKey = menuId === 'my-games-menu' ? 'myGamesTimeout' : 'recommendedTimeout';
+        
+        const clearTimeoutHandler = () => {
+            if (window[timeoutKey]) {
+                clearTimeout(window[timeoutKey]);
+                window[timeoutKey] = null;
+            }
+        };
+        
+        const hideMenu = () => {
+            window[timeoutKey] = setTimeout(() => {
+                menu.classList.remove('active');
+            }, 200);
+        };
+        
+        // 移除旧的事件监听器（如果存在）
+        const oldEnter = dropdown._mouseenterHandler;
+        const oldLeave = dropdown._mouseleaveHandler;
+        if (oldEnter) dropdown.removeEventListener('mouseenter', oldEnter);
+        if (oldLeave) dropdown.removeEventListener('mouseleave', oldLeave);
+        
+        // 保存新的处理器引用
+        dropdown._mouseenterHandler = clearTimeoutHandler;
+        dropdown._mouseleaveHandler = hideMenu;
+        
+        // 绑定新的事件
+        dropdown.addEventListener('mouseenter', clearTimeoutHandler);
+        dropdown.addEventListener('mouseleave', hideMenu);
+    },
+
+    // 加载"猜你喜欢"下拉菜单
+    async loadRecommendedDropdown() {
+        const container = document.getElementById('recommended-dropdown');
+        if (!container) return;
+
+        // 如果已经加载过，不重复加载
+        if (container.dataset.loaded === 'true') return;
+
+        try {
+            // 随机获取游戏作为推荐
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&page=1&pageSize=50`);
+            const result = await response.json();
+
+            container.innerHTML = '';
+
+            if (result.code === 200 && result.data && result.data.list) {
+                const games = result.data.list;
+                // 随机选择9个游戏（3行 x 3个）
+                const shuffled = games.sort(() => 0.5 - Math.random());
+                const recommended = shuffled.slice(0, 9);
+
+                recommended.forEach(game => {
+                    const item = document.createElement('a');
+                    item.className = 'recommended-game-item';
+                    item.href = '#';
+                    item.onclick = (e) => {
+                        e.preventDefault();
+                        this.playGame(game);
+                        document.querySelectorAll('.header-menu-item').forEach(menu => {
+                            menu.classList.remove('active');
+                        });
+                    };
+
+                    const iconWrapper = document.createElement('div');
+                    iconWrapper.className = 'recommended-game-icon-wrapper';
+
+                    const icon = document.createElement('div');
+                    icon.className = 'recommended-game-icon';
+                    if (game.preview) {
+                        icon.style.backgroundImage = `url('${game.preview}')`;
+                    }
+
+                    // 添加"荐"标签
+                    const tag = document.createElement('div');
+                    tag.className = 'recommended-tag';
+                    tag.textContent = '荐';
+
+                    iconWrapper.appendChild(icon);
+                    iconWrapper.appendChild(tag);
+
+                    const title = document.createElement('div');
+                    title.className = 'recommended-game-title';
+                    title.textContent = game.name || '';
+
+                    item.appendChild(iconWrapper);
+                    item.appendChild(title);
+                    container.appendChild(item);
+                });
+            } else {
+                const empty = document.createElement('div');
+                empty.className = 'header-game-dropdown-item';
+                empty.style.color = '#999';
+                empty.style.justifyContent = 'center';
+                empty.textContent = '暂无推荐';
+                container.appendChild(empty);
+            }
+
+            container.dataset.loaded = 'true';
+        } catch (error) {
+            log.error('加载推荐游戏失败:', error);
+            container.innerHTML = '<div class="header-game-dropdown-item" style="color:#999;justify-content:center;">加载失败</div>';
+        }
+    },
+
+    // 渲染游戏
+    renderGames(data) {
+        const { list, totalPages, currentPage } = data;
+
+        // 更新当前页码（如果API返回了当前页码）
+        if (currentPage !== undefined) {
+            this.config.currentPage = currentPage;
+        }
+        
+        // 注意：不在这里更新游戏总数，因为这里的total可能是分类下的游戏数量
+        // 游戏总数应该只在初始化时通过loadGamesTotal()更新
+
+        // 渲染游戏（热门推荐）
+        this.renderGameGrid('all-games', list);
+        this.renderPagination(totalPages);
+    },
+    
+    // 加载游戏总数
+    async loadGamesTotal() {
+        try {
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&page=1&pageSize=1`);
+            const result = await response.json();
+            if (result.code === 200 && result.data && result.data.total !== undefined) {
+                this.updateGamesTotal(result.data.total);
+            }
+        } catch (error) {
+            log.error('加载游戏总数失败:', error);
+        }
+    },
+    
+    // 更新游戏总数显示
+    updateGamesTotal(total) {
+        const totalElement = this.getElementByIdForDevice('games-total');
+        if (totalElement) {
+            totalElement.textContent = total;
+        }
+    },
+    
+    // 检测是否为移动端
+    isMobile() {
+        return window.innerWidth <= 768;
+    },
+    
+    // 加载热门推荐游戏
+    async loadHotGames(page = 1) {
+        try {
+            // 更新当前页码
+            this.config.currentPage = page;
+            // 移动端：一行5个，最多8行 = 40个游戏；PC端：7列 x 33行 = 231个游戏
+            const pageSize = this.isMobile() ? 40 : 231;
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&page=${page}&pageSize=${pageSize}&sort=hot`);
+            const result = await response.json();
+            if (result.code === 200) {
+                this.renderGames(result.data);
+            }
+        } catch (error) {
+            log.error('加载热门推荐失败:', error);
+        }
+    },
+    
+    // 加载最新更新游戏
+    async loadNewGames(page = 1) {
+        try {
+            // 更新当前页码
+            this.config.currentPage = page;
+            // 移动端：一行5个，最多8行 = 40个游戏；PC端：7列 x 33行 = 231个游戏
+            const pageSize = this.isMobile() ? 40 : 231;
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&page=${page}&pageSize=${pageSize}&sort=new`);
+            const result = await response.json();
+            if (result.code === 200) {
+                this.renderGames(result.data);
+            }
+        } catch (error) {
+            log.error('加载最新更新失败:', error);
+        }
+    },
+    
+    // 渲染侧边栏分类列表
+    renderCategorySidebar(categories) {
+        const container = this.getElementByIdForDevice('category-sidebar-list');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        // 排除"首页"分类
+        const filteredCategories = categories.filter(cat => cat.name !== '首页');
+        
+        filteredCategories.forEach(category => {
+            const categoryItem = document.createElement('div');
+            categoryItem.className = 'category-sidebar-item';
+            categoryItem.dataset.category = category.name;
+            
+            const header = document.createElement('div');
+            header.className = 'category-sidebar-item-header';
+            
+            const title = document.createElement('h3');
+            title.textContent = category.name;
+            
+            const pagination = document.createElement('div');
+            pagination.className = 'category-sidebar-item-pagination';
+            
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'category-sidebar-item-prev-btn';
+            prevBtn.textContent = '‹';
+            prevBtn.dataset.category = category.name;
+            
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'category-sidebar-item-page-dots';
+            dotsContainer.dataset.category = category.name;
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'category-sidebar-item-next-btn';
+            nextBtn.textContent = '›';
+            nextBtn.dataset.category = category.name;
+            
+            pagination.appendChild(prevBtn);
+            pagination.appendChild(dotsContainer);
+            pagination.appendChild(nextBtn);
+            
+            header.appendChild(title);
+            header.appendChild(pagination);
+            
+            const listContainer = document.createElement('div');
+            listContainer.className = 'category-sidebar-item-list';
+            listContainer.dataset.category = category.name;
+            
+            categoryItem.appendChild(header);
+            categoryItem.appendChild(listContainer);
+            container.appendChild(categoryItem);
+            
+            // 加载该分类的第一页游戏
+            this.loadCategorySidebarGames(category.name, 1);
+            
+            // 绑定分页按钮事件
+            prevBtn.onclick = () => {
+                const currentPage = parseInt(listContainer.dataset.currentPage || '1');
+                if (currentPage > 1) {
+                    this.loadCategorySidebarGames(category.name, currentPage - 1);
+                }
+            };
+            
+            nextBtn.onclick = () => {
+                const currentPage = parseInt(listContainer.dataset.currentPage || '1');
+                const totalPages = parseInt(listContainer.dataset.totalPages || '1');
+                if (currentPage < totalPages) {
+                    this.loadCategorySidebarGames(category.name, currentPage + 1);
+                }
+            };
+        });
+    },
+    
+    // 加载侧边栏分类游戏
+    async loadCategorySidebarGames(categoryName, page = 1) {
+        const listContainer = document.querySelector(`.category-sidebar-item-list[data-category="${categoryName}"]`);
+        if (!listContainer) return;
+        
+        try {
+            // 每页显示6个游戏（2行 x 3列）
+            const gamesPerPage = 6;
+            const response = await fetch(`${this.config.apiBase}/games.php?action=list&category=${encodeURIComponent(categoryName)}&page=${page}&pageSize=${gamesPerPage}`);
+            const result = await response.json();
+            
+            if (result.code === 200 && result.data && result.data.list) {
+                const games = result.data.list;
+                const totalPages = result.data.totalPages || 1;
+                
+                listContainer.innerHTML = '';
+                games.forEach(game => {
+                    const item = document.createElement('a');
+                    item.className = 'recommended-game-item';
+                    item.href = '#';
+                    item.onclick = (e) => {
+                        e.preventDefault();
+                        this.playGame(game);
+                    };
+
+                    const iconWrapper = document.createElement('div');
+                    iconWrapper.className = 'recommended-game-icon-wrapper';
+
+                    const icon = document.createElement('div');
+                    icon.className = 'recommended-game-icon';
+                    if (game.preview) {
+                        icon.style.backgroundImage = `url('${game.preview}')`;
+                    }
+
+                    const tag = document.createElement('div');
+                    tag.className = 'recommended-tag';
+                    tag.textContent = '荐';
+
+                    iconWrapper.appendChild(icon);
+                    iconWrapper.appendChild(tag);
+
+                    const title = document.createElement('div');
+                    title.className = 'recommended-game-title';
+                    title.textContent = game.name || '';
+
+                    item.appendChild(iconWrapper);
+                    item.appendChild(title);
+                    listContainer.appendChild(item);
+                });
+                
+                // 更新圆点分页
+                const dotsContainer = document.querySelector(`.category-sidebar-item-page-dots[data-category="${categoryName}"]`);
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                    if (totalPages > 0) {
+                        // 最多显示3个圆点
+                        const maxDots = 3;
+                        let startPage, endPage;
+                        
+                        if (totalPages <= maxDots) {
+                            // 如果总页数小于等于3，显示所有页
+                            startPage = 1;
+                            endPage = totalPages;
+                        } else {
+                            // 如果总页数大于3，根据当前页决定显示哪些页
+                            if (page <= 2) {
+                                // 当前页在前2页，显示前3页
+                                startPage = 1;
+                                endPage = maxDots;
+                            } else if (page >= totalPages - 1) {
+                                // 当前页在后2页，显示后3页
+                                startPage = totalPages - maxDots + 1;
+                                endPage = totalPages;
+                            } else {
+                                // 当前页在中间，显示当前页前后各1页
+                                startPage = page - 1;
+                                endPage = page + 1;
+                            }
+                        }
+                        
+                        for (let i = startPage; i <= endPage; i++) {
+                            const dot = document.createElement('button');
+                            dot.className = 'category-sidebar-item-page-dot';
+                            if (i === page) {
+                                dot.classList.add('active');
+                            }
+                            dot.onclick = () => {
+                                this.loadCategorySidebarGames(categoryName, i);
+                            };
+                            dotsContainer.appendChild(dot);
+                        }
+                    }
+                }
+                
+                // 更新按钮状态
+                const prevBtn = document.querySelector(`.category-sidebar-item-prev-btn[data-category="${categoryName}"]`);
+                const nextBtn = document.querySelector(`.category-sidebar-item-next-btn[data-category="${categoryName}"]`);
+                if (prevBtn) prevBtn.disabled = page <= 1;
+                if (nextBtn) nextBtn.disabled = page >= totalPages;
+                
+                // 存储当前页码和总页数
+                listContainer.dataset.currentPage = page;
+                listContainer.dataset.totalPages = totalPages;
+            } else {
+                listContainer.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:20px;">暂无游戏</div>';
+            }
+        } catch (error) {
+            log.error(`加载分类 ${categoryName} 游戏失败:`, error);
+            listContainer.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:20px;">加载失败</div>';
+        }
+    },
+    
+    // 加载侧边栏"我玩过的"游戏
+    async loadMyGamesSidebar(page = 1) {
+        const container = this.getElementByIdForDevice('my-games-sidebar-list');
+        if (!container) return;
+        
+        try {
+            // 先尝试获取用户玩过的游戏
+            let games = [];
+            let useRandomGames = false;
+            
+            try {
+                const userGamesResponse = await fetch(`${this.config.apiBase}/user_games.php?action=list`);
+                const userGamesResult = await userGamesResponse.json();
+                
+                if (userGamesResult.code === 200 && userGamesResult.data && userGamesResult.data.length > 0) {
+                    games = userGamesResult.data;
+                } else {
+                    // 如果没有玩过的游戏，使用随机游戏
+                    useRandomGames = true;
+                }
+            } catch (error) {
+                // 如果请求失败（可能是未登录），使用随机游戏
+                useRandomGames = true;
+            }
+            
+            // 如果没有玩过的游戏，从所有游戏中随机选择
+            if (useRandomGames || games.length === 0) {
+                try {
+                    const allGamesResponse = await fetch(`${this.config.apiBase}/games.php?action=list&page=1&pageSize=200`);
+                    const allGamesResult = await allGamesResponse.json();
+                    
+                    if (allGamesResult.code === 200 && allGamesResult.data && allGamesResult.data.list) {
+                        const allGames = allGamesResult.data.list;
+                        // 随机选择18个游戏（3页 x 6个）
+                        const shuffled = [...allGames].sort(() => 0.5 - Math.random());
+                        games = shuffled.slice(0, 18);
+                    }
+                } catch (error) {
+                    log.error('加载随机游戏失败:', error);
+                }
+            }
+            
+            if (games.length > 0) {
+                const gamesPerPage = 6; // 2行 x 3列
+                const totalPages = Math.ceil(games.length / gamesPerPage);
+                const startIndex = (page - 1) * gamesPerPage;
+                const endIndex = startIndex + gamesPerPage;
+                const pageGames = games.slice(startIndex, endIndex);
+                
+                container.innerHTML = '';
+                pageGames.forEach(game => {
+                    const item = document.createElement('a');
+                    item.className = 'recommended-game-item';
+                    item.href = '#';
+                    item.onclick = (e) => {
+                        e.preventDefault();
+                        this.playGame(game);
+                    };
+
+                    const iconWrapper = document.createElement('div');
+                    iconWrapper.className = 'recommended-game-icon-wrapper';
+
+                    const icon = document.createElement('div');
+                    icon.className = 'recommended-game-icon';
+                    if (game.preview) {
+                        icon.style.backgroundImage = `url('${game.preview}')`;
+                    }
+
+                    const tag = document.createElement('div');
+                    tag.className = 'recommended-tag';
+                    tag.textContent = '荐';
+
+                    iconWrapper.appendChild(icon);
+                    iconWrapper.appendChild(tag);
+
+                    const title = document.createElement('div');
+                    title.className = 'recommended-game-title';
+                    title.textContent = game.name || '';
+
+                    item.appendChild(iconWrapper);
+                    item.appendChild(title);
+                    container.appendChild(item);
+                });
+                
+                // 更新圆点分页
+                const dotsContainer = this.getElementByIdForDevice('my-games-sidebar-dots');
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                    if (totalPages > 0) {
+                        // 最多显示3个圆点
+                        const maxDots = 3;
+                        let startPage, endPage;
+                        
+                        if (totalPages <= maxDots) {
+                            // 如果总页数小于等于3，显示所有页
+                            startPage = 1;
+                            endPage = totalPages;
+                        } else {
+                            // 如果总页数大于3，根据当前页决定显示哪些页
+                            if (page <= 2) {
+                                // 当前页在前2页，显示前3页
+                                startPage = 1;
+                                endPage = maxDots;
+                            } else if (page >= totalPages - 1) {
+                                // 当前页在后2页，显示后3页
+                                startPage = totalPages - maxDots + 1;
+                                endPage = totalPages;
+                            } else {
+                                // 当前页在中间，显示当前页前后各1页
+                                startPage = page - 1;
+                                endPage = page + 1;
+                            }
+                        }
+                        
+                        for (let i = startPage; i <= endPage; i++) {
+                            const dot = document.createElement('button');
+                            dot.className = 'sidebar-page-dot';
+                            if (i === page) {
+                                dot.classList.add('active');
+                            }
+                            dot.onclick = () => {
+                                this.loadMyGamesSidebar(i);
+                            };
+                            dotsContainer.appendChild(dot);
+                        }
+                    }
+                } else {
+                    console.error('找不到圆点容器: my-games-sidebar-dots');
+                }
+                
+                // 更新按钮状态
+                const prevBtn = this.getElementByIdForDevice('my-games-sidebar-prev');
+                const nextBtn = this.getElementByIdForDevice('my-games-sidebar-next');
+                if (prevBtn) prevBtn.disabled = page <= 1;
+                if (nextBtn) nextBtn.disabled = page >= totalPages;
+                
+                // 存储当前页码和总页数
+                container.dataset.currentPage = page;
+                container.dataset.totalPages = totalPages;
+            } else {
+                container.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:20px;">暂无游戏</div>';
+                // 清空圆点
+                const dotsContainer = this.getElementByIdForDevice('my-games-sidebar-dots');
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                }
+                // 更新按钮状态
+                const prevBtn = this.getElementByIdForDevice('my-games-sidebar-prev');
+                const nextBtn = this.getElementByIdForDevice('my-games-sidebar-next');
+                if (prevBtn) prevBtn.disabled = true;
+                if (nextBtn) nextBtn.disabled = true;
+            }
+        } catch (error) {
+            console.error('加载我玩过的游戏失败:', error);
+            container.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:20px;">加载失败</div>';
+        }
+    },
+
+    // 渲染游戏网格
+    // 根据设备类型获取正确的元素（PC端优先选择body > .main-content内的元素）
+    getElementByIdForDevice(id) {
+        if (this.isMobile()) {
+            // 移动端：优先查找移动端页面内的元素
+            const mobilePage = document.querySelector('.mobile-page.active');
+            if (mobilePage) {
+                const element = mobilePage.querySelector(`#${id}`);
+                if (element) return element;
+            }
+        } else {
+            // PC端：优先查找body > .main-content内的元素（排除移动端页面内的）
+            const pcMainContent = document.querySelector('body > .main-content');
+            if (pcMainContent) {
+                const element = pcMainContent.querySelector(`#${id}`);
+                if (element) return element;
+            }
+        }
+        // 如果找不到，回退到全局查找
+        return document.getElementById(id);
+    },
+    
+    // 获取用户中心相关的元素（移动端优先查找.mobile-user-page内的元素）
+    getUserCenterElement(id) {
+        if (this.isMobile()) {
+            // 移动端：优先查找移动端用户页面内的元素
+            const mobileUserPage = document.querySelector('.mobile-user-page');
+            if (mobileUserPage) {
+                const element = mobileUserPage.querySelector(`#${id}`);
+                if (element) return element;
+            }
+        }
+        // PC端或找不到时，回退到全局查找（可能在模态框中）
+        return document.getElementById(id);
+    },
+
+    renderGameGrid(containerId, games) {
+        const container = this.getElementByIdForDevice(containerId);
+        if (!container) {
+            console.warn(`容器 ${containerId} 未找到`);
+            return;
+        }
+
+        container.innerHTML = '';
+
+        games.forEach(game => {
+            const card = this.createGameCard(game);
+            container.appendChild(card);
+        });
+    },
+
+    // 创建游戏卡片
+    createGameCard(game) {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+
+        // 游戏图标
+        const icon = document.createElement('div');
+        icon.className = 'game-icon';
+        if (game.preview) {
+            icon.style.backgroundImage = `url('${game.preview}')`;
+        }
+
+        // 游戏标题
+        const title = document.createElement('div');
+        title.className = 'game-title';
+        title.textContent = game.name;
+
+        card.appendChild(icon);
+        card.appendChild(title);
+
+        card.onclick = (e) => {
+            // 防止在聊天界面或个人中心界面时触发游戏
+            if (e.target.closest('.mobile-chat-page') || 
+                e.target.closest('.mobile-user-page') ||
+                document.querySelector('#mobile-page-chat.active') ||
+                document.querySelector('#mobile-page-user.active')) {
+                e.stopPropagation();
+                e.preventDefault();
+                return;
+            }
+            this.playGame(game);
+        };
+
+        return card;
+    },
+
+    // 渲染分页
+    renderPagination(totalPages) {
+        const container = this.getElementByIdForDevice('pagination');
+        if (!container || totalPages <= 1) {
+            if (container) container.innerHTML = '';
+            return;
+        }
+
+        container.innerHTML = '';
+
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.textContent = '上一页';
+        prevBtn.disabled = this.config.currentPage === 1;
+        prevBtn.onclick = () => {
+            if (this.config.currentPage > 1) {
+                this.config.currentPage--;
+                if (this.config.currentCategory === '首页') {
+                    this.loadHotGames(this.config.currentPage);
+                } else {
+                    this.loadGamesByCategory(this.config.currentCategory, this.config.currentPage);
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+        container.appendChild(prevBtn);
+
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === 1 || i === totalPages || (i >= this.config.currentPage - 2 && i <= this.config.currentPage + 2)) {
+                const btn = document.createElement('button');
+                btn.className = 'page-btn';
+                if (i === this.config.currentPage) {
+                    btn.classList.add('active');
+                }
+                btn.textContent = i;
+                btn.onclick = () => {
+                    this.config.currentPage = i;
+                    const activeTab = document.querySelector('.games-tab-btn.active');
+                    if (activeTab) {
+                        const tab = activeTab.dataset.tab;
+                        if (tab === 'hot') {
+                            this.loadHotGames(i);
+                        } else if (tab === 'new') {
+                            this.loadNewGames(i);
+                        } else if (this.config.currentCategory === '首页') {
+                            this.loadHotGames(i);
+                        } else {
+                            this.loadGamesByCategory(this.config.currentCategory, i);
+                        }
+                    } else if (this.config.currentCategory === '首页') {
+                        this.loadHotGames(i);
+                    } else {
+                        this.loadGamesByCategory(this.config.currentCategory, i);
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+                container.appendChild(btn);
+            } else if (i === this.config.currentPage - 3 || i === this.config.currentPage + 3) {
+                const ellipsis = document.createElement('span');
+                ellipsis.textContent = '...';
+                ellipsis.style.padding = '0 8px';
+                container.appendChild(ellipsis);
+            }
+        }
+
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.textContent = '下一页';
+        nextBtn.disabled = this.config.currentPage === totalPages;
+        nextBtn.onclick = () => {
+            if (this.config.currentPage < totalPages) {
+                this.config.currentPage++;
+                const activeTab = document.querySelector('.games-tab-btn.active');
+                if (activeTab) {
+                    const tab = activeTab.dataset.tab;
+                    if (tab === 'hot') {
+                        this.loadHotGames(this.config.currentPage);
+                    } else if (tab === 'new') {
+                        this.loadNewGames(this.config.currentPage);
+                    } else if (this.config.currentCategory === '首页') {
+                        this.loadHotGames(this.config.currentPage);
+                    } else {
+                        this.loadGamesByCategory(this.config.currentCategory, this.config.currentPage);
+                    }
+                } else if (this.config.currentCategory === '首页') {
+                    this.loadHotGames(this.config.currentPage);
+                } else {
+                    this.loadGamesByCategory(this.config.currentCategory, this.config.currentPage);
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+        container.appendChild(nextBtn);
+    },
+
+    // 播放游戏
+    async playGame(game) {
+        const isMobile = this.isMobile();
+        const container = document.getElementById('game-container');
+        const frame = document.getElementById('game-frame');
+        const title = document.getElementById('game-title');
+
+        if (!container || !frame) {
+            console.error('游戏容器或iframe未找到');
+            return;
+        }
+
+        // 移动端：隐藏所有移动页面，显示游戏容器
+        if (isMobile) {
+            // 隐藏所有移动端页面
+            document.querySelectorAll('.mobile-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // 隐藏底部导航
+            const bottomNav = document.querySelector('.bottom-nav');
+            if (bottomNav) {
+                bottomNav.style.display = 'none';
+            }
+        }
+
+        title.textContent = game.name;
+        frame.src = game.path;
+        container.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // 确保聊天面板默认展开
+        const chatPanelEl = document.getElementById('chat-panel');
+        const toggleBtnEl = document.getElementById('chat-toggle-btn');
+        if (chatPanelEl) {
+            chatPanelEl.classList.remove('collapsed');
+        }
+        if (toggleBtnEl) {
+            toggleBtnEl.classList.remove('collapsed');
+            toggleBtnEl.classList.add('expanded');
+        }
+        // 确保父容器类正确
+        if (container) {
+            container.classList.remove('chat-collapsed');
+        }
+        
+        // 保存当前游戏信息
+        this.currentGame = game;
+
+        // 记录游戏游玩（如果已登录且有游戏ID）
+        if (this.currentUser && game.id) {
+            try {
+                await fetch(`${this.config.apiBase}/user_games.php?action=add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ game_id: game.id })
+                });
+            } catch (error) {
+                console.log('记录游戏游玩失败:', error);
+            }
+        }
+        
+        // 加载游戏进度（如果已登录）
+        if (this.currentUser && game.id) {
+            await this.loadGameProgress(game.id);
+        }
+        
+        // 设置iframe加载完成后的进度加载
+        frame.onload = () => {
+            // 等待iframe加载完成后，尝试加载进度
+            setTimeout(() => {
+                if (this.currentUser && game.id && this.pendingProgress) {
+                    this.sendProgressToGame(this.pendingProgress);
+                    this.pendingProgress = null;
+                }
+                
+                // 启动定时自动保存
+                this.startAutoSave();
+            }, 1000);
+        };
+        
+        // 监听来自游戏iframe的消息（游戏进度更新）
+        this.setupGameProgressListener();
+        
+        // 加载全局聊天消息（所有游戏共用）
+        await this.loadChatMessages();
+        this.startChatPolling();
+        
+        // 初始化表情选择器（游戏打开时才初始化）
+        setTimeout(() => {
+            this.initEmojiPicker();
+            this.initChatToggle(); // 初始化聊天收起/展开功能
+        }, 500);
+    },
+    
+    // 初始化聊天收起/展开功能
+    initChatToggle() {
+        const toggleBtn = document.getElementById('chat-toggle-btn');
+        const chatPanel = document.getElementById('chat-panel');
+        
+        if (!toggleBtn || !chatPanel) return;
+        
+        // 更新按钮状态
+        const updateButtonState = () => {
+            if (chatPanel.classList.contains('collapsed')) {
+                toggleBtn.classList.add('collapsed');
+                toggleBtn.classList.remove('expanded');
+            } else {
+                toggleBtn.classList.remove('collapsed');
+                toggleBtn.classList.add('expanded');
+            }
+        };
+        
+        // 初始状态
+        updateButtonState();
+        
+        toggleBtn.onclick = (e) => {
+            e.stopPropagation();
+            chatPanel.classList.toggle('collapsed');
+            updateButtonState();
+            
+            // 更新父容器的类，用于CSS选择器兼容性
+            const gameContentWrapper = chatPanel.closest('.game-content-wrapper');
+            if (gameContentWrapper) {
+                if (chatPanel.classList.contains('collapsed')) {
+                    gameContentWrapper.classList.add('chat-collapsed');
+                } else {
+                    gameContentWrapper.classList.remove('chat-collapsed');
+                }
+            }
+        };
+    },
+
+    // 关闭游戏
+    async closeGame() {
+        const isMobile = this.isMobile();
+        const container = document.getElementById('game-container');
+        const frame = document.getElementById('game-frame');
+        const chatPanel = document.getElementById('chat-panel');
+        
+        // 立即停止所有定时器和轮询，避免延迟感
+        this.stopChatPolling();
+        this.stopGameProgressMonitor();
+        this.stopAutoSave();
+        
+        // 立即隐藏游戏容器，给用户即时反馈
+        if (container) {
+            container.style.display = 'none';
+        }
+        if (frame) {
+            frame.src = '';
+        }
+        document.body.style.overflow = '';
+        
+        // 重置父容器类
+        if (container) {
+            container.classList.remove('chat-collapsed');
+        }
+        
+        // 移动端：恢复移动端页面显示
+        if (isMobile) {
+            // 显示首页
+            const homePage = document.getElementById('mobile-page-home');
+            if (homePage) {
+                homePage.classList.add('active');
+            }
+            // 显示底部导航
+            const bottomNav = document.querySelector('.bottom-nav');
+            if (bottomNav) {
+                bottomNav.style.display = 'flex';
+            }
+        }
+        
+        // 在后台异步保存游戏进度（不阻塞关闭操作）
+        if (this.currentUser && this.currentGame && this.currentGame.id) {
+            const gameId = this.currentGame.id;
+            // 异步保存，不等待完成
+            this.saveGameProgress(gameId).then(() => {
+                // 保存完成后，再保存到服务器
+                setTimeout(async () => {
+                    await this.saveAllGameProgressToServer();
+                }, 500);
+            }).catch(err => {
+                console.error('保存游戏进度失败:', err);
+            });
+        }
+        
+        // 重置聊天面板状态（在容器隐藏后，用户看不到动画）
+        if (chatPanel) {
+            chatPanel.classList.remove('collapsed');
+        }
+        
+        // 重置按钮状态
+        const toggleBtn = document.getElementById('chat-toggle-btn');
+        if (toggleBtn) {
+            toggleBtn.classList.remove('collapsed');
+            toggleBtn.classList.add('expanded');
+        }
+        
+        // 清理当前游戏信息
+        this.currentGame = null;
+        this.pendingProgress = null;
+    },
+    
+    // 设置游戏进度监听器
+    setupGameProgressListener() {
+        // 如果已经设置过，就不重复设置
+        if (this.gameProgressListenerSetup) return;
+        this.gameProgressListenerSetup = true;
+        
+        // 监听来自游戏iframe的消息
+        window.addEventListener('message', (event) => {
+            // 安全检查：只接受来自同源的消息
+            if (event.origin !== window.location.origin) return;
+            
+            const data = event.data;
+            
+            // 处理游戏进度保存请求
+            if (data && data.type === 'SAVE_PROGRESS' && data.progress) {
+                if (this.currentUser && this.currentGame && this.currentGame.id) {
+                    this.saveGameProgress(this.currentGame.id, data.progress);
+                }
+            }
+            
+            // 处理游戏进度加载请求
+            if (data && data.type === 'LOAD_PROGRESS') {
+                if (this.currentUser && this.currentGame && this.currentGame.id) {
+                    this.loadGameProgress(this.currentGame.id);
+                }
+            }
+        });
+        
+        // 定期检查游戏iframe的localStorage（如果游戏使用localStorage保存进度）
+        this.startGameProgressMonitor();
+    },
+    
+    // 开始监控游戏进度（定期检查游戏iframe的localStorage）
+    startGameProgressMonitor() {
+        // 每5秒检查一次游戏进度
+        this.gameProgressMonitorInterval = setInterval(() => {
+            if (this.currentGame && this.currentGame.id) {
+                this.checkGameProgressFromIframe();
+            }
+        }, 5000);
+    },
+    
+    // 停止监控游戏进度
+    stopGameProgressMonitor() {
+        if (this.gameProgressMonitorInterval) {
+            clearInterval(this.gameProgressMonitorInterval);
+            this.gameProgressMonitorInterval = null;
+        }
+    },
+    
+    // 启动定时自动保存
+    startAutoSave() {
+        // 如果已经有定时器在运行，先清除
+        this.stopAutoSave();
+        
+        // 只在用户已登录且有当前游戏时启动
+        if (!this.currentUser || !this.currentGame || !this.currentGame.id) {
+            return;
+        }
+        
+        // 设置定时保存（每5分钟保存一次）
+        this.gameProgressAutoSaveInterval = setInterval(async () => {
+            if (this.currentUser && this.currentGame && this.currentGame.id) {
+                await this.saveGameProgress(this.currentGame.id);
+                // 同时保存所有游戏进度到文件系统
+                await this.saveAllGameProgressToServer();
+            }
+        }, this.autoSaveInterval);
+        
+    },
+    
+    // 停止定时自动保存
+    stopAutoSave() {
+        if (this.gameProgressAutoSaveInterval) {
+            clearInterval(this.gameProgressAutoSaveInterval);
+            this.gameProgressAutoSaveInterval = null;
+        }
+    },
+    
+    // 从游戏iframe检查进度（尝试读取iframe的localStorage）
+    async checkGameProgressFromIframe() {
+        const frame = document.getElementById('game-frame');
+        if (!frame || !frame.contentWindow) return;
+        
+        try {
+            // 尝试通过postMessage请求游戏进度
+            frame.contentWindow.postMessage({
+                type: 'GET_PROGRESS',
+                requestId: Date.now()
+            }, '*');
+            
+            // 同时尝试从iframe的localStorage读取（如果同源）
+            try {
+                const iframeDoc = frame.contentDocument || frame.contentWindow.document;
+                if (iframeDoc) {
+                    // 尝试读取常见的游戏进度存储键
+                    const commonKeys = [
+                        'gameProgress',
+                        'game_progress',
+                        'saveData',
+                        'save_data',
+                        'playerData',
+                        'player_data',
+                        'gameState',
+                        'game_state'
+                    ];
+                    
+                    for (const key of commonKeys) {
+                        try {
+                            const value = iframeDoc.defaultView.localStorage.getItem(key);
+                            if (value) {
+                                // 保存这个进度
+                                if (this.currentUser && this.currentGame && this.currentGame.id) {
+                                    this.saveGameProgress(this.currentGame.id, value);
+                                }
+                                break;
+                            }
+                        } catch (e) {
+                            // 跨域限制，无法读取
+                        }
+                    }
+                }
+            } catch (e) {
+                // 跨域限制，无法访问iframe内容
+            }
+        } catch (error) {
+            console.warn('检查游戏进度失败:', error);
+        }
+    },
+    
+    // 加载游戏进度（优先从本地缓存，然后从文件系统）
+    async loadGameProgress(gameId) {
+        // 先尝试从本地缓存加载（快速响应）
+        const localProgress = this.getGameProgressFromLocal(gameId);
+        if (localProgress) {
+            this.pendingProgress = localProgress;
+            this.sendProgressToGame(localProgress);
+        }
+        
+        if (!this.currentUser) {
+            // 未登录时只使用本地缓存
+            return;
+        }
+        
+        // 然后从文件系统加载（确保数据最新）
+        try {
+            const serverCache = await this.getCacheFromServer();
+            if (serverCache && serverCache.data) {
+                const cacheKey = `game_progress_${gameId}`;
+                const progressData = serverCache.data[cacheKey];
+                
+                if (progressData) {
+                    // 解析进度数据
+                    let parsedProgress = progressData;
+                    if (typeof progressData === 'object' && progressData.progress_data) {
+                        parsedProgress = progressData.progress_data;
+                    } else if (typeof progressData === 'string') {
+                        try {
+                            const parsed = JSON.parse(progressData);
+                            parsedProgress = parsed.progress_data || parsed;
+                        } catch (e) {
+                            parsedProgress = progressData;
+                        }
+                    }
+                    
+                    // 如果文件系统数据与本地不同，使用文件系统数据
+                    if (parsedProgress !== localProgress) {
+                        this.pendingProgress = parsedProgress;
+                        this.saveGameProgressToLocal(gameId, parsedProgress);
+                        this.sendProgressToGame(parsedProgress);
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('从文件系统加载游戏进度失败:', error);
+            // 如果文件系统加载失败，但本地有缓存，继续使用本地缓存
+        }
+    },
+    
+    // 发送进度到游戏iframe
+    sendProgressToGame(progressData) {
+        const frame = document.getElementById('game-frame');
+        if (!frame || !frame.contentWindow) return;
+        
+        try {
+            // 向游戏iframe发送进度数据
+            frame.contentWindow.postMessage({
+                type: 'LOAD_PROGRESS',
+                progress: progressData
+            }, '*');
+        } catch (error) {
+            console.error('发送进度到游戏失败:', error);
+        }
+    },
+    
+    // 保存游戏进度（单个游戏）
+    async saveGameProgress(gameId, progressData = null) {
+        // 如果没有提供进度数据，尝试从游戏iframe获取
+        if (!progressData) {
+            progressData = await this.getProgressFromGame();
+        }
+        
+        // 如果还是没有，尝试从iframe的localStorage读取
+        if (!progressData) {
+            progressData = await this.getProgressFromIframeLocalStorage();
+        }
+        
+        if (!progressData) {
+            return;
+        }
+        
+        // 确保进度数据是字符串格式
+        if (typeof progressData !== 'string') {
+            progressData = JSON.stringify(progressData);
+        }
+        
+        // 检查是否是空数据（空对象、空字符串等）
+        const trimmedData = progressData.trim();
+        if (!trimmedData || 
+            trimmedData === '{}' || 
+            trimmedData === '[]' || 
+            trimmedData === 'null' || 
+            trimmedData === '""' ||
+            trimmedData.length < 3) {
+            return;
+        }
+        
+        // 检查是否是全零数组（如 [0,0,0,0,0,0,0,0,0,0,0,0]）
+        try {
+            const decoded = JSON.parse(progressData);
+            if (Array.isArray(decoded) && decoded.length > 0) {
+                const allZero = decoded.every(value => 
+                    value === 0 || value === '0' || value === false || value === null || value === ''
+                );
+                if (allZero) {
+                    return;
+                }
+            }
+        } catch (e) {
+            // 不是JSON格式，继续处理
+        }
+        
+        // 先保存到本地缓存（无论是否登录）
+        this.saveGameProgressToLocal(gameId, progressData);
+        
+        if (!this.currentUser) {
+            return;
+        }
+        
+        // 只保存到文件系统（user_caches）
+        await this.saveCacheToServer();
+    },
+    
+    // 保存游戏进度到本地缓存
+    saveGameProgressToLocal(gameId, progressData) {
+        try {
+            const key = `game_progress_${gameId}`;
+            localStorage.setItem(key, JSON.stringify({
+                game_id: gameId,
+                progress_data: progressData,
+                timestamp: new Date().toISOString()
+            }));
+        } catch (error) {
+            console.error('保存游戏进度到本地缓存失败:', error);
+        }
+    },
+    
+    // 从本地缓存获取游戏进度
+    getGameProgressFromLocal(gameId) {
+        try {
+            const key = `game_progress_${gameId}`;
+            const data = localStorage.getItem(key);
+            if (data) {
+                const parsed = JSON.parse(data);
+                return parsed.progress_data;
+            }
+        } catch (error) {
+            console.error('从本地缓存获取游戏进度失败:', error);
+        }
+        return null;
+    },
+    
+    // 获取所有本地游戏进度
+    getAllLocalGameProgress() {
+        const progressData = {};
+        try {
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.startsWith('game_progress_')) {
+                    try {
+                        const data = JSON.parse(localStorage.getItem(key));
+                        const gameId = data.game_id || key.replace('game_progress_', '');
+                        progressData[gameId] = data.progress_data;
+                    } catch (e) {
+                        console.warn(`解析本地游戏进度失败 [${key}]:`, e);
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('获取所有本地游戏进度失败:', error);
+        }
+        return progressData;
+    },
+    
+    // 保存所有游戏进度到文件系统
+    async saveAllGameProgressToServer() {
+        if (!this.currentUser) {
+            return false;
+        }
+        
+        // 直接保存到文件系统
+        return await this.saveCacheToServer();
+    },
+    
+    // 获取所有本地缓存数据（不仅仅是游戏进度）
+    getAllLocalCache() {
+        const cacheData = {};
+        try {
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key) {
+                    try {
+                        const value = localStorage.getItem(key);
+                        // 尝试解析 JSON，如果失败则作为字符串保存
+                        try {
+                            cacheData[key] = JSON.parse(value);
+                        } catch (e) {
+                            cacheData[key] = value;
+                        }
+                    } catch (e) {
+                        console.warn(`读取本地缓存失败 [${key}]:`, e);
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('获取所有本地缓存失败:', error);
+        }
+        return cacheData;
+    },
+    
+    // 应用服务器缓存到本地（完整应用所有数据）
+    applyServerCacheToLocal(serverCache) {
+        if (!serverCache || !serverCache.data) {
+            return false;
+        }
+        
+        try {
+            // 应用所有缓存数据到 localStorage
+            for (const [key, value] of Object.entries(serverCache.data)) {
+                try {
+                    if (typeof value === 'object' && value !== null) {
+                        localStorage.setItem(key, JSON.stringify(value));
+                    } else {
+                        localStorage.setItem(key, String(value));
+                    }
+                } catch (e) {
+                    // 忽略单个键的保存错误
+                }
+            }
+            return true;
+        } catch (error) {
+            console.error('应用服务器缓存到本地失败:', error);
+            return false;
+        }
+    },
+    
+    // 保存缓存到服务器文件系统（user_caches目录）
+    async saveCacheToServer() {
+        if (!this.currentUser || this.cacheSyncInProgress) {
+            return false;
+        }
+        
+        this.cacheSyncInProgress = true;
+        
+        try {
+            // 获取所有本地缓存数据（不仅仅是游戏进度）
+            const localCache = this.getAllLocalCache();
+            const cacheKeysCount = Object.keys(localCache).length;
+            
+            // 构建缓存数据包（参考cache-manager格式，与示例JSON格式一致）
+            const cacheKey = `user_full_cache_${this.currentUser.id}`;
+            const cacheValue = {
+                metadata: {
+                    timestamp: new Date().toISOString(),
+                    version: 1,
+                    totalKeys: cacheKeysCount,
+                    dataSize: JSON.stringify(localCache).length
+                },
+                data: localCache
+            };
+            
+            const response = await fetch(`${this.config.apiBase}/user_cache.php`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'save_cache',
+                    key: cacheKey,
+                    value: cacheValue,
+                    device_id: this.deviceId || ''
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.code === 200) {
+                return true;
+            } else {
+                console.error('保存缓存到服务器文件系统失败:', result.message);
+                return false;
+            }
+        } catch (error) {
+            console.error('保存缓存到服务器文件系统失败:', error);
+            return false;
+        } finally {
+            this.cacheSyncInProgress = false;
+        }
+    },
+    
+    // 从服务器文件系统获取缓存（user_caches目录）
+    async getCacheFromServer() {
+        if (!this.currentUser) {
+            return null;
+        }
+        
+        try {
+            const cacheKey = `user_full_cache_${this.currentUser.id}`;
+            
+            const response = await fetch(`${this.config.apiBase}/user_cache.php?action=get_cache&key=${encodeURIComponent(cacheKey)}&device_id=${encodeURIComponent(this.deviceId || '')}`, {
+                method: 'GET'
+            });
+            
+            const result = await response.json();
+            
+            if (result.code === 200 && result.data) {
+                return result.data.value;
+            }
+            return null;
+        } catch (error) {
+            console.error('从服务器文件系统获取缓存失败:', error);
+            return null;
+        }
+    },
+    
+    // 同步缓存到服务器（智能同步）
+    async syncCacheToServer() {
+        if (!this.currentUser || this.cacheSyncInProgress) {
+            return false;
+        }
+        
+        try {
+            // 获取本地缓存（所有数据，不仅仅是游戏进度）
+            const localCache = this.getAllLocalCache();
+            const localKeysCount = Object.keys(localCache).length;
+            
+            // 获取服务器缓存
+            const serverCache = await this.getCacheFromServer();
+            const serverKeysCount = serverCache?.data ? Object.keys(serverCache.data).length : 0;
+            
+            // 智能同步决策
+            if (localKeysCount === 0 && serverKeysCount > 0) {
+                this.applyServerCacheToLocal(serverCache);
+            } else if (serverKeysCount === 0 && localKeysCount > 0) {
+                await this.saveCacheToServer();
+            } else if (localKeysCount > serverKeysCount * 1.2) {
+                await this.saveCacheToServer();
+            } else if (serverKeysCount > localKeysCount * 1.2) {
+                this.applyServerCacheToLocal(serverCache);
+            } else if (localKeysCount > 0) {
+                await this.saveCacheToServer();
+            }
+            
+            return true;
+        } catch (error) {
+            console.error('同步缓存到服务器失败:', error);
+            return false;
+        }
+    },
+    
+    // 智能同步游戏进度（只使用文件系统）
+    async syncGameProgressIntelligently() {
+        // 直接使用文件缓存同步
+        return await this.syncCacheToServer();
+    },
+    
+    // 从游戏iframe获取进度（通过postMessage）
+    async getProgressFromGame() {
+        const frame = document.getElementById('game-frame');
+        if (!frame || !frame.contentWindow) return null;
+        
+        return new Promise((resolve) => {
+            // 向游戏iframe请求进度数据
+            const messageHandler = (event) => {
+                if (event.data && event.data.type === 'PROGRESS_DATA') {
+                    window.removeEventListener('message', messageHandler);
+                    resolve(event.data.progress);
+                }
+            };
+            
+            window.addEventListener('message', messageHandler);
+            
+            try {
+                frame.contentWindow.postMessage({
+                    type: 'GET_PROGRESS',
+                    requestId: Date.now()
+                }, '*');
+                
+                // 超时处理
+                setTimeout(() => {
+                    window.removeEventListener('message', messageHandler);
+                    resolve(null);
+                }, 1000);
+            } catch (error) {
+                window.removeEventListener('message', messageHandler);
+                resolve(null);
+            }
+        });
+    },
+    
+    // 从游戏iframe的localStorage获取进度（如果同源）
+    async getProgressFromIframeLocalStorage() {
+        const frame = document.getElementById('game-frame');
+        if (!frame) return null;
+        
+        try {
+            const iframeDoc = frame.contentDocument || frame.contentWindow.document;
+            if (!iframeDoc) return null;
+            
+            const iframeWindow = iframeDoc.defaultView || frame.contentWindow;
+            if (!iframeWindow || !iframeWindow.localStorage) return null;
+            
+            const iframeStorage = iframeWindow.localStorage;
+            
+            // 尝试读取常见的游戏进度存储键
+            const commonKeys = [
+                'gameProgress',
+                'game_progress',
+                'saveData',
+                'save_data',
+                'playerData',
+                'player_data',
+                'gameState',
+                'game_state',
+                'progress',
+                'save',
+                'gameData',
+                'game_data'
+            ];
+            
+            for (const key of commonKeys) {
+                try {
+                    const value = iframeStorage.getItem(key);
+                    // 验证数据有效性
+                    if (value && value.trim() && value !== '{}' && value !== '[]' && value.length > 3) {
+                        return value;
+                    }
+                } catch (e) {
+                    // 跨域限制，无法读取
+                }
+            }
+            
+            // 如果没找到，尝试读取所有localStorage键
+            try {
+                const allKeys = [];
+                for (let i = 0; i < iframeStorage.length; i++) {
+                    const key = iframeStorage.key(i);
+                    if (key) allKeys.push(key);
+                }
+                
+                if (allKeys.length > 0) {
+                    
+                    // 排除明显不是进度的键
+                    const excludeKeys = ['token', 'session', 'auth', 'user', 'config', 'settings'];
+                    
+                    for (const key of allKeys) {
+                        if (excludeKeys.some(exclude => key.toLowerCase().includes(exclude))) {
+                            continue;
+                        }
+                        
+                        const value = iframeStorage.getItem(key);
+                        // 只保存有意义的数据（长度>10，不是空对象/数组）
+                        if (value && value.length > 10 && value !== '{}' && value !== '[]') {
+                            // 尝试解析，确保是有效的JSON或有效数据
+                            try {
+                                const parsed = JSON.parse(value);
+                                if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
+                                    return value;
+                                }
+                            } catch (e) {
+                                // 不是JSON格式，但可能是其他格式的有效数据
+                                return value;
+                            }
+                        }
+                    }
+                }
+            } catch (e) {
+                // 跨域限制
+            }
+        } catch (error) {
+            // 跨域限制，无法访问iframe内容
+            console.log('无法访问游戏iframe localStorage（可能是跨域限制）');
+        }
+        
+        return null;
+    },
+    
+    // 表情数据
+    emojiList: [
+        '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇',
+        '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚',
+        '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩',
+        '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣',
+        '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬',
+        '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓', '🤗',
+        '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯',
+        '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵', '🤐',
+        '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈',
+        '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽', '👾',
+        '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿',
+        '😾', '👋', '🤚', '🖐', '✋', '🖖', '👌', '🤏', '✌️', '🤞',
+        '🤟', '🤘', '🤙', '👈', '👉', '👆', '🖕', '👇', '☝️', '👍',
+        '👎', '✊', '👊', '🤛', '🤜', '👏', '🙌', '👐', '🤲', '🤝',
+        '🙏', '✍️', '💪', '🦾', '🦿', '🦵', '🦶', '👂', '🦻', '👃',
+        '🧠', '🦷', '🦴', '👀', '👁', '👅', '👄', '💋', '💘', '💝',
+        '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡',
+        '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💯', '💢', '💥',
+        '💫', '💦', '💨', '🕳️', '💣', '💬', '👁️‍🗨️', '🗨️', '🗯️', '💭',
+        '💤', '👋', '🤚', '🖐', '✋', '🖖', '👌', '🤏', '✌️', '🤞'
+    ],
+    
+    // 解析聊天消息中的表情代码（如 :smile: 转换为 😊）
+    parseChatMessage(message) {
+        if (!message) return '';
+        
+        // 转义HTML特殊字符
+        let html = message
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+        
+        // 将表情代码转换为表情（格式：:emoji_name:）
+        // 这里我们直接支持Unicode表情，因为用户可以直接输入表情
+        // 但也可以支持代码格式，如 :smile: -> 😊
+        const emojiMap = {
+            ':smile:': '😊',
+            ':laugh:': '😂',
+            ':love:': '❤️',
+            ':thumbsup:': '👍',
+            ':thumbsdown:': '👎',
+            ':fire:': '🔥',
+            ':clap:': '👏',
+            ':ok:': '👌',
+            ':heart:': '❤️',
+            ':kiss:': '😘',
+            ':wink:': '😉',
+            ':cool:': '😎',
+            ':angry:': '😠',
+            ':sad:': '😢',
+            ':cry:': '😭',
+            ':surprise:': '😲',
+            ':thinking:': '🤔',
+            ':party:': '🎉',
+            ':star:': '⭐',
+            ':rocket:': '🚀',
+            ':trophy:': '🏆'
+        };
+        
+        // 替换表情代码
+        for (const [code, emoji] of Object.entries(emojiMap)) {
+            const regex = new RegExp(code.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+            html = html.replace(regex, emoji);
+        }
+        
+        // 将换行符转换为<br>
+        html = html.replace(/\n/g, '<br>');
+        
+        return html;
+    },
+    
+    // 初始化表情选择器
+    initEmojiPicker() {
+        const emojiBtn = document.getElementById('chat-emoji-btn');
+        const emojiPicker = document.getElementById('chat-emoji-picker');
+        const chatInput = document.getElementById('chat-input');
+        
+        if (!emojiBtn || !emojiPicker || !chatInput) return;
+        
+        // 生成表情列表
+        emojiPicker.innerHTML = '';
+        const emojiGrid = document.createElement('div');
+        emojiGrid.className = 'chat-emoji-grid';
+        
+        this.emojiList.forEach(emoji => {
+            const emojiItem = document.createElement('button');
+            emojiItem.className = 'chat-emoji-item';
+            emojiItem.textContent = emoji;
+            emojiItem.title = emoji;
+            emojiItem.onclick = () => {
+                // 在输入框光标位置插入表情
+                const cursorPos = chatInput.selectionStart || chatInput.value.length;
+                const textBefore = chatInput.value.substring(0, cursorPos);
+                const textAfter = chatInput.value.substring(cursorPos);
+                chatInput.value = textBefore + emoji + textAfter;
+                
+                // 恢复光标位置
+                const newCursorPos = cursorPos + emoji.length;
+                chatInput.setSelectionRange(newCursorPos, newCursorPos);
+                chatInput.focus();
+                
+                // 关闭表情选择器
+                emojiPicker.classList.remove('show');
+            };
+            emojiGrid.appendChild(emojiItem);
+        });
+        
+        emojiPicker.appendChild(emojiGrid);
+        
+        // 点击表情按钮切换显示/隐藏
+        emojiBtn.onclick = (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            const isShowing = emojiPicker.classList.contains('show');
+            console.log('点击表情按钮，当前显示状态:', isShowing);
+            if (isShowing) {
+                emojiPicker.classList.remove('show');
+            } else {
+                emojiPicker.classList.add('show');
+            }
+            console.log('切换后显示状态:', emojiPicker.classList.contains('show'));
+        };
+        
+        // 点击外部关闭表情选择器（使用事件委托，避免重复绑定）
+        const closeHandler = (e) => {
+            if (emojiPicker.classList.contains('show')) {
+                if (!emojiPicker.contains(e.target) && e.target !== emojiBtn && !emojiBtn.contains(e.target)) {
+                    emojiPicker.classList.remove('show');
+                }
+            }
+        };
+        
+        // 移除旧的事件监听器（如果存在）
+        if (this.emojiPickerCloseHandler) {
+            document.removeEventListener('click', this.emojiPickerCloseHandler);
+        }
+        
+        // 添加新的事件监听器
+        this.emojiPickerCloseHandler = closeHandler;
+        document.addEventListener('click', this.emojiPickerCloseHandler);
+        
+        console.log('表情选择器初始化完成，按钮和选择器已绑定');
+    },
+    
+    // 加载聊天消息（全局聊天频道）
+    async loadChatMessages() {
+        try {
+            const response = await fetch(`${this.config.apiBase}/chat.php?action=list&limit=50`);
+            const result = await response.json();
+            
+            if (result.code === 200 && result.data) {
+                this.renderChatMessages(result.data);
+            }
+        } catch (error) {
+            console.error('加载聊天消息失败:', error);
+        }
+    },
+    
+    // 渲染聊天消息
+    renderChatMessages(messages) {
+        const container = document.getElementById('chat-messages');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        messages.forEach(msg => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message';
+            
+            // 判断是否是自己发送的消息
+            const isOwn = this.currentUser && msg.user_id === this.currentUser.id;
+            if (isOwn) {
+                messageDiv.classList.add('own-message');
+            }
+            
+            // 消息主体容器
+            const messageBody = document.createElement('div');
+            messageBody.className = 'chat-message-body';
+            
+            // 头像
+            const avatar = document.createElement('div');
+            avatar.className = 'chat-message-avatar';
+            if (msg.avatar) {
+                const avatarImg = document.createElement('img');
+                avatarImg.src = msg.avatar;
+                avatarImg.alt = msg.nickname || msg.username || '用户';
+                avatar.appendChild(avatarImg);
+            } else {
+                // 没有头像，显示首字母
+                const placeholder = document.createElement('div');
+                placeholder.className = 'chat-avatar-placeholder';
+                placeholder.textContent = (msg.nickname || msg.username || '游客').charAt(0).toUpperCase();
+                avatar.appendChild(placeholder);
+            }
+            
+            // 消息内容区域
+            const contentWrapper = document.createElement('div');
+            contentWrapper.className = 'chat-message-content-wrapper';
+            
+            const header = document.createElement('div');
+            header.className = 'chat-message-header';
+            
+            const username = document.createElement('span');
+            username.className = 'chat-message-username';
+            username.textContent = msg.nickname || msg.username || '游客';
+            
+            const time = document.createElement('span');
+            time.className = 'chat-message-time';
+            const msgTime = new Date(msg.created_at);
+            time.textContent = msgTime.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+            
+            header.appendChild(username);
+            header.appendChild(time);
+            
+            // 消息气泡容器
+            const messageBubble = document.createElement('div');
+            messageBubble.className = 'chat-message-bubble';
+            
+            const content = document.createElement('div');
+            content.className = 'chat-message-content';
+            content.innerHTML = this.parseChatMessage(msg.message);
+            
+            messageBubble.appendChild(content);
+            
+            contentWrapper.appendChild(header);
+            contentWrapper.appendChild(messageBubble);
+            
+            // 自己的消息：头像在右边（DOM顺序：先contentWrapper，后avatar）
+            // 别人的消息：头像在左边（DOM顺序：先avatar，后contentWrapper）
+            if (isOwn) {
+                messageBody.appendChild(contentWrapper);
+                messageBody.appendChild(avatar);
+            } else {
+                messageBody.appendChild(avatar);
+                messageBody.appendChild(contentWrapper);
+            }
+            
+            messageDiv.appendChild(messageBody);
+            container.appendChild(messageDiv);
+        });
+        
+        // 滚动到底部
+        container.scrollTop = container.scrollHeight;
+    },
+    
+    // 发送聊天消息（全局聊天频道）
+    async sendChatMessage() {
+        const input = document.getElementById('chat-input');
+        const message = input.value.trim();
+        
+        if (!message) return;
+        
+        // 检查是否登录
+        if (!this.currentUser) {
+            alert('请先登录后再发送消息');
+            return;
+        }
+        
+        const sendBtn = document.getElementById('chat-send-btn');
+        sendBtn.disabled = true;
+        
+        try {
+            const response = await fetch(`${this.config.apiBase}/chat.php?action=send`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: message
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.code === 200) {
+                input.value = '';
+                // 添加新消息到列表
+                if (result.data) {
+                    this.addChatMessage(result.data);
+                }
+                // 重新加载消息以确保同步
+                await this.loadChatMessages();
+            } else {
+                alert(result.message || '发送失败');
+            }
+        } catch (error) {
+            console.error('发送消息失败:', error);
+            alert('发送失败，请重试');
+        } finally {
+            sendBtn.disabled = false;
+            input.focus();
+        }
+    },
+    
+    // 添加单条消息到列表
+    addChatMessage(msg) {
+        const container = document.getElementById('chat-messages');
+        if (!container) return;
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'chat-message';
+        
+        const isOwn = this.currentUser && msg.user_id === this.currentUser.id;
+        if (isOwn) {
+            messageDiv.classList.add('own-message');
+        }
+        
+        // 消息主体容器
+        const messageBody = document.createElement('div');
+        messageBody.className = 'chat-message-body';
+        
+        // 头像
+        const avatar = document.createElement('div');
+        avatar.className = 'chat-message-avatar';
+        if (msg.avatar) {
+            const avatarImg = document.createElement('img');
+            avatarImg.src = msg.avatar;
+            avatarImg.alt = msg.nickname || msg.username || '用户';
+            avatar.appendChild(avatarImg);
+        } else {
+            // 没有头像，显示首字母
+            const placeholder = document.createElement('div');
+            placeholder.className = 'chat-avatar-placeholder';
+            placeholder.textContent = (msg.nickname || msg.username || '游客').charAt(0).toUpperCase();
+            avatar.appendChild(placeholder);
+        }
+        
+        // 消息内容区域
+        const contentWrapper = document.createElement('div');
+        contentWrapper.className = 'chat-message-content-wrapper';
+        
+        const header = document.createElement('div');
+        header.className = 'chat-message-header';
+        
+        const username = document.createElement('span');
+        username.className = 'chat-message-username';
+        username.textContent = msg.nickname || msg.username || '游客';
+        
+        const time = document.createElement('span');
+        time.className = 'chat-message-time';
+        const msgTime = new Date(msg.created_at);
+        time.textContent = msgTime.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+        
+        header.appendChild(username);
+        header.appendChild(time);
+        
+            const content = document.createElement('div');
+            content.className = 'chat-message-content';
+            content.innerHTML = this.parseChatMessage(msg.message);
+        
+            contentWrapper.appendChild(header);
+            contentWrapper.appendChild(content);
+        
+            // 自己的消息：头像在右边；别人的消息：头像在左边
+            if (isOwn) {
+                messageBody.appendChild(contentWrapper);
+                messageBody.appendChild(avatar);
+            } else {
+                messageBody.appendChild(avatar);
+                messageBody.appendChild(contentWrapper);
+            }
+            
+            messageDiv.appendChild(messageBody);
+        container.appendChild(messageDiv);
+        
+        // 滚动到底部
+        container.scrollTop = container.scrollHeight;
+    },
+    
+    // 开始聊天轮询（全局聊天频道）
+    startChatPolling() {
+        this.stopChatPolling(); // 先停止之前的轮询
+        
+        this.chatPollingInterval = setInterval(async () => {
+            // 检查游戏容器是否还在显示
+            const container = document.getElementById('game-container');
+            if (container && container.style.display !== 'none') {
+                await this.loadChatMessages();
+            }
+        }, 3000); // 每3秒刷新一次
+    },
+    
+    // 停止聊天轮询
+    stopChatPolling() {
+        if (this.chatPollingInterval) {
+            clearInterval(this.chatPollingInterval);
+            this.chatPollingInterval = null;
+        }
+    },
+
+    // 绑定事件
+    bindEvents() {
+        // 登录
+        document.getElementById('login-link').onclick = (e) => {
+            e.preventDefault();
+            document.getElementById('login-modal').classList.add('active');
+        };
+
+        // 注册
+        const registerLink = document.getElementById('register-link');
+        if (registerLink) {
+            registerLink.onclick = (e) => {
+                e.preventDefault();
+                document.getElementById('register-modal').classList.add('active');
+            };
+        }
+
+        // 退出链接（已移除，改用用户菜单中的退出功能）
+        // logout-link 已不存在，退出功能在用户下拉菜单中处理
+
+        // 关闭弹窗
+        document.querySelectorAll('.modal-close').forEach(btn => {
+            btn.onclick = () => {
+                btn.closest('.modal').classList.remove('active');
+            };
+        });
+
+        // 登录表单
+        const loginForm = document.getElementById('login-form');
+        const loginSubmitBtn = document.getElementById('login-submit-btn');
+        
+        if (loginForm) {
+            loginForm.onsubmit = (e) => {
+                e.preventDefault();
+                return false;
+            };
+        }
+        
+        if (loginSubmitBtn) {
+            loginSubmitBtn.onclick = async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('登录按钮被点击');
+                
+                const usernameInput = document.getElementById('login-username');
+                const passwordInput = document.getElementById('login-password');
+                const username = usernameInput ? usernameInput.value.trim() : '';
+                const password = passwordInput ? passwordInput.value.trim() : '';
+                const errorEl = document.getElementById('login-error');
+
+                console.log('用户名:', username, '密码长度:', password.length);
+
+                if (!username || !password) {
+                    if (errorEl) {
+                        errorEl.textContent = '请输入用户名和密码';
+                        errorEl.style.display = 'block';
+                    }
+                    return;
+                }
+
+                // 显示加载状态
+                if (loginSubmitBtn) {
+                    loginSubmitBtn.disabled = true;
+                    loginSubmitBtn.textContent = '登录中...';
+                }
+
+                try {
+                    console.log('发送登录请求...');
+                    const response = await fetch(`${this.config.apiBase}/login.php`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, password })
+                    });
+                    
+                    const result = await response.json();
+
+                    if (result.code === 200) {
+                        document.getElementById('login-modal').classList.remove('active');
+                        this.updateUserUI(result.data);
+                        if (loginForm) loginForm.reset();
+                        if (errorEl) {
+                            errorEl.textContent = '';
+                            errorEl.style.display = 'none';
+                        }
+                        // 登录成功后，重新加载"我玩过的"游戏（在页面刷新前）
+                        const myGamesDropdown = document.getElementById('my-games-dropdown');
+                        if (myGamesDropdown) {
+                            myGamesDropdown.dataset.loaded = 'false';
+                            this.loadMyGamesDropdown(true);
+                        }
+                        // 登录成功后自动刷新页面
+                        setTimeout(() => {
+                            location.reload();
+                        }, 300);
+                    } else {
+                        if (errorEl) {
+                            errorEl.textContent = result.message || '登录失败';
+                            errorEl.style.display = 'block';
+                        }
+                    }
+                } catch (error) {
+                    console.error('登录错误:', error);
+                    if (errorEl) {
+                        errorEl.textContent = '登录失败，请重试: ' + error.message;
+                        errorEl.style.display = 'block';
+                    }
+                } finally {
+                    // 恢复按钮状态
+                    if (loginSubmitBtn) {
+                        loginSubmitBtn.disabled = false;
+                        loginSubmitBtn.textContent = '登录';
+                    }
+                }
+            };
+        } else {
+            console.error('登录按钮未找到！ID: login-submit-btn');
+        }
+
+        // 注册表单
+        const registerForm = document.getElementById('register-form');
+        const registerSubmitBtn = document.getElementById('register-submit-btn');
+        
+        if (registerForm) {
+            registerForm.onsubmit = (e) => {
+                e.preventDefault();
+                return false;
+            };
+        }
+        
+        if (registerSubmitBtn) {
+            registerSubmitBtn.onclick = async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('注册按钮被点击');
+                
+                const usernameInput = document.getElementById('register-username');
+                const passwordInput = document.getElementById('register-password');
+                const nicknameInput = document.getElementById('register-nickname');
+                const emailInput = document.getElementById('register-email');
+                
+                const username = usernameInput ? usernameInput.value.trim() : '';
+                const password = passwordInput ? passwordInput.value.trim() : '';
+                const nickname = nicknameInput ? nicknameInput.value.trim() : '';
+                const email = emailInput ? emailInput.value.trim() : '';
+                const errorEl = document.getElementById('register-error');
+
+                console.log('注册信息:', { username, password: password.length, nickname, email });
+
+                if (!username || !password) {
+                    if (errorEl) {
+                        errorEl.textContent = '用户名和密码不能为空';
+                        errorEl.style.display = 'block';
+                    }
+                    return;
+                }
+
+                // 显示加载状态
+                if (registerSubmitBtn) {
+                    registerSubmitBtn.disabled = true;
+                    registerSubmitBtn.textContent = '注册中...';
+                }
+
+                try {
+                    console.log('发送注册请求...');
+                    const response = await fetch(`${this.config.apiBase}/register.php`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, password, nickname, email })
+                    });
+                    
+                    const result = await response.json();
+
+                    if (result.code === 200) {
+                        document.getElementById('register-modal').classList.remove('active');
+                        alert('注册成功，请登录');
+                        document.getElementById('login-modal').classList.add('active');
+                        if (registerForm) registerForm.reset();
+                        if (errorEl) {
+                            errorEl.textContent = '';
+                            errorEl.style.display = 'none';
+                        }
+                    } else {
+                        if (errorEl) {
+                            errorEl.textContent = result.message || '注册失败';
+                            errorEl.style.display = 'block';
+                        }
+                    }
+                } catch (error) {
+                    console.error('注册错误:', error);
+                    if (errorEl) {
+                        errorEl.textContent = '注册失败，请重试: ' + error.message;
+                        errorEl.style.display = 'block';
+                    }
+                } finally {
+                    // 恢复按钮状态
+                    if (registerSubmitBtn) {
+                        registerSubmitBtn.disabled = false;
+                        registerSubmitBtn.textContent = '注册';
+                    }
+                }
+            };
+        } else {
+            console.error('注册按钮未找到！ID: register-submit-btn');
+        }
+
+        // 搜索
+        document.getElementById('search-btn').onclick = () => {
+            const keyword = document.getElementById('search-input').value.trim();
+            if (keyword) {
+                this.searchGames(keyword);
+            }
+        };
+
+        document.getElementById('search-input').onkeypress = (e) => {
+            if (e.key === 'Enter') {
+                const keyword = e.target.value.trim();
+                if (keyword) {
+                    this.searchGames(keyword);
+                }
+            }
+        };
+
+        // 我玩过的菜单和猜你喜欢菜单 - 点击切换显示/隐藏
+        // 整合到用户菜单的点击事件中，避免多个事件监听器冲突
+        const userMenuClickHandler = (e) => {
+            const myGamesMenu = document.getElementById('my-games-menu');
+            const recommendedMenu = document.getElementById('recommended-menu');
+            const userMenuWrapper = document.getElementById('user-menu-wrapper');
+            const userNameLink = document.getElementById('user-name-link');
+            
+            // 检查是否点击了"我玩过的"菜单链接
+            if (myGamesMenu) {
+                const menuLink = myGamesMenu.querySelector('.menu-link');
+                if (menuLink && (menuLink.contains(e.target) || e.target === menuLink || 
+                    e.target.closest('#my-games-menu .menu-link'))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // 关闭其他菜单
+                    document.querySelectorAll('.header-menu-item').forEach(item => {
+                        if (item.id !== 'my-games-menu') {
+                            item.classList.remove('active');
+                        }
+                    });
+                    if (userMenuWrapper) userMenuWrapper.classList.remove('active');
+                    // 切换当前菜单（手动控制，不使用toggle）
+                    const wasActive = myGamesMenu.classList.contains('active');
+                    if (wasActive) {
+                        // 如果已经打开，则关闭
+                        myGamesMenu.classList.remove('active');
+                    } else {
+                        // 如果关闭，则打开并加载内容
+                        myGamesMenu.classList.add('active');
+                        this.loadMyGamesDropdown();
+                    }
+                    // 阻止事件冒泡和默认行为
+                    e.stopImmediatePropagation();
+                    return false; // 双重保险
+                }
+            }
+            
+            // 检查是否点击了"猜你喜欢"菜单链接
+            if (recommendedMenu) {
+                const menuLink = recommendedMenu.querySelector('.menu-link');
+                if (menuLink && (menuLink.contains(e.target) || e.target === menuLink || 
+                    e.target.closest('#recommended-menu .menu-link'))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // 关闭其他菜单
+                    document.querySelectorAll('.header-menu-item').forEach(item => {
+                        if (item.id !== 'recommended-menu') {
+                            item.classList.remove('active');
+                        }
+                    });
+                    if (userMenuWrapper) userMenuWrapper.classList.remove('active');
+                    // 切换当前菜单（手动控制，不使用toggle）
+                    const wasActive = recommendedMenu.classList.contains('active');
+                    console.log('点击猜你喜欢菜单，当前状态:', wasActive);
+                    if (wasActive) {
+                        // 如果已经打开，则关闭
+                        recommendedMenu.classList.remove('active');
+                    } else {
+                        // 如果关闭，则打开并加载内容
+                        recommendedMenu.classList.add('active');
+                        this.loadRecommendedDropdown();
+                    }
+                    // 阻止事件冒泡和默认行为
+                    e.stopImmediatePropagation();
+                    return false; // 双重保险
+                }
+            }
+            
+            // 用户菜单的处理（原有逻辑）
+            if (userMenuWrapper && userNameLink) {
+                // 点击用户名、用户名文本或箭头
+                if (userNameLink.contains(e.target) || 
+                    e.target.closest('#user-name-link') ||
+                    e.target.id === 'user-name-link' ||
+                    e.target.id === 'user-display-name' ||
+                    e.target.classList.contains('dropdown-arrow')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // 关闭其他菜单
+                    document.querySelectorAll('.header-menu-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    userMenuWrapper.classList.toggle('active');
+                    return;
+                }
+                
+                // 点击外部关闭用户菜单
+                if (userMenuWrapper.classList.contains('active') && 
+                    !userMenuWrapper.contains(e.target)) {
+                    userMenuWrapper.classList.remove('active');
+                }
+            }
+            
+            // 点击外部关闭"我玩过的"和"猜你喜欢"菜单
+            // 只有在点击的不是菜单链接，也不是菜单内部的任何元素时才关闭
+            // 注意：这个逻辑在点击菜单链接时不应该执行（因为上面已经return了）
+            // 但为了保险，我们再次检查
+            const clickedMyGamesLink = myGamesMenu && myGamesMenu.querySelector('.menu-link') && 
+                myGamesMenu.querySelector('.menu-link').contains(e.target);
+            const clickedRecommendedLink = recommendedMenu && recommendedMenu.querySelector('.menu-link') && 
+                recommendedMenu.querySelector('.menu-link').contains(e.target);
+            
+            if (!clickedMyGamesLink && myGamesMenu && myGamesMenu.classList.contains('active') && 
+                !myGamesMenu.contains(e.target)) {
+                myGamesMenu.classList.remove('active');
+            }
+            
+            if (!clickedRecommendedLink && recommendedMenu && recommendedMenu.classList.contains('active') && 
+                !recommendedMenu.contains(e.target)) {
+                recommendedMenu.classList.remove('active');
+            }
+        };
+        
+        // 移除旧的用户菜单事件监听器（如果存在），使用新的事件处理器
+        // 添加事件监听器（由于函数是匿名函数，无法移除旧的，但这样也能工作）
+        document.addEventListener('click', userMenuClickHandler);
+
+        // 关闭游戏
+        const closeGameBtn = document.getElementById('close-game');
+        if (closeGameBtn) {
+            closeGameBtn.onclick = () => {
+                this.closeGame();
+            };
+        }
+        
+        // 聊天功能
+        const chatSendBtn = document.getElementById('chat-send-btn');
+        const chatInput = document.getElementById('chat-input');
+        
+        if (chatSendBtn) {
+            chatSendBtn.onclick = () => {
+                this.sendChatMessage();
+            };
+        }
+        
+        if (chatInput) {
+            chatInput.onkeypress = (e) => {
+                if (e.key === 'Enter') {
+                    this.sendChatMessage();
+                }
+            };
+        }
+
+        // 随机游戏切换按钮
+        const randomGamesPrev = document.getElementById('random-games-prev');
+        const randomGamesNext = document.getElementById('random-games-next');
+        if (randomGamesPrev) {
+            randomGamesPrev.onclick = () => {
+                this.switchRandomGames('prev');
+            };
+        }
+        if (randomGamesNext) {
+            randomGamesNext.onclick = () => {
+                this.switchRandomGames('next');
+            };
+        }
+
+        // 回到顶部
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.onclick = (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+        }
+        
+        // 游戏标签切换（热门推荐）- 使用事件委托确保动态元素也能响应
+        const gamesTabsContainer = document.querySelector('.games-tabs');
+        if (gamesTabsContainer) {
+            gamesTabsContainer.addEventListener('click', (e) => {
+                const btn = e.target.closest('.games-tab-btn');
+                if (!btn) return;
+                
+                // 移除所有active类
+                document.querySelectorAll('.games-tab-btn').forEach(b => b.classList.remove('active'));
+                // 添加当前按钮的active类
+                btn.classList.add('active');
+                
+                const tab = btn.dataset.tab;
+                if (tab === 'hot') {
+                    this.loadHotGames(1);
+                } else if (tab === 'new') {
+                    this.loadNewGames(1);
+                }
+            });
+        }
+        
+        // 兼容旧的事件绑定方式
+        document.querySelectorAll('.games-tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // 移除所有active类
+                document.querySelectorAll('.games-tab-btn').forEach(b => b.classList.remove('active'));
+                // 添加当前按钮的active类
+                btn.classList.add('active');
+                
+                const tab = btn.dataset.tab;
+                if (tab === 'hot') {
+                    this.loadHotGames(1);
+                } else if (tab === 'new') {
+                    this.loadNewGames(1);
+                }
+            });
+        });
+        
+        // 侧边栏"我玩过的"分页按钮
+        const sidebarPrevBtn = this.getElementByIdForDevice('my-games-sidebar-prev');
+        const sidebarNextBtn = this.getElementByIdForDevice('my-games-sidebar-next');
+        if (sidebarPrevBtn) {
+            sidebarPrevBtn.addEventListener('click', () => {
+                const container = this.getElementByIdForDevice('my-games-sidebar-list');
+                if (container && container.dataset.currentPage) {
+                    const currentPage = parseInt(container.dataset.currentPage) || 1;
+                    if (currentPage > 1) {
+                        this.loadMyGamesSidebar(currentPage - 1);
+                    }
+                }
+            });
+        }
+        if (sidebarNextBtn) {
+            sidebarNextBtn.addEventListener('click', () => {
+                const container = this.getElementByIdForDevice('my-games-sidebar-list');
+                if (container && container.dataset.currentPage && container.dataset.totalPages) {
+                    const currentPage = parseInt(container.dataset.currentPage) || 1;
+                    const totalPages = parseInt(container.dataset.totalPages) || 1;
+                    if (currentPage < totalPages) {
+                        this.loadMyGamesSidebar(currentPage + 1);
+                    }
+                }
+            });
+        }
+
+        // 用户菜单点击逻辑已整合到上面的 userMenuClickHandler 中
+
+        // 用户中心菜单项 - 使用事件委托
+        const self = this;
+        document.addEventListener('click', function(e) {
+            const userMenuWrapper = document.getElementById('user-menu-wrapper');
+            if (!userMenuWrapper) return;
+            
+            // 个人资料
+            if (e.target.closest('#menu-profile')) {
+                e.preventDefault();
+                e.stopPropagation();
+                userMenuWrapper.classList.remove('active');
+                self.showUserCenter('profile');
+                return;
+            }
+            
+            // 我的游戏
+            if (e.target.closest('#menu-games')) {
+                e.preventDefault();
+                e.stopPropagation();
+                userMenuWrapper.classList.remove('active');
+                self.showUserCenter('games');
+                return;
+            }
+            
+            // 修改密码
+            if (e.target.closest('#menu-password')) {
+                e.preventDefault();
+                e.stopPropagation();
+                userMenuWrapper.classList.remove('active');
+                self.showUserCenter('password');
+                return;
+            }
+            
+            // 头像设置
+            if (e.target.closest('#menu-avatar')) {
+                e.preventDefault();
+                e.stopPropagation();
+                userMenuWrapper.classList.remove('active');
+                self.showUserCenter('avatar');
+                return;
+            }
+            
+            // 清理缓存
+            if (e.target.closest('#menu-cache')) {
+                e.preventDefault();
+                e.stopPropagation();
+                userMenuWrapper.classList.remove('active');
+                self.showUserCenter('cache');
+                return;
+            }
+            
+            // 退出登录
+            if (e.target.closest('#menu-logout')) {
+                e.preventDefault();
+                e.stopPropagation();
+                userMenuWrapper.classList.remove('active');
+                self.logout();
+                return;
+            }
+        });
+
+        // 用户中心标签页切换（仅PC端，移动端由initMobileUserCenter处理）
+        if (!this.isMobile()) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                // 确保按钮类型正确
+                if (btn.tagName === 'BUTTON' && !btn.type) {
+                    btn.type = 'button';
+                }
+                
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const tab = btn.dataset.tab;
+                    
+                    // 如果是退出登录标签页，直接执行退出
+                    if (tab === 'logout') {
+                        if (confirm('确定要退出登录吗？')) {
+                            this.logout();
+                        }
+                        return;
+                    }
+                    
+                    // 只在用户中心模态框内查找，避免影响其他页面
+                    const userCenter = btn.closest('.user-center') || document.querySelector('.user-center');
+                    if (userCenter) {
+                        userCenter.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                        userCenter.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    } else {
+                        // 如果没有找到用户中心容器，使用全局查找（兼容旧代码）
+                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    }
+                    btn.classList.add('active');
+                    const tabContent = document.querySelector(`#tab-${tab}`);
+                    if (tabContent) {
+                        tabContent.classList.add('active');
+                    }
+                    
+                // 加载对应标签页数据（PC端不需要页面切换逻辑，只需要加载数据）
+                if (tab === 'profile') {
+                    // 个人资料标签页
+                    log.log('切换到个人资料标签页');
+                    this.loadUserProfile();
+                } else if (tab === 'games') {
+                    // 我玩过的游戏标签页
+                    console.log('切换到我玩过的游戏标签页');
+                    this.loadMyGames();
+                } else if (tab === 'avatar') {
+                    // 头像设置标签页
+                    console.log('切换到头像设置标签页');
+                    this.loadAvatar();
+                } else if (tab === 'cache') {
+                    // 清理缓存标签页
+                    console.log('切换到清理缓存标签页');
+                    this.initCacheManagement();
+                }
+                };
+            });
+        }
+
+        // 个人资料表单（PC端和移动端都支持）
+        const profileForm = this.getUserCenterElement('profile-form');
+        if (profileForm) {
+            // 移除旧的事件监听器
+            if (profileForm._submitHandler) {
+                profileForm.removeEventListener('submit', profileForm._submitHandler);
+            }
+            
+            profileForm._submitHandler = async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                
+                // 确保获取的是表单元素，而不是按钮
+                let form = profileForm;
+                if (e.target) {
+                    if (e.target.tagName === 'FORM') {
+                        form = e.target;
+                    } else if (e.target.closest) {
+                        const closestForm = e.target.closest('form');
+                        if (closestForm) {
+                            form = closestForm;
+                        }
+                    }
+                }
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                const messageEl = this.getUserCenterElement('profile-message');
+
+                try {
+                    const response = await fetch(`${this.config.apiBase}/user_update.php`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    const result = await response.json();
+
+                    if (result.code === 200) {
+                        if (messageEl) {
+                            messageEl.textContent = '保存成功';
+                            messageEl.className = 'form-message success';
+                        }
+                        this.checkLogin(); // 刷新用户信息
+                    } else {
+                        if (messageEl) {
+                            messageEl.textContent = result.message || '保存失败';
+                            messageEl.className = 'form-message error';
+                        }
+                    }
+                } catch (error) {
+                    if (messageEl) {
+                        messageEl.textContent = '保存失败，请重试';
+                        messageEl.className = 'form-message error';
+                    }
+                }
+                return false;
+            };
+            
+            profileForm.addEventListener('submit', profileForm._submitHandler);
+            profileForm.onsubmit = profileForm._submitHandler; // 双重绑定确保生效
+        }
+
+        // 修改密码表单（PC端和移动端都支持）
+        const passwordForm = this.getUserCenterElement('password-form');
+        if (passwordForm) {
+            // 移除旧的事件监听器
+            if (passwordForm._submitHandler) {
+                passwordForm.removeEventListener('submit', passwordForm._submitHandler);
+            }
+            
+            passwordForm._submitHandler = async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                
+                // 确保获取的是表单元素，而不是按钮
+                let form = passwordForm;
+                if (e.target) {
+                    if (e.target.tagName === 'FORM') {
+                        form = e.target;
+                    } else if (e.target.closest) {
+                        const closestForm = e.target.closest('form');
+                        if (closestForm) {
+                            form = closestForm;
+                        }
+                    }
+                }
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                const messageEl = this.getUserCenterElement('password-message');
+
+                if (data.new_password !== data.confirm_password) {
+                    if (messageEl) {
+                        messageEl.textContent = '两次输入的密码不一致';
+                        messageEl.className = 'form-message error';
+                    }
+                    return false;
+                }
+
+                try {
+                    const response = await fetch(`${this.config.apiBase}/user_password.php`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    const result = await response.json();
+
+                    if (result.code === 200) {
+                        if (messageEl) {
+                            messageEl.textContent = '密码修改成功';
+                            messageEl.className = 'form-message success';
+                        }
+                        e.target.reset();
+                    } else {
+                        if (messageEl) {
+                            messageEl.textContent = result.message || '密码修改失败';
+                            messageEl.className = 'form-message error';
+                        }
+                    }
+                } catch (error) {
+                    if (messageEl) {
+                        messageEl.textContent = '修改失败，请重试';
+                        messageEl.className = 'form-message error';
+                    }
+                }
+                return false;
+            };
+            
+            passwordForm.addEventListener('submit', passwordForm._submitHandler);
+            passwordForm.onsubmit = passwordForm._submitHandler; // 双重绑定确保生效
+        }
+
+        // 头像上传（PC端和移动端都支持）
+        const avatarInput = this.getUserCenterElement('avatar-input');
+        if (avatarInput) {
+            avatarInput.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const img = this.getUserCenterElement('avatar-preview-img');
+                        const placeholder = this.getUserCenterElement('avatar-placeholder');
+                        if (img && placeholder) {
+                            img.src = event.target.result;
+                            img.style.display = 'block';
+                            placeholder.style.display = 'none';
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+        }
+
+        const avatarForm = this.getUserCenterElement('avatar-form');
+        if (avatarForm) {
+            avatarForm.onsubmit = async (e) => {
+                e.preventDefault();
+                const fileInput = this.getUserCenterElement('avatar-input');
+                const file = fileInput ? fileInput.files[0] : null;
+                const messageEl = this.getUserCenterElement('avatar-message');
+
+                if (!file) {
+                    if (messageEl) {
+                        messageEl.textContent = '请选择图片文件';
+                        messageEl.className = 'form-message error';
+                    }
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('avatar', file);
+
+                try {
+                    const response = await fetch(`${this.config.apiBase}/user_avatar.php`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await response.json();
+
+                    if (result.code === 200) {
+                        messageEl.textContent = '头像上传成功';
+                        messageEl.className = 'form-message success';
+                        this.checkLogin(); // 刷新用户信息
+                    } else {
+                        messageEl.textContent = result.message;
+                        messageEl.className = 'form-message error';
+                    }
+                } catch (error) {
+                    messageEl.textContent = '上传失败，请重试';
+                    messageEl.className = 'form-message error';
+                }
+            };
+        }
+        
+        // 清理缓存功能
+        this.initCacheManagement();
+    },
+    
+    // 初始化缓存管理
+    initCacheManagement() {
+        // 清理本地缓存按钮
+        const clearLocalBtn = document.getElementById('clear-local-cache-btn');
+        if (clearLocalBtn) {
+            clearLocalBtn.onclick = async () => {
+                if (!confirm('确定要清理本地浏览器缓存吗？这将清除所有本地存储的游戏进度数据，此操作不可恢复！')) {
+                    return;
+                }
+                
+                try {
+                    // 清理所有 localStorage 数据
+                    const keysToRemove = [];
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        if (key) {
+                            keysToRemove.push(key);
+                        }
+                    }
+                    
+                    keysToRemove.forEach(key => {
+                        localStorage.removeItem(key);
+                    });
+                    
+                    const messageEl = document.getElementById('cache-message');
+                    messageEl.textContent = '本地缓存清理成功！';
+                    messageEl.className = 'form-message success';
+                    
+                    // 3秒后清除消息
+                    setTimeout(() => {
+                        messageEl.textContent = '';
+                        messageEl.className = 'form-message';
+                    }, 3000);
+                } catch (error) {
+                    console.error('清理本地缓存失败:', error);
+                    const messageEl = document.getElementById('cache-message');
+                    messageEl.textContent = '清理本地缓存失败: ' + error.message;
+                    messageEl.className = 'form-message error';
+                }
+            };
+        }
+        
+        // 清理服务器缓存按钮
+        const clearServerBtn = document.getElementById('clear-server-cache-btn');
+        if (clearServerBtn) {
+            clearServerBtn.onclick = async () => {
+                if (!confirm('确定要清理服务器上您账号的游戏数据缓存吗？这将清除您账号下所有服务器保存的游戏进度数据，此操作不可恢复！\n\n注意：只会清理您当前登录账号的缓存，不会影响其他用户的数据。')) {
+                    return;
+                }
+                
+                try {
+                    // 获取所有缓存键
+                    const listResponse = await fetch(`${this.config.apiBase}/user_cache.php?action=list_cache`);
+                    const listResult = await listResponse.json();
+                    
+                    if (listResult.code !== 200) {
+                        throw new Error(listResult.message || '获取缓存列表失败');
+                    }
+                    
+                    const keys = listResult.data?.keys || [];
+                    
+                    if (keys.length === 0) {
+                        const messageEl = document.getElementById('cache-message');
+                        messageEl.textContent = '服务器上没有缓存数据';
+                        messageEl.className = 'form-message';
+                        setTimeout(() => {
+                            messageEl.textContent = '';
+                            messageEl.className = 'form-message';
+                        }, 3000);
+                        return;
+                    }
+                    
+                    // 删除所有缓存键
+                    let successCount = 0;
+                    let failCount = 0;
+                    
+                    for (const key of keys) {
+                        try {
+                            const deleteResponse = await fetch(`${this.config.apiBase}/user_cache.php`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    action: 'delete_cache',
+                                    key: key
+                                })
+                            });
+                            
+                            const deleteResult = await deleteResponse.json();
+                            if (deleteResult.code === 200) {
+                                successCount++;
+                            } else {
+                                failCount++;
+                            }
+                        } catch (error) {
+                            console.error(`删除缓存键 ${key} 失败:`, error);
+                            failCount++;
+                        }
+                    }
+                    
+                    const messageEl = document.getElementById('cache-message');
+                    if (failCount === 0) {
+                        messageEl.textContent = `服务器缓存清理成功！已清理 ${successCount} 个缓存项`;
+                        messageEl.className = 'form-message success';
+                    } else {
+                        messageEl.textContent = `部分清理完成：成功 ${successCount} 个，失败 ${failCount} 个`;
+                        messageEl.className = 'form-message error';
+                    }
+                    
+                    // 3秒后清除消息
+                    setTimeout(() => {
+                        messageEl.textContent = '';
+                        messageEl.className = 'form-message';
+                    }, 3000);
+                } catch (error) {
+                    console.error('清理服务器缓存失败:', error);
+                    const messageEl = document.getElementById('cache-message');
+                    messageEl.textContent = '清理服务器缓存失败: ' + error.message;
+                    messageEl.className = 'form-message error';
+                }
+            };
+        }
+    },
+
+    // 搜索游戏
+    async searchGames(keyword) {
+        try {
+            const url = `${this.config.apiBase}/games.php?action=list&search=${encodeURIComponent(keyword)}&page=1&pageSize=100`;
+            const response = await fetch(url);
+            const result = await response.json();
+
+            if (result.code === 200) {
+                this.renderGameGrid('all-games', result.data.list);
+                const paginationEl = this.getElementByIdForDevice('pagination');
+                if (paginationEl) paginationEl.innerHTML = '';
+                document.querySelector('.section-title').textContent = `搜索结果：${keyword}`;
+            }
+        } catch (error) {
+            console.error('搜索失败:', error);
+        }
+    },
+
+    // 显示用户中心
+    async showUserCenter(tab = 'profile') {
+        const modal = document.getElementById('user-center-modal');
+        if (!modal) {
+            console.warn('用户中心模态框未找到');
+            return;
+        }
+        modal.classList.add('active');
+
+        // 切换标签页（只在模态框内查找，避免影响移动端）
+        const userCenter = modal.querySelector('.user-center-content') || modal;
+        userCenter.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.tab === tab) {
+                btn.classList.add('active');
+            }
+        });
+
+        userCenter.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+            if (content.id === `tab-${tab}`) {
+                content.classList.add('active');
+            }
+        });
+
+        // 加载对应标签页数据
+        if (tab === 'profile') {
+            await this.loadUserProfile();
+        } else if (tab === 'games') {
+            await this.loadMyGames();
+        } else if (tab === 'avatar') {
+            await this.loadAvatar();
+        }
+    },
+
+    // 加载用户资料
+    async loadUserProfile() {
+        try {
+            console.log('开始加载用户资料');
+            const response = await fetch(`${this.config.apiBase}/userinfo.php`);
+            const result = await response.json();
+
+            if (result.code === 200 && result.data) {
+                const user = result.data;
+                const usernameEl = this.getUserCenterElement('profile-username');
+                const nicknameEl = this.getUserCenterElement('profile-nickname');
+                const emailEl = this.getUserCenterElement('profile-email');
+                
+                console.log('找到表单元素:', {
+                    username: !!usernameEl,
+                    nickname: !!nicknameEl,
+                    email: !!emailEl
+                });
+                
+                if (usernameEl) usernameEl.value = user.username || '';
+                if (nicknameEl) nicknameEl.value = user.nickname || '';
+                if (emailEl) emailEl.value = user.email || '';
+                
+                log.log('用户资料加载完成');
+            } else {
+                log.warn('加载用户资料失败:', result);
+            }
+        } catch (error) {
+            console.error('加载用户资料失败:', error);
+            throw error; // 抛出错误以便catch捕获
+        }
+    },
+
+    // 加载我的游戏
+    async loadMyGames() {
+        const container = this.getUserCenterElement('my-games-list');
+        if (!container) {
+            log.warn('我的游戏列表容器未找到');
+            return;
+        }
+        
+        container.innerHTML = '<div class="loading-text">加载中...</div>';
+
+        try {
+            const response = await fetch(`${this.config.apiBase}/user_games.php?action=list`);
+            const result = await response.json();
+
+            console.log('我的游戏响应:', result);
+
+            if (result.code === 200) {
+                const games = result.data || [];
+                console.log('我的游戏列表:', games);
+                
+                if (games.length === 0) {
+                    container.innerHTML = '<div class="empty-text">还没有玩过游戏</div>';
+                } else {
+                    container.innerHTML = '';
+                    // 限制最多显示20个游戏
+                    const displayGames = games.slice(0, 20);
+                    displayGames.forEach(game => {
+                        const item = document.createElement('a');
+                        item.className = 'recommended-game-item';
+                        item.href = '#';
+                        item.onclick = (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // 防止在聊天界面时触发游戏
+                            // 但允许在个人中心的"我的游戏"列表中点击游戏
+                            if (e.target.closest('.mobile-chat-page') || 
+                                document.querySelector('#mobile-page-chat.active')) {
+                                return;
+                            }
+                            // 如果在个人中心页面，检查是否是在"我的游戏"列表中
+                            const isInMyGamesList = e.target.closest('#my-games-list') || 
+                                                     e.target.closest('.my-games-list') ||
+                                                     e.target.closest('.recommended-game-item');
+                            if (isInMyGamesList) {
+                                // 允许在"我的游戏"列表中点击游戏
+                                this.playGame(game);
+                                return;
+                            }
+                            // 其他情况在个人中心页面时不允许点击游戏
+                            if (e.target.closest('.mobile-user-page') ||
+                                document.querySelector('#mobile-page-user.active')) {
+                                return;
+                            }
+                            this.playGame(game);
+                        };
+
+                        const iconWrapper = document.createElement('div');
+                        iconWrapper.className = 'recommended-game-icon-wrapper';
+
+                        const icon = document.createElement('div');
+                        icon.className = 'recommended-game-icon';
+                        if (game.preview) {
+                            icon.style.backgroundImage = `url('${game.preview}')`;
+                        }
+
+                        // 添加"荐"标签
+                        const tag = document.createElement('div');
+                        tag.className = 'recommended-tag';
+                        tag.textContent = '荐';
+
+                        iconWrapper.appendChild(icon);
+                        iconWrapper.appendChild(tag);
+
+                        const title = document.createElement('div');
+                        title.className = 'recommended-game-title';
+                        title.textContent = game.name || '';
+
+                        item.appendChild(iconWrapper);
+                        item.appendChild(title);
+                        container.appendChild(item);
+                    });
+                }
+            } else {
+                container.innerHTML = `<div class="empty-text">${result.message || '加载失败'}</div>`;
+            }
+        } catch (error) {
+            console.error('加载我的游戏失败:', error);
+            container.innerHTML = '<div class="empty-text">加载失败: ' + error.message + '</div>';
+        }
+    },
+
+    // 加载头像
+    async loadAvatar() {
+        try {
+            const response = await fetch(`${this.config.apiBase}/userinfo.php`);
+            const result = await response.json();
+
+            if (result.code === 200 && result.data) {
+                const avatar = result.data.avatar;
+                const img = this.getUserCenterElement('avatar-preview-img');
+                const placeholder = this.getUserCenterElement('avatar-placeholder');
+
+                if (img && placeholder) {
+                    if (avatar) {
+                        img.src = avatar;
+                        img.style.display = 'block';
+                        placeholder.style.display = 'none';
+                    } else {
+                        img.style.display = 'none';
+                        placeholder.style.display = 'flex';
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('加载头像失败:', error);
+        }
+    },
+
+    // 退出登录
+    async logout() {
+        try {
+            await fetch(`${this.config.apiBase}/logout.php`);
+            this.updateUserUI(null);
+            location.reload();
+        } catch (error) {
+            console.error('退出失败:', error);
+        }
+    },
+    
+    // 加载广告
+    async loadAds() {
+        try {
+            // 加载导航栏左侧广告
+            const adNavLeftResponse = await fetch(`${this.config.apiBase}/ads.php?action=get&position=ad_nav_left`);
+            const adNavLeftResult = await adNavLeftResponse.json();
+            
+            if (adNavLeftResult.code === 200 && adNavLeftResult.data) {
+                const adNavLeftContainer = document.getElementById('ad-nav-left');
+                const adNavLeftLink = document.getElementById('ad-link-nav-left');
+                const adNavLeftImage = document.getElementById('ad-image-nav-left');
+                
+                if (adNavLeftContainer && adNavLeftLink && adNavLeftImage) {
+                    adNavLeftLink.href = adNavLeftResult.data.link_url || '#';
+                    adNavLeftImage.src = adNavLeftResult.data.image_url;
+                    adNavLeftImage.alt = adNavLeftResult.data.link_url ? '广告' : '';
+                    adNavLeftContainer.classList.remove('hidden');
+                }
+            } else {
+                const adNavLeftContainer = document.getElementById('ad-nav-left');
+                if (adNavLeftContainer) {
+                    adNavLeftContainer.classList.add('hidden');
+                }
+            }
+            
+            // 加载导航栏右侧广告
+            const adNavRightResponse = await fetch(`${this.config.apiBase}/ads.php?action=get&position=ad_nav_right`);
+            const adNavRightResult = await adNavRightResponse.json();
+            
+            if (adNavRightResult.code === 200 && adNavRightResult.data) {
+                const adNavRightContainer = document.getElementById('ad-nav-right');
+                const adNavRightLink = document.getElementById('ad-link-nav-right');
+                const adNavRightImage = document.getElementById('ad-image-nav-right');
+                
+                if (adNavRightContainer && adNavRightLink && adNavRightImage) {
+                    adNavRightLink.href = adNavRightResult.data.link_url || '#';
+                    adNavRightImage.src = adNavRightResult.data.image_url;
+                    adNavRightImage.alt = adNavRightResult.data.link_url ? '广告' : '';
+                    adNavRightContainer.classList.remove('hidden');
+                }
+            } else {
+                const adNavRightContainer = document.getElementById('ad-nav-right');
+                if (adNavRightContainer) {
+                    adNavRightContainer.classList.add('hidden');
+                }
+            }
+            
+        } catch (error) {
+            console.error('加载广告失败:', error);
+            // 出错时隐藏所有广告位
+            const adNavLeftContainer = document.getElementById('ad-nav-left');
+            const adNavRightContainer = document.getElementById('ad-nav-right');
+            if (adNavLeftContainer) adNavLeftContainer.classList.add('hidden');
+            if (adNavRightContainer) adNavRightContainer.classList.add('hidden');
+        }
+    }
+};
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', () => {
+    App.init();
+});
+
