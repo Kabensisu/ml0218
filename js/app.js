@@ -7,7 +7,7 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
         let debounceTimer = null;
         let syncing = false;
 
-        const DEBOUNCE_DELAY = 500; // ✅ 500ms 防抖
+        const DEBOUNCE_DELAY = 500; // 500ms 防抖
         const API_URL = '/api/user_cache.php';
 
         /**
@@ -194,46 +194,458 @@ const App = {
     _pendingRequests: new Map(),
     _cacheExpiry: 5 * 60 * 1000, // 缓存5分钟
     
-    // 优化的fetch函数：支持缓存和请求去重
-    async fetchWithCache(url, options = {}, useCache = true) {
-        const cacheKey = `${url}_${JSON.stringify(options)}`;
+    // ============ 资源管理器（方案3增强版）============
+    resourceManager: {
+        highPriority: [],     // 游戏关键资源：字体、图片、脚本
+        mediumPriority: [],   // 用户数据、游戏进度
+        lowPriority: [],      // 聊天、非必要资源
+        isProcessing: false,
+        pendingTasks: new Map(), // 新增：存储所有进行中的任务，用于取消
+        taskIdCounter: 0,         // 新增：任务ID计数器
         
-        // 检查是否有正在进行的相同请求
-        if (this._pendingRequests.has(cacheKey)) {
-            return this._pendingRequests.get(cacheKey);
-        }
-        
-        // 检查缓存
-        if (useCache && this._requestCache.has(cacheKey)) {
-            const cached = this._requestCache.get(cacheKey);
-            if (Date.now() - cached.timestamp < this._cacheExpiry) {
-                return Promise.resolve(cached.data);
+		// 添加任务到队列 - 增强版：返回任务ID用于取消
+        addToQueue(url, priority = 'medium', callback = null, options = {}) {
+			// 【兜底】游客模式下阻止 games API 调度
+			// 系统尚未就绪，禁止任何任务入队（防启动雪崩）
+			if (!window.App || !App.isReady) {
+				console.warn('[系统未就绪] 阻止任务入队:', url);
+				return null;
+			}
+
+			// 游客模式下阻止必炸接口
+			if (
+				!App.currentUser &&
+				(
+					url.includes('api/games.php') ||
+					url.includes('api/user_games.php')
+				)
+			) {
+				console.warn('[游客模式] 阻止 API 调度:', url);
+				return null;
+			}
+			
+            // 创建AbortController用于取消
+            const controller = new AbortController();
+            const taskId = ++this.taskIdCounter;
+            
+            // 合并options，添加signal用于取消
+            const taskOptions = {
+                ...options,
+                signal: controller.signal
+            };
+            
+            const task = { 
+                id: taskId,
+                url, 
+                priority, 
+                callback, 
+                options: taskOptions,
+                controller,           // 新增：用于取消
+                retryCount: 0,        // 新增：重试次数
+                maxRetries: this.getMaxRetriesByPriority(priority), // 新增：最大重试次数
+                status: 'pending'     // 新增：任务状态
+            };
+            
+            // 存储任务引用用于取消
+            this.pendingTasks.set(taskId, task);
+            
+            console.log(`[资源管理] 添加${priority}优先级任务 [${taskId}]: ${url}`);
+            
+            if (priority === 'high') {
+                this.highPriority.push(task);
+                console.log(`[资源管理] 高优先级任务 [${taskId}]: ${url}`);
+            } else if (priority === 'medium') {
+                this.mediumPriority.push(task);
+                console.log(`[资源管理] 中优先级任务 [${taskId}]: ${url}`);
+            } else {
+                this.lowPriority.push(task);
+                console.log(`[资源管理] 低优先级任务 [${taskId}]: ${url}`);
             }
-            this._requestCache.delete(cacheKey);
+            
+            this.processQueue();
+            
+            // 返回任务ID，可用于取消
+            return taskId;
+        },
+        
+        // 根据优先级获取最大重试次数
+        getMaxRetriesByPriority(priority) {
+            const retryConfig = {
+                'high': 3,    // 高优先级：重试3次
+                'medium': 2,  // 中优先级：重试2次
+                'low': 1      // 低优先级：重试1次
+            };
+            return retryConfig[priority] || 1;
+        },
+        
+        // 获取重试延迟时间（指数退避策略）
+        getRetryDelay(retryCount) {
+            // 指数退避：1s, 2s, 4s, 8s...
+            const baseDelay = 1000; // 1秒
+            return baseDelay * Math.pow(2, retryCount - 1);
+        },
+        
+        // 处理队列
+        async processQueue() {
+            if (this.isProcessing) return;
+            this.isProcessing = true;
+            
+            try {
+                // 1. 优先处理高优先级任务（游戏资源）
+                while (this.highPriority.length > 0) {
+                    const task = this.highPriority.shift();
+                    console.log(`[资源管理] 执行高优先级 [${task.id}]: ${task.url}`);
+                    await this.executeTask(task);
+                    // 每个高优先级任务之间休息一下，避免阻塞
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+                
+                // 2. 然后处理中优先级任务（用户数据）
+                while (this.mediumPriority.length > 0) {
+                    const task = this.mediumPriority.shift();
+                    console.log(`[资源管理] 执行中优先级 [${task.id}]: ${task.url}`);
+                    await this.executeTask(task);
+                    // 每个中优先级任务之间休息一下
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+                
+                // 3. 最后处理低优先级任务（聊天、非必要资源）
+                if (this.lowPriority.length > 0) {
+                    console.log(`[资源管理] 延迟执行 ${this.lowPriority.length} 个低优先级任务`);
+                    // 延迟3秒执行低优先级任务
+                    setTimeout(async () => {
+                        while (this.lowPriority.length > 0) {
+                            const task = this.lowPriority.shift();
+                            console.log(`[资源管理] 执行低优先级 [${task.id}]: ${task.url}`);
+                            await this.executeTask(task);
+                            // 低优先级任务之间间隔更长
+                            await new Promise(resolve => setTimeout(resolve, 200));
+                        }
+                    }, 3000);
+                }
+            } finally {
+                this.isProcessing = false;
+            }
+        },
+        
+        // 执行单个任务 - 增强版：支持重试机制
+        async executeTask(task) {
+            try {
+                // 检查任务是否已被取消
+                if (task.status === 'cancelled') {
+                    console.log(`[资源管理] 任务 [${task.id}] 已被取消，跳过执行`);
+                    this.pendingTasks.delete(task.id);
+                    return null;
+                }
+                
+                task.status = 'processing';
+                const startTime = Date.now();
+                
+                try {
+                    const response = await fetch(task.url, task.options);
+                    
+                    // 检查响应状态
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const data = await response.json();
+                    const duration = Date.now() - startTime;
+                    
+                    console.log(`[资源管理] 任务完成 [${task.id}]: ${task.url} (${duration}ms)`);
+                    
+                    // 任务完成，从pendingTasks中移除
+                    this.pendingTasks.delete(task.id);
+                    task.status = 'completed';
+                    
+                    if (task.callback) {
+                        task.callback(data);
+                    }
+                    
+                    return data;
+                    
+                } catch (error) {
+                    // 如果是取消错误，不重试
+                    if (error.name === 'AbortError') {
+                        console.log(`[资源管理] 任务 [${task.id}] 被取消: ${task.url}`);
+                        task.status = 'cancelled';
+                        this.pendingTasks.delete(task.id);
+                        if (task.callback) {
+                            task.callback(null, new Error('请求被取消'));
+                        }
+                        return null;
+                    }
+                    
+                    // 检查是否达到最大重试次数
+                    if (task.retryCount < task.maxRetries) {
+                        task.retryCount++;
+                        const retryDelay = this.getRetryDelay(task.retryCount);
+                        
+                        console.log(`[资源管理] 任务 [${task.id}] 第${task.retryCount}次重试，等待${retryDelay}ms后重试: ${task.url}`, error.message);
+                        
+                        // 延迟后重试
+                        await new Promise(resolve => setTimeout(resolve, retryDelay));
+                        
+                        // 重新执行任务（递归调用）
+                        return await this.executeTask(task);
+                    } else {
+                        // 重试次数用尽，任务失败
+                        console.warn(`[资源管理] 任务失败 [${task.id}] (${task.maxRetries}次重试后): ${task.url}`, error);
+                        task.status = 'failed';
+                        this.pendingTasks.delete(task.id);
+                        
+                        if (task.callback) {
+                            task.callback(null, error);
+                        }
+                        return null;
+                    }
+                }
+            } catch (error) {
+                console.error(`[资源管理] 执行任务异常 [${task.id}]:`, error);
+                task.status = 'failed';
+                this.pendingTasks.delete(task.id);
+                
+                if (task.callback) {
+                    task.callback(null, error);
+                }
+                return null;
+            }
+        },
+        
+        // ============ 新增：任务取消功能 ============
+        
+        // 取消单个任务
+        cancelTask(taskId) {
+            const task = this.pendingTasks.get(taskId);
+            if (task) {
+                console.log(`[资源管理] 取消任务 [${taskId}]: ${task.url}`);
+                
+                // 标记任务状态
+                task.status = 'cancelled';
+                
+                // 中止fetch请求
+                if (task.controller) {
+                    task.controller.abort();
+                }
+                
+                // 从队列中移除
+                this.removeTaskFromQueue(task);
+                
+                // 从pendingTasks中移除
+                this.pendingTasks.delete(taskId);
+                
+                // 调用回调通知取消
+                if (task.callback) {
+                    task.callback(null, new Error('任务被取消'));
+                }
+                
+                return true;
+            }
+            console.log(`[资源管理] 任务 [${taskId}] 不存在或已完成`);
+            return false;
+        },
+        
+        // 从队列中移除任务
+        removeTaskFromQueue(task) {
+            const removeFromArray = (array) => {
+                const index = array.findIndex(t => t.id === task.id);
+                if (index !== -1) {
+                    array.splice(index, 1);
+                    return true;
+                }
+                return false;
+            };
+            
+            // 尝试从各个优先级队列中移除
+            if (!removeFromArray(this.highPriority)) {
+                if (!removeFromArray(this.mediumPriority)) {
+                    removeFromArray(this.lowPriority);
+                }
+            }
+        },
+        
+        // 取消所有指定优先级的任务
+        cancelAllByPriority(priority) {
+            console.log(`[资源管理] 取消所有${priority}优先级任务`);
+            
+            // 收集要取消的任务ID
+            const tasksToCancel = [];
+            
+            for (const [taskId, task] of this.pendingTasks) {
+                if (task.priority === priority) {
+                    tasksToCancel.push(taskId);
+                }
+            }
+            
+            // 取消所有收集到的任务
+            let cancelledCount = 0;
+            tasksToCancel.forEach(taskId => {
+                if (this.cancelTask(taskId)) {
+                    cancelledCount++;
+                }
+            });
+            
+            console.log(`[资源管理] 已取消 ${cancelledCount} 个${priority}优先级任务`);
+            return cancelledCount;
+        },
+        
+        // 取消所有任务
+        cancelAll() {
+            console.log('[资源管理] 取消所有任务');
+            
+            // 收集所有任务ID
+            const taskIds = Array.from(this.pendingTasks.keys());
+            
+            // 取消所有任务
+            let cancelledCount = 0;
+            taskIds.forEach(taskId => {
+                if (this.cancelTask(taskId)) {
+                    cancelledCount++;
+                }
+            });
+            
+            // 清空队列
+            this.highPriority = [];
+            this.mediumPriority = [];
+            this.lowPriority = [];
+            
+            console.log(`[资源管理] 已取消 ${cancelledCount} 个任务，清空所有队列`);
+            return cancelledCount;
+        },
+        
+        // 清理所有任务（页面卸载时调用）
+        cleanup() {
+            console.log('[资源管理] 清理所有任务');
+            this.cancelAll();
+        },
+        
+        // ============ 原有功能保持不变 ============
+        
+        // 清空队列
+        clearQueue() {
+            this.highPriority = [];
+            this.mediumPriority = [];
+            this.lowPriority = [];
+            this.isProcessing = false;
+            console.log('[资源管理] 队列已清空');
+        },
+        
+        // 获取队列状态
+        getQueueStatus() {
+            return {
+                high: this.highPriority.length,
+                medium: this.mediumPriority.length,
+                low: this.lowPriority.length,
+                isProcessing: this.isProcessing,
+                pendingTasks: this.pendingTasks.size
+            };
+        }
+    },
+    
+    // 优化的fetch函数：支持资源优先级和任务取消
+    async fetchWithPriority(url, options = {}, priority = 'medium', callback = null) {
+        // 如果是高优先级请求，直接执行
+        if (priority === 'high') {
+            return fetch(url, options)
+                .then(async response => {
+                    const data = await response.json();
+                    if (callback) callback(data);
+                    return data;
+                })
+                .catch(error => {
+                    console.error(`高优先级请求失败: ${url}`, error);
+                    throw error;
+                });
         }
         
-        // 发起请求
-        const requestPromise = fetch(url, options)
-            .then(async response => {
-                const data = await response.json();
-                // 只缓存成功的GET请求
-                if (useCache && (!options.method || options.method === 'GET') && response.ok) {
-                    this._requestCache.set(cacheKey, {
-                        data,
-                        timestamp: Date.now()
-                    });
+        // 中低优先级请求使用资源管理器
+        let taskId;
+        const promise = new Promise((resolve, reject) => {
+            taskId = this.resourceManager.addToQueue(url, priority, (data, error) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(data);
                 }
-                this._pendingRequests.delete(cacheKey);
+            }, options);
+        });
+        
+        // 将任务ID附加到Promise上
+        if (taskId) {
+            promise.taskId = taskId;
+            promise.cancel = () => this.resourceManager.cancelTask(taskId);
+        }
+        
+        return promise;
+    },
+    
+    // 带缓存的fetch函数
+    fetchWithCache(url, options = {}, useCache = true) {
+        // 如果不需要缓存，直接使用fetchWithPriority
+        if (!useCache) {
+            return this.fetchWithPriority(url, options, 'medium');
+        }
+        
+        const cacheKey = `cache_${url}_${JSON.stringify(options)}`;
+        const now = Date.now();
+        
+        // 检查缓存是否存在且未过期
+        if (this._requestCache.has(cacheKey)) {
+            const { data, timestamp } = this._requestCache.get(cacheKey);
+            if (now - timestamp < this._cacheExpiry) {
+                console.log(`[缓存] 使用缓存: ${url}`);
+                return Promise.resolve(data);
+            }
+        }
+        
+        // 检查是否有相同的请求正在进行中
+        if (this._pendingRequests.has(url)) {
+            console.log(`[缓存] 等待已有请求: ${url}`);
+            return this._pendingRequests.get(url);
+        }
+        
+        // 发起新请求
+        const requestPromise = this.fetchWithPriority(url, options, 'medium')
+            .then(data => {
+                // 缓存结果
+                this._requestCache.set(cacheKey, {
+                    data,
+                    timestamp: now
+                });
+                
+                // 清理待处理请求
+                this._pendingRequests.delete(url);
+                
+                console.log(`[缓存] 缓存响应: ${url}`);
                 return data;
             })
             .catch(error => {
-                this._pendingRequests.delete(cacheKey);
+                // 清理待处理请求
+                this._pendingRequests.delete(url);
+                console.error(`[缓存] 请求失败: ${url}`, error);
                 throw error;
             });
         
-        this._pendingRequests.set(cacheKey, requestPromise);
+        // 保存待处理请求
+        this._pendingRequests.set(url, requestPromise);
+        
         return requestPromise;
     },
+    
+    // 新增：取消fetchWithPriority创建的任务
+    cancelFetchTask(taskId) {
+        return this.resourceManager.cancelTask(taskId);
+    },
+    
+    // 新增：批量取消任务
+    cancelAllFetchTasks(priority) {
+        if (priority) {
+            return this.resourceManager.cancelAllByPriority(priority);
+        } else {
+            return this.resourceManager.cancelAll();
+        }
+    },
+    // ============ 资源管理器结束 ============
     
     // 配置
     config: {
@@ -251,17 +663,31 @@ const App = {
     cacheSyncInProgress: false,
     autoSaveInterval: 5 * 60 * 1000, // 自动保存间隔：5分钟（毫秒）
 
-    // 初始化
-    init() {
-        // 关键路径：立即执行
-        this.initDeviceId();
-        this.checkLogin();
-        this.bindEvents();
+// 初始化
+	init() {
+		console.log('[系统] 初始化开始，版本：优化版 V5.0');
+		console.log('[资源管理] 状态:', this.resourceManager.getQueueStatus());
+    
+		// 关键路径：立即执行
+		this.initDeviceId();
+		this.checkLogin();
+		this.bindEvents();
         
         // 只在移动端初始化底部导航
         if (this.isMobile()) {
             this.initMobileNav();
         }
+        
+        // ======================= 核心改动开始 =======================
+        // 游客态短路：仅执行最小安全初始化
+        if (!this.currentUser) {
+            console.warn('[App.init] 游客模式，仅执行最小安全初始化');
+            // 只保留基础安全内容
+            this.loadCategories();
+            this.loadGames();
+            return; // 终止后面所有非必要代码执行
+        }
+        // ======================= 核心改动结束 =======================
         
         // 关键内容：优先加载
         this.loadCategories();
@@ -289,11 +715,11 @@ const App = {
         // 延迟执行非关键UI操作
         if (window.requestIdleCallback) {
             requestIdleCallback(() => {
-                this.alignHeaderWidths();
+                // this.alignHeaderWidths(); // CSS 已接管布局
             }, { timeout: 1000 });
         } else {
             setTimeout(() => {
-                this.alignHeaderWidths();
+                // this.alignHeaderWidths(); // CSS 已接管布局
             }, 50);
         }
         
@@ -325,7 +751,24 @@ const App = {
                 }
             }, 2000);
         }
-    },
+
+        // ============ 新增：页面卸载时清理资源管理器 ============
+        // 防止页面关闭后仍有未完成的请求
+        window.addEventListener('beforeunload', () => {
+            console.log('[系统] 页面卸载，清理资源管理器');
+            this.resourceManager.cleanup();
+        });
+
+        // 页面隐藏时取消低优先级任务（节省资源）
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                console.log('[系统] 页面隐藏，取消低优先级任务');
+                this.resourceManager.cancelAllByPriority('low');
+            }
+        });
+
+        console.log('[系统] 资源管理器增强版已初始化');
+	},
     
     // 初始化移动端底部导航
     initMobileNav() {
@@ -1480,6 +1923,17 @@ const App = {
             });
         }
         
+		//游客态标记
+		if (!this.currentUser) {
+			document.body.classList.add('guest-mode');
+		}
+		//游客态标记结束
+
+		// 加载用户数据
+		if (this.currentUser) {
+			this.loadUserProfile();
+		}
+		
         // 表单提交已经在bindEvents中统一处理，这里不需要重复绑定
         
         // 加载用户数据
@@ -1989,28 +2443,45 @@ const App = {
         return Math.abs(hash).toString(36);
     },
 
-	// 检查登录状态
+	// 检查登录状态（修复幽灵 U）
 	async checkLogin() {
 		try {
-			const response = await fetch(`${this.config.apiBase}/userinfo.php`);
+			const response = await fetch(`${this.config.apiBase}/userinfo.php`, {
+				credentials: 'include'
+			});
+
+			// 网络异常，才算真正的异常
+			if (!response.ok) {
+				throw new Error('network error');
+			}
+
 			const result = await response.json();
 
-			if (result.code === 200 && result.data) {
-				this.updateUserUI(result.data);
-
-				// 登录成功后，重新加载“我玩过的”游戏
-				const myGamesDropdown = document.getElementById('my-games-dropdown');
-				if (myGamesDropdown) {
-					myGamesDropdown.dataset.loaded = 'false';
-					this.loadMyGamesDropdown(true);
-				}
-
-				// 登录成功后，仅触发安全的 CloudSave 同步
-				if (window.CloudSaveManager) {
-					CloudSaveManager.sync();
-				}
+			// 未登录：正常分支，进入游客态
+			if (result.code !== 200 || !result.data || !result.data.id) {
+				this.updateUserUI(null);
+				console.warn('[checkLogin] guest mode');
+				return;
 			}
+
+			// 唯一合法的“已登录入口”
+			this.updateUserUI(result.data);
+
+			// 登录成功后，重新加载“我玩过的”游戏
+			const myGamesDropdown = document.getElementById('my-games-dropdown');
+			if (myGamesDropdown) {
+				myGamesDropdown.dataset.loaded = 'false';
+				this.loadMyGamesDropdown(true);
+			}
+
+			// 登录成功后，仅触发安全的 CloudSave 同步
+			if (window.CloudSaveManager) {
+				CloudSaveManager.sync();
+			}
+
 		} catch (error) {
+			// 兜底：网络错误 / JSON 异常
+			this.updateUserUI(null);
 			console.warn('[checkLogin] failed', error);
 		}
 	},
@@ -2091,18 +2562,26 @@ const App = {
         }
     },
 
-    // 加载分类
-    async loadCategories() {
-        try {
-            const result = await this.fetchWithCache(`${this.config.apiBase}/games.php?action=categories`, {}, true);
-            
-            if (result.code === 200) {
-                this.renderCategories(result.data);
-            }
-        } catch (error) {
-            log.error('加载分类失败:', error);
-        }
-    },
+    // 加载分类（失败也必须 render）
+	async loadCategories() {
+		try {
+			const result = await this.fetchWithCache(
+				`${this.config.apiBase}/games.php?action=categories`,
+				{},
+				true
+			);
+
+			if (result.code === 200 && Array.isArray(result.data)) {
+				this.renderCategories(result.data);
+			} else {
+				console.warn('[categories] empty or invalid response', result);
+				this.renderCategories([]); // 兜底
+			}
+		} catch (error) {
+			log.error('加载分类失败:', error);
+			this.renderCategories([]); // 必须兜底
+		}
+	},
 
     // 渲染分类
     renderCategories(categories) {
@@ -2144,8 +2623,8 @@ const App = {
             });
         }
 
-        // 对齐所有header区域的宽度
-        this.alignHeaderWidths();
+        // 对齐所有header区域的宽度（已由 CSS 接管）
+        // this.alignHeaderWidths();
 
         // 渲染分类标签区域（异步加载）
         this.renderCategoryTags(categories).catch(err => {
@@ -2156,12 +2635,12 @@ const App = {
         this.renderCategorySidebar(categories);
     },
 
-    // 对齐所有header区域的宽度
-    alignHeaderWidths() {
+    // 对齐所有header区域的宽度（已由 CSS 接管）
+    //alignHeaderWidths() {
         // 移动端不需要对齐，直接返回
-        if (this.isMobile()) {
-            return;
-        }
+        //if (this.isMobile()) {
+        //    return;
+        //}
         
         // 使用 setTimeout 确保 DOM 完全渲染后再获取宽度
         setTimeout(() => {
@@ -2293,19 +2772,13 @@ const App = {
             container.appendChild(row);
         });
 
-        // 对齐所有header区域的宽度
-        setTimeout(() => {
-            this.alignHeaderWidths();
-        }, 0);
+        // 对齐所有header区域的宽度（CSS 已接管）
+        //setTimeout(() => {
+        //    this.alignHeaderWidths();
+        //}, 0);
         
         // 监听窗口大小变化，重新对齐
-        if (!window.headerWidthAligned) {
-            window.addEventListener('resize', () => {
-                this.alignHeaderWidths();
-            });
-            window.headerWidthAligned = true;
-        }
-    },
+		// resize 下的 header width 对齐已废弃（CSS + media query）
 
     // 创建分类按钮（PC端）
     createCategoryBtn(name, category) {
@@ -2513,11 +2986,11 @@ const App = {
             container.appendChild(rowDiv);
         }
 
-        // 对齐宽度
-        setTimeout(() => {
-            this.alignHeaderWidths();
-        }, 0);
-    },
+        // 对齐宽度（已废弃）
+        //setTimeout(() => {
+        //    this.alignHeaderWidths();
+        //}, 0);
+    //},
 
     // 切换随机游戏
     async switchRandomGames(direction) {
@@ -2541,78 +3014,91 @@ const App = {
         }
     },
 
-    // 加载"我玩过的"下拉菜单
-    async loadMyGamesDropdown(forceReload = false) {
-        const container = document.getElementById('my-games-dropdown');
-        if (!container) return;
+	// 加载"我玩过的"下拉菜单
+	async loadMyGamesDropdown(forceReload = false) {
+		const container = document.getElementById('my-games-dropdown');
+		if (!container) return;
 
-        // 如果已经加载过且不是强制重新加载，不重复加载
-        if (!forceReload && container.dataset.loaded === 'true') return;
+		// 如果已经加载过且不是强制重新加载，不重复加载
+		if (!forceReload && container.dataset.loaded === 'true') return;
 
-        try {
-            container.innerHTML = '';
-            
-            // 先尝试获取用户玩过的游戏
-            let games = [];
-            let useRandomGames = false;
-            
-            try {
-                const userGamesResponse = await fetch(`${this.config.apiBase}/user_games.php?action=list`);
-                const userGamesResult = await userGamesResponse.json();
+		try {
+			container.innerHTML = '';
+        
+			// 先尝试获取用户玩过的游戏
+			let games = [];
+			let useRandomGames = false;
+        
+			try {
+				const userGamesResponse = await fetch(
+					`${this.config.apiBase}/user_games.php?action=list`,
+					{ credentials: 'include' } // 关键修复
+				);
+
+				if (!userGamesResponse.ok) {
+					// 401 / 未登录，直接走随机游戏
+					useRandomGames = true;
+				} else {
+					const userGamesResult = await userGamesResponse.json();
                 
-                if (userGamesResult.code === 200 && userGamesResult.data && userGamesResult.data.length > 0) {
-                    games = userGamesResult.data;
-                } else {
-                    // 如果没有玩过的游戏，使用随机游戏
-                    useRandomGames = true;
-                }
-            } catch (error) {
-                // 如果请求失败（可能是未登录），使用随机游戏
-                useRandomGames = true;
-            }
-            
-            // 如果没有玩过的游戏，从所有游戏中随机选择
-            if (useRandomGames || games.length === 0) {
-                try {
-                    const allGamesResponse = await fetch(`${this.config.apiBase}/games.php?action=list&page=1&pageSize=100`);
-                    const allGamesResult = await allGamesResponse.json();
-                    
-                    if (allGamesResult.code === 200 && allGamesResult.data && allGamesResult.data.list) {
-                        const allGames = allGamesResult.data.list;
-                        // 随机选择9个游戏（3行 x 3个）
-                        const shuffled = [...allGames].sort(() => 0.5 - Math.random());
-                        games = shuffled.slice(0, 9);
-                    }
-                } catch (error) {
-                    log.error('加载随机游戏失败:', error);
-                }
-            }
-            
-            if (games.length > 0) {
-                // 如果游戏数量超过9个，随机选择9个
-                const selectedGames = games.length > 9 
-                    ? games.sort(() => 0.5 - Math.random()).slice(0, 9)
-                    : games;
+					if (userGamesResult.code === 200 && userGamesResult.data && userGamesResult.data.length > 0) {
+						games = userGamesResult.data;
+					} else {
+						// 如果没有玩过的游戏，使用随机游戏
+						useRandomGames = true;
+					}
+				}
+			} catch (error) {
+				// 如果请求失败（可能是未登录），使用随机游戏
+				useRandomGames = true;
+			}
+        
+			// 如果没有玩过的游戏，从所有游戏中随机选择
+			if (useRandomGames || games.length === 0) {
+				try {
+					const allGamesResponse = await fetch(
+						`${this.config.apiBase}/games.php?action=list&page=1&pageSize=100`
+					);
+					const allGamesResult = await allGamesResponse.json();
+                
+					if (allGamesResult.code === 200 && allGamesResult.data && allGamesResult.data.list) {
+						const allGames = allGamesResult.data.list;
+						// 随机选择9个游戏（3行 x 3个）
+						const shuffled = [...allGames].sort(() => 0.5 - Math.random());
+						games = shuffled.slice(0, 9);
+					}
+				} catch (error) {
+					log.error('加载随机游戏失败:', error);
+				}
+			}
+        
+			if (games.length > 0) {
+				// 如果游戏数量超过9个，随机选择9个
+				const selectedGames = games.length > 9 
+					? games.sort(() => 0.5 - Math.random()).slice(0, 9)
+					: games;
 
-                selectedGames.forEach(game => {
-                    const item = this.createRecommendedGameItem(game);
-                    container.appendChild(item);
-                });
-            } else {
-                const empty = document.createElement('div');
-                empty.className = 'header-game-dropdown-item';
-                empty.style.color = '#999';
-                empty.style.justifyContent = 'center';
-                empty.textContent = '暂无游戏';
-                container.appendChild(empty);
-            }
+				selectedGames.forEach(game => {
+					const item = this.createRecommendedGameItem(game);
+					container.appendChild(item);
+				});
+			} else {
+				const empty = document.createElement('div');
+				empty.className = 'header-game-dropdown-item';
+				empty.style.color = '#999';
+				empty.style.justifyContent = 'center';
+				empty.textContent = '暂无游戏';
+				container.appendChild(empty);
+			}
 
-            container.dataset.loaded = 'true';
-        } catch (error) {
-            console.error('加载我玩过的游戏失败:', error);
-            container.innerHTML = '<div class="header-game-dropdown-item" style="color:#999;justify-content:center;">加载失败</div>';
-        }
-    },
+			container.dataset.loaded = 'true';
+		} catch (error) {
+			console.error('加载我玩过的游戏失败:', error);
+			container.innerHTML =
+				'<div class="header-game-dropdown-item" style="color:#999;justify-content:center;">加载失败</div>';
+			container.dataset.loaded = 'true'; // 最终兜底
+		}
+	},
 
     // 创建推荐游戏项（用于下拉菜单）
     createRecommendedGameItem(game) {
@@ -2765,22 +3251,60 @@ const App = {
         }
     },
 
-    // 渲染游戏
-    renderGames(data) {
-        const { list, totalPages, currentPage } = data;
+// 渲染游戏（终极防炸版：含布局保护）
+renderGames(data) {
 
-        // 更新当前页码（如果API返回了当前页码）
-        if (currentPage !== undefined) {
-            this.config.currentPage = currentPage;
+    // ===== 数据兜底 =====
+    if (!data || typeof data !== 'object') {
+        console.warn('[renderGames] 非法 data，兜底为空');
+        data = {};
+    }
+
+    let {
+        list = [],
+        totalPages = 0,
+        currentPage
+    } = data;
+
+    if (!Array.isArray(list)) {
+        list = [];
+    }
+
+    // ===== 游客 + 空数据：直接进入“空态” =====
+    if (!list.length) {
+        console.warn('[renderGames] 空列表，进入空态渲染');
+
+        // 清空游戏区
+        const grid = document.getElementById('all-games');
+        if (grid) {
+            grid.innerHTML = `
+                <div class="empty-state">
+                    <p>暂无游戏</p>
+                </div>
+            `;
         }
-        
-        // 注意：不在这里更新游戏总数，因为这里的total可能是分类下的游戏数量
-        // 游戏总数应该只在初始化时通过loadGamesTotal()更新
 
-        // 渲染游戏（热门推荐）
+        // 强制隐藏分页（这是防布局炸的关键）
+        const pagination = document.querySelector('.pagination');
+        if (pagination) {
+            pagination.style.display = 'none';
+        }
+
+        return; // 非常重要：直接 return
+    }
+
+    // ===== 正常流程 =====
+    if (currentPage !== undefined && !isNaN(currentPage)) {
+        this.config.currentPage = currentPage;
+    }
+
+    try {
         this.renderGameGrid('all-games', list);
         this.renderPagination(totalPages);
-    },
+    } catch (err) {
+        console.error('[renderGames] 渲染异常:', err);
+    }
+},
     
     // 加载游戏总数
     async loadGamesTotal() {
@@ -3368,8 +3892,11 @@ const App = {
         container.appendChild(nextBtn);
     },
 
-    // 播放游戏
+    // 播放游戏（优化版：延迟聊天加载，优先游戏资源）
     async playGame(game) {
+        this.resourceManager.cancelAllByPriority('low');
+        console.log('[游戏切换] 取消所有低优先级任务，优先加载游戏');
+		
         const isMobile = this.isMobile();
         const container = document.getElementById('game-container');
         const frame = document.getElementById('game-frame');
@@ -3398,68 +3925,93 @@ const App = {
         container.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         
-        // 确保聊天面板默认展开
-        const chatPanelEl = document.getElementById('chat-panel');
-        const toggleBtnEl = document.getElementById('chat-toggle-btn');
-        if (chatPanelEl) {
-            chatPanelEl.classList.remove('collapsed');
-        }
-        if (toggleBtnEl) {
-            toggleBtnEl.classList.remove('collapsed');
-            toggleBtnEl.classList.add('expanded');
-        }
-        // 确保父容器类正确
-        if (container) {
-            container.classList.remove('chat-collapsed');
-        }
-        
-        // 保存当前游戏信息
-        this.currentGame = game;
+		// 保存当前游戏信息
+		this.currentGame = game;
 
-        // 记录游戏游玩（如果已登录且有游戏ID）
-        if (this.currentUser && game.id) {
-            try {
-                await fetch(`${this.config.apiBase}/user_games.php?action=add`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ game_id: game.id })
-                });
-            } catch (error) {
-                console.log('记录游戏游玩失败:', error);
-            }
-        }
+		// 记录游戏游玩（如果已登录且有游戏ID）- 使用资源管理器（中优先级）
+		if (this.currentUser && game.id) {
+			this.resourceManager.addToQueue(
+				`${this.config.apiBase}/user_games.php?action=add`,
+				'medium',
+				null,
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ game_id: game.id })
+				}
+			);
+		}
         
-        // 加载游戏进度（如果已登录）
-        if (this.currentUser && game.id) {
-            await this.loadGameProgress(game.id);
-        }
-        
-        // 设置iframe加载完成后的进度加载
-        frame.onload = () => {
-            // 等待iframe加载完成后，尝试加载进度
+        // 设置iframe加载完成后的回调
+        frame.onload = async () => {
+            console.log('游戏iframe加载完成，开始加载游戏进度和聊天');
+            
+			// 等待游戏完全加载（额外延迟500ms确保游戏稳定）
+			await new Promise(resolve => setTimeout(resolve, 500));
+
+			// 加载游戏进度（如果已登录）- 使用资源管理器（中优先级）
+			if (this.currentUser && game.id) {
+				this.resourceManager.addToQueue(
+					`${this.config.apiBase}/user_cache.php?action=get_cache&key=game_progress_${game.id}`,
+					'medium',
+					(data) => {
+						if (data && data.code === 200 && data.data) {
+							this.pendingProgress = data.data;
+						}
+					}
+				);
+			}
+            
+            // 再次等待，确保游戏主逻辑已初始化
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // 启动定时自动保存
+            this.startAutoSave();
+            
+            // 监听来自游戏iframe的消息（游戏进度更新）
+            this.setupGameProgressListener();
+            
+            // ===== 关键优化：延迟加载聊天功能 =====
+            // 再延迟2秒，确保游戏资源完全加载后再初始化聊天
+            setTimeout(async () => {
+                // 确保聊天面板默认展开
+                const chatPanelEl = document.getElementById('chat-panel');
+                const toggleBtnEl = document.getElementById('chat-toggle-btn');
+                if (chatPanelEl) {
+                    chatPanelEl.classList.remove('collapsed');
+                }
+                if (toggleBtnEl) {
+                    toggleBtnEl.classList.remove('collapsed');
+                    toggleBtnEl.classList.add('expanded');
+                }
+                if (container) {
+                    container.classList.remove('chat-collapsed');
+                }
+                
+                // 使用优化的聊天加载（减少初始负载）
+                await this.loadChatMessages();
+                
+                // 延迟启动聊天轮询（再等1秒）
+                setTimeout(() => {
+                    this.startChatPolling();
+                    
+                    // 最后初始化表情选择器（非关键功能）
+                    setTimeout(() => {
+                        this.initEmojiPicker();
+                        this.initChatToggle();
+                    }, 500);
+                }, 1000);
+                
+            }, 2000); // 延迟2秒加载聊天
+            
+            // 旧代码：等待iframe加载完成后，尝试加载进度（保留兼容性）
             setTimeout(() => {
                 if (this.currentUser && game.id && this.pendingProgress) {
                     this.sendProgressToGame(this.pendingProgress);
                     this.pendingProgress = null;
                 }
-                
-                // 启动定时自动保存
-                this.startAutoSave();
             }, 1000);
         };
-        
-        // 监听来自游戏iframe的消息（游戏进度更新）
-        this.setupGameProgressListener();
-        
-        // 加载全局聊天消息（所有游戏共用）
-        await this.loadChatMessages();
-        this.startChatPolling();
-        
-        // 初始化表情选择器（游戏打开时才初始化）
-        setTimeout(() => {
-            this.initEmojiPicker();
-            this.initChatToggle(); // 初始化聊天收起/展开功能
-        }, 500);
     },
     
     // 初始化聊天收起/展开功能
@@ -3511,6 +4063,9 @@ const App = {
         this.stopChatPolling();
         this.stopGameProgressMonitor();
         this.stopAutoSave();
+        this.resourceManager.cancelAllByPriority('medium');
+        this.resourceManager.cancelAllByPriority('low');
+        console.log('[关闭游戏] 取消所有中低优先级任务，释放资源');
         
         // 立即隐藏游戏容器，给用户即时反馈
         if (container) {
@@ -4314,30 +4869,179 @@ const App = {
         console.log('表情选择器初始化完成，按钮和选择器已绑定');
     },
     
-    // 加载聊天消息（全局聊天频道）
+// 加载聊天消息（全局聊天频道）- 优化版：减少初始负载
     async loadChatMessages() {
         try {
-            const response = await fetch(`${this.config.apiBase}/chat.php?action=list&limit=50`);
-            const result = await response.json();
+            // 减少初始加载数量：从50条减少到15条
+            const result = await this.fetchWithPriority(
+                `${this.config.apiBase}/chat.php?action=list&limit=15`,
+                {},
+                'low'
+            );
             
             if (result.code === 200 && result.data) {
-                this.renderChatMessages(result.data);
+                // 修复：添加防御性判断，避免 renderChatMessages 不存在时崩溃
+                if (typeof this.renderChatMessages === 'function') {
+                    this.renderChatMessages(result.data);
+                } else {
+                    console.error('[Chat] renderChatMessages 未定义，消息未渲染', result.data);
+                }
+                
+                // 延迟加载更多历史消息（方案2优化）
+                setTimeout(async () => {
+                    try {
+                        // 使用offset参数获取更多消息
+                        const moreResult = await this.fetchWithPriority(
+                            `${this.config.apiBase}/chat.php?action=list&limit=35&offset=15`,
+                            {},
+                            'low'
+                        );
+                        if (moreResult.code === 200 && moreResult.data && moreResult.data.length > 0) {
+                            // 追加消息到现有列表
+                            this.appendChatMessages(moreResult.data);
+                        }
+                    } catch (error) {
+                        // 静默失败，不影响主要功能
+                        console.log('延迟加载更多聊天消息失败（不影响使用）:', error);
+                    }
+                }, 5000); // 5秒后加载更多
             }
         } catch (error) {
             console.error('加载聊天消息失败:', error);
         }
     },
     
-    // 渲染聊天消息
+// 渲染聊天消息列表（PC端完整渲染）
     renderChatMessages(messages) {
+        if (!Array.isArray(messages)) {
+            console.warn('[Chat] renderChatMessages: 非法 messages 数据', messages);
+            return;
+        }
+
         const container = document.getElementById('chat-messages');
-        if (!container) return;
-        
+        if (!container) {
+            console.warn('[Chat] 未找到 #chat-messages 容器');
+            return;
+        }
+
         container.innerHTML = '';
-        
-        messages.forEach(msg => {
+
+        // 按时间排序（与 appendChatMessages 保持一致）
+        const sortedMessages = [...messages].sort((a, b) => {
+            return new Date(a.created_at) - new Date(b.created_at);
+        });
+
+        sortedMessages.forEach(msg => {
             const messageDiv = document.createElement('div');
             messageDiv.className = 'chat-message';
+            messageDiv.dataset.messageId = msg.id;
+            
+            // 判断是否是自己发送的消息（与 appendChatMessages 保持一致）
+            const isOwn = this.currentUser && msg.user_id === this.currentUser.id;
+            if (isOwn) {
+                messageDiv.classList.add('own-message');
+            }
+            
+            // 消息主体容器（与 appendChatMessages 保持一致）
+            const messageBody = document.createElement('div');
+            messageBody.className = 'chat-message-body';
+            
+            // 头像（与 appendChatMessages 保持一致）
+            const avatar = document.createElement('div');
+            avatar.className = 'chat-message-avatar';
+            if (msg.avatar) {
+                const avatarImg = document.createElement('img');
+                avatarImg.src = msg.avatar;
+                avatarImg.alt = msg.nickname || msg.username || '用户';
+                avatar.appendChild(avatarImg);
+            } else {
+                // 没有头像，显示首字母（与 appendChatMessages 保持一致）
+                const placeholder = document.createElement('div');
+                placeholder.className = 'chat-avatar-placeholder';
+                placeholder.textContent = (msg.nickname || msg.username || '游客').charAt(0).toUpperCase();
+                avatar.appendChild(placeholder);
+            }
+            
+            // 消息内容区域（与 appendChatMessages 保持一致）
+            const contentWrapper = document.createElement('div');
+            contentWrapper.className = 'chat-message-content-wrapper';
+            
+            const header = document.createElement('div');
+            header.className = 'chat-message-header';
+            
+            const username = document.createElement('span');
+            username.className = 'chat-message-username';
+            username.textContent = msg.nickname || msg.username || '游客';
+            
+            const time = document.createElement('span');
+            time.className = 'chat-message-time';
+            const msgTime = new Date(msg.created_at);
+            time.textContent = msgTime.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+            
+            header.appendChild(username);
+            header.appendChild(time);
+            
+            // 消息气泡容器（与 appendChatMessages 保持一致）
+            const messageBubble = document.createElement('div');
+            messageBubble.className = 'chat-message-bubble';
+            
+            const content = document.createElement('div');
+            content.className = 'chat-message-content';
+            content.innerHTML = this.parseChatMessage(msg.message);
+            
+            messageBubble.appendChild(content);
+            
+            contentWrapper.appendChild(header);
+            contentWrapper.appendChild(messageBubble);
+            
+            // 自己的消息：头像在右边；别人的消息：头像在左边（与 appendChatMessages 保持一致）
+            if (isOwn) {
+                messageBody.appendChild(contentWrapper);
+                messageBody.appendChild(avatar);
+            } else {
+                messageBody.appendChild(avatar);
+                messageBody.appendChild(contentWrapper);
+            }
+            
+            messageDiv.appendChild(messageBody);
+            container.appendChild(messageDiv);
+        });
+        
+        // 滚动到底部（与 appendChatMessages 保持一致）
+        container.scrollTop = container.scrollHeight;
+    },
+	
+    // 追加聊天消息（不替换现有消息）- 方案2新增
+    appendChatMessages(messages) {
+        const container = document.getElementById('chat-messages');
+        if (!container || !messages || !Array.isArray(messages)) return;
+        
+        // 收集现有消息ID，避免重复
+        const existingIds = new Set();
+        container.querySelectorAll('.chat-message').forEach(msg => {
+            const msgId = msg.dataset.messageId;
+            if (msgId) existingIds.add(msgId);
+        });
+        
+        // 过滤掉已存在的消息
+        const newMessages = messages.filter(msg => 
+            msg.id && !existingIds.has(msg.id.toString())
+        );
+        
+        if (newMessages.length === 0) return;
+        
+        console.log(`追加 ${newMessages.length} 条新聊天消息`);
+        
+        // 按时间排序（确保正确顺序）
+        newMessages.sort((a, b) => {
+            return new Date(a.created_at) - new Date(b.created_at);
+        });
+        
+        // 添加新消息
+        newMessages.forEach(msg => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message';
+            messageDiv.dataset.messageId = msg.id;
             
             // 判断是否是自己发送的消息
             const isOwn = this.currentUser && msg.user_id === this.currentUser.id;
@@ -4397,8 +5101,7 @@ const App = {
             contentWrapper.appendChild(header);
             contentWrapper.appendChild(messageBubble);
             
-            // 自己的消息：头像在右边（DOM顺序：先contentWrapper，后avatar）
-            // 别人的消息：头像在左边（DOM顺序：先avatar，后contentWrapper）
+            // 自己的消息：头像在右边；别人的消息：头像在左边
             if (isOwn) {
                 messageBody.appendChild(contentWrapper);
                 messageBody.appendChild(avatar);
@@ -5335,8 +6038,86 @@ const App = {
         
         // 清理缓存功能
         this.initCacheManagement();
+
+        
+        // ============ 调试按钮（仅在DEBUG模式下显示）============
+        // 可用于调试资源管理器状态，方便开发阶段查看资源管理器运行情况
+        // 注意：不影响原有功能，DEBUG=false时自动隐藏
+        if (DEBUG) {
+            // 延迟创建，确保DOM完全加载
+            setTimeout(() => {
+                // 检查是否已经存在调试按钮，避免重复创建
+                if (!document.getElementById('debug-resource-manager-btn')) {
+                    const testBtn = document.createElement('button');
+                    testBtn.id = 'debug-resource-manager-btn';
+                    testBtn.textContent = '📊 资源管理器调试';
+                    testBtn.style.position = 'fixed';
+                    testBtn.style.bottom = '60px';
+                    testBtn.style.right = '10px';
+                    testBtn.style.zIndex = '9999';
+                    testBtn.style.padding = '8px 12px';
+                    testBtn.style.background = '#4CAF50';
+                    testBtn.style.color = 'white';
+                    testBtn.style.border = 'none';
+                    testBtn.style.borderRadius = '4px';
+                    testBtn.style.fontSize = '12px';
+                    testBtn.style.cursor = 'pointer';
+                    testBtn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+                    testBtn.style.opacity = '0.8';
+                    testBtn.style.transition = 'opacity 0.3s';
+                    
+                    // 悬停效果
+                    testBtn.onmouseover = () => {
+                        testBtn.style.opacity = '1';
+                    };
+                    testBtn.onmouseout = () => {
+                        testBtn.style.opacity = '0.8';
+                    };
+                    
+                    // 点击事件：显示资源管理器状态
+                    testBtn.onclick = () => {
+                        const status = this.resourceManager.getQueueStatus();
+                        console.log('[资源管理器调试] 当前状态:', status);
+                        
+                        // 显示详细信息的弹窗
+                        const debugInfo = `
+资源管理器状态详情：
+=======================
+高优先级队列: ${status.high} 个任务
+中优先级队列: ${status.medium} 个任务
+低优先级队列: ${status.low} 个任务
+正在处理: ${status.isProcessing ? '是' : '否'}
+待处理任务总数: ${status.pendingTasks} 个
+
+任务分布：
+- 高优先级：游戏关键资源（字体、图片、脚本）
+- 中优先级：用户数据、游戏进度
+- 低优先级：聊天、非必要资源
+
+当前游戏: ${this.currentGame ? this.currentGame.name : '无'}
+当前用户: ${this.currentUser ? this.currentUser.username : '未登录'}
+设备ID: ${this.deviceId || '未设置'}
+                        `;
+                        
+                        alert(debugInfo);
+                        
+                        // 在控制台输出更详细的信息
+                        console.group('[资源管理器详细状态]');
+                        console.log('高优先级队列:', this.resourceManager.highPriority);
+                        console.log('中优先级队列:', this.resourceManager.mediumPriority);
+                        console.log('低优先级队列:', this.resourceManager.lowPriority);
+                        console.log('待处理任务Map:', this.resourceManager.pendingTasks);
+                        console.groupEnd();
+                    };
+                    
+                    document.body.appendChild(testBtn);
+                    console.log('[调试] 资源管理器调试按钮已创建');
+                }
+            }, 2000); // 延迟2秒创建，避免干扰页面加载
+        }
+        // ============ 调试按钮结束 ============
     },
-    
+	
     // 初始化缓存管理
     initCacheManagement() {
         // 清理本地缓存按钮
@@ -5724,8 +6505,103 @@ async loadAds() {
 
 }; //整个App对象结束
 
-// 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', () => {
+//window.fetch 全局兜底
+(function () {
+    if (window.__FETCH_GUARD_INSTALLED__) return;
+    window.__FETCH_GUARD_INSTALLED__ = true;
+
+    const originalFetch = window.fetch;
+
+    window.fetch = async function (url, options = {}) {
+        const urlStr = typeof url === 'string'
+            ? url
+            : (url && url.url) || '';
+
+        // 游客态拦截 games / user_games
+        if (
+            window.App &&
+            !App.currentUser &&
+            (
+                urlStr.includes('games.php') ||
+                urlStr.includes('user_games.php')
+            )
+        ) {
+            console.warn('[fetch兜底] 游客模式拦截:', urlStr);
+            return Promise.resolve({
+                ok: true,
+                status: 200,
+                json: async () => ({
+                    code: 200,
+                    data: {
+                        list: [],
+                        total: 0,
+                        totalPages: 0,
+                        currentPage: 1
+                    }
+                })
+            });
+        }
+
+        try {
+            const response = await originalFetch(url, options);
+
+            if (!response.ok && (response.status === 401 || response.status >= 500)) {
+                console.warn('[fetch兜底] HTTP异常:', response.status, urlStr);
+                return {
+                    ok: true,
+                    status: 200,
+                    json: async () => ({
+                        code: 200,
+                        data: {
+                            list: [],
+                            total: 0,
+                            totalPages: 0,
+                            currentPage: 1
+                        }
+                    })
+                };
+            }
+
+            return response;
+        } catch (err) {
+            console.error('[fetch兜底] fetch异常:', urlStr, err);
+            return {
+                ok: true,
+                status: 200,
+                json: async () => ({
+                    code: 200,
+                    data: {
+                        list: [],
+                        total: 0,
+                        totalPages: 0,
+                        currentPage: 1
+                    }
+                })
+            };
+        }
+    };
+})();
+
+// 页面加载完成后初始化（安全版）
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const res = await fetch('/api/userinfo.php', {
+            credentials: 'include'
+        });
+
+        if (res.ok) {
+            App.currentUser = await res.json();
+        } else {
+            App.currentUser = null;
+        }
+    } catch (e) {
+        App.currentUser = null;
+        console.warn('未登录或获取用户信息失败，进入游客模式');
+    }
+
+    console.log('App init, currentUser =', App.currentUser);
+	
+	App.isReady = true;
     App.init();
 });
 
