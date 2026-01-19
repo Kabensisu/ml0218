@@ -7,7 +7,7 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
         let debounceTimer = null;
         let syncing = false;
 
-        const DEBOUNCE_DELAY = 500; // ✅ 500ms 防抖
+        const DEBOUNCE_DELAY = 500; // 500ms 防抖
         const API_URL = '/api/user_cache.php';
 
         /**
@@ -203,13 +203,13 @@ const App = {
         pendingTasks: new Map(), // 新增：存储所有进行中的任务，用于取消
         taskIdCounter: 0,         // 新增：任务ID计数器
         
-        // 添加任务到队列 - 增强版：返回任务ID用于取消
+		// 添加任务到队列 - 增强版：返回任务ID用于取消
         addToQueue(url, priority = 'medium', callback = null, options = {}) {
 			// 【兜底】游客模式下阻止 games API 调度
 			// 系统尚未就绪，禁止任何任务入队（防启动雪崩）
 			if (!window.App || !App.isReady) {
 				console.warn('[系统未就绪] 阻止任务入队:', url);
-				return;
+				return null;
 			}
 
 			// 游客模式下阻止必炸接口
@@ -221,7 +221,7 @@ const App = {
 				)
 			) {
 				console.warn('[游客模式] 阻止 API 调度:', url);
-				return;
+				return null;
 			}
 			
             // 创建AbortController用于取消
@@ -3096,7 +3096,7 @@ const App = {
 			console.error('加载我玩过的游戏失败:', error);
 			container.innerHTML =
 				'<div class="header-game-dropdown-item" style="color:#999;justify-content:center;">加载失败</div>';
-			container.dataset.loaded = 'true'; // ✅ 最终兜底
+			container.dataset.loaded = 'true'; // 最终兜底
 		}
 	},
 
