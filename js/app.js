@@ -17,9 +17,9 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
             if (syncing) return;
             syncing = true;
 
-            const payload = {
-                data: { ...cacheBuffer }
-            };
+			const payload = {
+				data: Object.assign({}, cacheBuffer)
+			};
 
             // 清空缓冲区（失败也不影响下次）
             cacheBuffer = {};
@@ -81,7 +81,7 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
                     { credentials: 'include' }
                 );
                 const json = await res.json();
-                return json?.data ?? null;
+                return json && json.data != null ? json.data : null;
             } catch (e) {
                 console.warn('[CloudSave] 获取缓存失败', e);
                 return null;
@@ -101,7 +101,7 @@ if (window.CloudSaveManager && window.CloudSaveManager.saveCache) {
                         action: 'save_cache',
                         key,
                         value,
-                        device_id: window.App?.deviceId || ''
+                        device_id: window.App && window.App.deviceId || ''
                     })
                 });
                 const json = await res.json();
@@ -204,69 +204,95 @@ const App = {
         taskIdCounter: 0,         // 新增：任务ID计数器
         
 		// 添加任务到队列 - 增强版：返回任务ID用于取消
-        addToQueue(url, priority = 'medium', callback = null, options = {}) {
-			// 【兜底】游客模式下阻止 games API 调度
+		addToQueue: function (url, priority, callback, options) {
+			priority = priority || 'medium';
+			callback = callback || null;
+			options = options || {};
+    
+			// ================== 修复点 1：启动阶段放行首页公共接口 ==================
 			// 系统尚未就绪，禁止任何任务入队（防启动雪崩）
 			if (!window.App || !App.isReady) {
-				console.warn('[系统未就绪] 阻止任务入队:', url);
-				return null;
+
+				// 启动阶段必须放行的接口白名单
+				const allowDuringInit = (
+					//首页公共接口
+					url.includes('api/config') ||
+					url.includes('api/site') ||
+					url.includes('api/setting') ||
+					url.includes('api/category') ||
+					url.includes('api/type') ||
+					url.includes('api/position') ||
+					url.includes('api/block') ||
+					url.includes('api/games.php') ||   // 首页游戏列表
+					//PC游戏态初始化必须接口
+					url.includes('api/user_games.php') ||	// 记录用户游玩
+					url.includes('api/user_cache.php') ||	// 云存档
+					url.includes('api/chat.php')	// 聊天加载
+				);
+				
+				if (!allowDuringInit) {
+					console.warn('[系统未就绪] 阻止任务入队:', url);
+					return null;
+				}
 			}
 
-			// 游客模式下阻止必炸接口
+			// ================== 修复点 2：游客模式不再拦首页 games ==================
+			// 游客模式下仅阻止“用户态必炸接口”
 			if (
 				!App.currentUser &&
 				(
-					url.includes('api/games.php') ||
-					url.includes('api/user_games.php')
+					url.includes('api/user_') ||
+					url.includes('api/collect') ||
+					url.includes('api/history') ||
+					url.includes('api/favorite')
 				)
 			) {
 				console.warn('[游客模式] 阻止 API 调度:', url);
 				return null;
 			}
-			
-            // 创建AbortController用于取消
-            const controller = new AbortController();
-            const taskId = ++this.taskIdCounter;
-            
-            // 合并options，添加signal用于取消
-            const taskOptions = {
-                ...options,
-                signal: controller.signal
-            };
-            
-            const task = { 
-                id: taskId,
-                url, 
-                priority, 
-                callback, 
-                options: taskOptions,
-                controller,           // 新增：用于取消
-                retryCount: 0,        // 新增：重试次数
-                maxRetries: this.getMaxRetriesByPriority(priority), // 新增：最大重试次数
-                status: 'pending'     // 新增：任务状态
-            };
-            
-            // 存储任务引用用于取消
-            this.pendingTasks.set(taskId, task);
-            
-            console.log(`[资源管理] 添加${priority}优先级任务 [${taskId}]: ${url}`);
-            
-            if (priority === 'high') {
-                this.highPriority.push(task);
-                console.log(`[资源管理] 高优先级任务 [${taskId}]: ${url}`);
-            } else if (priority === 'medium') {
-                this.mediumPriority.push(task);
-                console.log(`[资源管理] 中优先级任务 [${taskId}]: ${url}`);
-            } else {
-                this.lowPriority.push(task);
-                console.log(`[资源管理] 低优先级任务 [${taskId}]: ${url}`);
-            }
-            
-            this.processQueue();
-            
-            // 返回任务ID，可用于取消
-            return taskId;
-        },
+	   
+			// 创建AbortController用于取消
+			const controller = new AbortController();
+			const taskId = ++this.taskIdCounter;
+    
+			// 合并options，添加signal用于取消
+			const taskOptions = Object.assign({}, options, {
+				signal: controller.signal
+			});
+    
+			const task = { 
+				id: taskId,
+				url, 
+				priority, 
+				callback, 
+				options: taskOptions,
+				controller,           // 新增：用于取消
+				retryCount: 0,        // 新增：重试次数
+				maxRetries: this.getMaxRetriesByPriority(priority), // 新增：最大重试次数
+				status: 'pending'     // 新增：任务状态
+			};
+    
+			// 存储任务引用用于取消
+			this.pendingTasks.set(taskId, task);
+    
+			console.log(`[资源管理] 添加${priority}优先级任务 [${taskId}]: ${url}`);
+    
+			if (priority === 'high') {
+				this.highPriority.push(task);
+				console.log(`[资源管理] 高优先级任务 [${taskId}]: ${url}`);
+			} else if (priority === 'medium') {
+				this.mediumPriority.push(task);
+				console.log(`[资源管理] 中优先级任务 [${taskId}]: ${url}`);
+			} else {
+				this.lowPriority.push(task);
+				console.log(`[资源管理] 低优先级任务 [${taskId}]: ${url}`);
+			}
+    
+			this.processQueue();
+    
+			// 返回任务ID，可用于取消
+			return taskId;
+		},
         
         // 根据优先级获取最大重试次数
         getMaxRetriesByPriority(priority) {
@@ -2585,6 +2611,9 @@ const App = {
 
     // 渲染分类
     renderCategories(categories) {
+		
+		console.trace( categories ,'-------------------')
+		
         // PC端导航
         const nav = document.getElementById('category-nav');
         if (nav) {
@@ -2623,9 +2652,6 @@ const App = {
             });
         }
 
-        // 对齐所有header区域的宽度（已由 CSS 接管）
-        // this.alignHeaderWidths();
-
         // 渲染分类标签区域（异步加载）
         this.renderCategoryTags(categories).catch(err => {
             log.error('加载分类游戏失败:', err);
@@ -2636,55 +2662,8 @@ const App = {
     },
 
     // 对齐所有header区域的宽度（已由 CSS 接管）
-    //alignHeaderWidths() {
-        // 移动端不需要对齐，直接返回
-        //if (this.isMobile()) {
-        //    return;
-        //}
-        
-        // 使用 setTimeout 确保 DOM 完全渲染后再获取宽度
-        setTimeout(() => {
-            const navContainer = document.querySelector('.header-bottom .header-c');
-            if (!navContainer) return;
-
-            const navWidth = navContainer.offsetWidth;
-            
-            // 对齐顶部header
-            const topHeader = document.querySelector('.header-top .header-c');
-            if (topHeader) {
-                topHeader.style.width = navWidth + 'px';
-            }
-
-            // 对齐中间header（logo和搜索）
-            const centerHeader = document.querySelector('.header-center .header-c');
-            if (centerHeader) {
-                centerHeader.style.width = navWidth + 'px';
-            }
-
-            // 对齐分类标签区域（PC端主内容区内的）
-            const categoryTags = document.querySelector('body > .main-content #category-tags-section');
-            if (categoryTags) {
-                categoryTags.style.width = navWidth + 'px';
-            }
-
-            // 对齐随机游戏展示区域（PC端主内容区内的）
-            const randomGames = document.querySelector('body > .main-content .random-games-section');
-            if (randomGames) {
-                randomGames.style.width = navWidth + 'px';
-            }
-
-            // 对齐游戏区域（PC端主内容区内的）
-            const centerContent = document.querySelector('body > .main-content .center-content');
-            if (centerContent) {
-                centerContent.style.width = navWidth + 'px';
-            }
-            
-            // 对齐页脚内容
-            const footerContent = document.querySelector('.footer-content');
-            if (footerContent) {
-                footerContent.style.width = navWidth + 'px';
-            }
-        }, 0);
+    alignHeaderWidths() {
+		return;
     },
 
     // 渲染分类标签区域（两列布局，每列6个分类，每个分类显示最新5个游戏）
@@ -2771,15 +2750,8 @@ const App = {
             row.appendChild(gamesList);
             container.appendChild(row);
         });
-
-        // 对齐所有header区域的宽度（CSS 已接管）
-        //setTimeout(() => {
-        //    this.alignHeaderWidths();
-        //}, 0);
-        
-        // 监听窗口大小变化，重新对齐
-		// resize 下的 header width 对齐已废弃（CSS + media query）
-
+	},
+	
     // 创建分类按钮（PC端）
     createCategoryBtn(name, category) {
         const btn = document.createElement('button');
@@ -2990,7 +2962,7 @@ const App = {
         //setTimeout(() => {
         //    this.alignHeaderWidths();
         //}, 0);
-    //},
+    },
 
     // 切换随机游戏
     async switchRandomGames(direction) {
@@ -4360,9 +4332,15 @@ renderGames(data) {
                 const allZero = decoded.every(value => 
                     value === 0 || value === '0' || value === false || value === null || value === ''
                 );
-                if (allZero) {
-                    return;
-                }
+                // 放宽保存条件：空对象才拒绝保存
+				if (allZero && Object.keys(progressData).length === 0) {
+					return;
+				}
+
+				// 保留原逻辑：如果数据为空数组则拒绝保存
+				if (Array.isArray(progressData) && progressData.length === 0) {
+					return;
+				}
             }
         } catch (e) {
             // 不是JSON格式，继续处理
@@ -4379,19 +4357,38 @@ renderGames(data) {
         await this.saveCacheToServer();
     },
     
-    // 保存游戏进度到本地缓存
-    saveGameProgressToLocal(gameId, progressData) {
-        try {
-            const key = `game_progress_${gameId}`;
-            localStorage.setItem(key, JSON.stringify({
-                game_id: gameId,
-                progress_data: progressData,
-                timestamp: new Date().toISOString()
-            }));
-        } catch (error) {
-            console.error('保存游戏进度到本地缓存失败:', error);
-        }
-    },
+// 保存游戏进度到本地缓存
+	saveGameProgressToLocal(gameId, progressData) {
+		try {
+			const key = `game_progress_${gameId}`;
+
+			// 标准化进度数据，防止首次进入为空或非法
+			let safeProgressData = progressData;
+
+			// progressData 为空 / 非对象时，创建基础存档
+			if (
+				!safeProgressData ||
+				typeof safeProgressData !== 'object' ||
+				Array.isArray(safeProgressData) && safeProgressData.length === 0 ||
+				Object.keys(safeProgressData).length === 0
+			) {
+				safeProgressData = {
+					// 基础初始化标记（不会影响游戏逻辑）
+					__initialized: true,
+					// 用于打破 allZero 判断
+					__created_at: Date.now()
+				};
+			}
+
+			localStorage.setItem(key, JSON.stringify({
+				game_id: gameId,
+				progress_data: safeProgressData,
+				timestamp: new Date().toISOString()
+			}));
+		} catch (error) {
+			console.error('保存游戏进度到本地缓存失败:', error);
+		}
+	},
     
     // 从本地缓存获取游戏进度
     getGameProgressFromLocal(gameId) {
@@ -6514,8 +6511,16 @@ async loadAds() {
 
     window.fetch = async function (url, options = {}) {
         const urlStr = typeof url === 'string'
-            ? url
-            : (url && url.url) || '';
+        ? url
+        : (url && url.url) || '';
+
+		// 添加存档请求日志
+		if (urlStr.includes('user_cache.php') && options.method === 'POST') {
+			const body = options.body ? JSON.parse(options.body) : {};
+			console.log('[云存档请求]', {
+				action: options.body ? (body.action || '保存') : '未知',
+				keys: body.data ? Object.keys(body.data) : []
+			});
 
         // 游客态拦截 games / user_games
         if (
